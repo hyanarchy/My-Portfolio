@@ -5,17 +5,17 @@
    - Add a photo: put a link or file name in `photo`.
    ===================================================================== */
 const DATA = {
-  name: "Your Name",
-  initials: "YN",
-  email: "you@example.com",
-  photo: "",                       // e.g. "me.jpg" (black and white looks best)
+  name: "Adrian Cabaluna",
+  initials: "Adrian",
+  email: "cabalunaadrianm@gmail.com",
+  photo: "asset/mypicture,jpg",                       // e.g. "me.jpg" (black and white looks best)
   available: "Open for clients",   // or "Fully booked until Dec"
-  tagline: "Virtual assistant with a tech background.",
-  intro: "3rd year BSIT student helping busy founders and small teams with tech support, admin work and, soon, social media.",
+  tagline: "IT",
+  intro: "3rd year BSIT student helping busy founders and small teams with tech support, admin work and, social media.",
   socials: [
-    { label: "linkedin", url: "https://linkedin.com/" },
-    { label: "github", url: "https://github.com/" },
-    { label: "facebook", url: "https://facebook.com/" }
+    { label: "linkedin", url: "https://www.linkedin.com/in/adrian-marie-cabaluna-a42555386/?isSelfProfile=true" },
+    { label: "github", url: "https://github.com/hyanarchy" },
+    { label: "onlinejobs.ph", url: "https://v2.onlinejobs.ph/jobseekers/info/5465586" }
   ],
   stats: [
     { value: "3rd yr", label: "BSIT student" },
