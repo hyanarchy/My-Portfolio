@@ -1,17 +1,12 @@
-/* =====================================================================
-   EDIT ONLY THIS BLOCK. Everything on the page is built from DATA.
-   - Add a project: copy one { ... } item in `projects` and change the text.
-   - Set `placeholder: false` once a project is real.
-   - Add a photo: put a link or file name in `photo`.
-   ===================================================================== */
 const DATA = {
-  name: "Adrian Cabaluna",
-  initials: "Adrian",
+  name: "Adrian",
+  initials: "AC",
   email: "cabalunaadrianm@gmail.com",
-  photo: "asset/mypicture,jpg",                       // e.g. "me.jpg" (black and white looks best)
+  photo: "asset/asset/mypicture.jpg",                       // e.g. "me.jpg" (black and white looks best)
   available: "Open for clients",   // or "Fully booked until Dec"
-  tagline: "IT",
-  intro: "3rd year BSIT student helping busy founders and small teams with tech support, admin work and, social media.",
+  tagline: "Tech Builder | Freelancer",
+  nicknames: ["Ahyan"],
+  intro: "I build apps and websites, and I like leading projects from first idea to working product. Currently, my focus is on solving real-world problems with technology by working with businesses and teams work smarter.",
   socials: [
     { label: "linkedin", url: "https://www.linkedin.com/in/adrian-marie-cabaluna-a42555386/?isSelfProfile=true" },
     { label: "github", url: "https://github.com/hyanarchy" },
@@ -23,14 +18,14 @@ const DATA = {
     { value: "3", label: "Areas of support" }
   ],
   services: [
-    { title: "Tech support VA", text: "Website updates, tool setup, spreadsheets and automations, basic troubleshooting.", status: "use" },
-    { title: "General admin", text: "Email and calendar handling, data entry, research, document formatting.", status: "learn" },
-    { title: "Social media support", text: "Post scheduling, simple graphics, caption drafts, basic reporting.", status: "learn" }
+    { title: "Development", text: "Website updates, tool setup, spreadsheets and automations, basic troubleshooting.", status: "use" },
+    { title: "Admin Support", text: "Email and calendar handling, data entry, research, document formatting.", status: "use" },
+    { title: "Social media support", text: "Post scheduling, simple graphics, caption drafts, basic reporting.", status: "use" }
   ],
   skills: [
-    { group: "Tech", items: [["HTML / CSS / JS", "use"], ["Python basics", "use"], ["Git & GitHub", "use"], ["Database basics (SQL)", "use"], ["Website editing (WordPress)", "learn"]] },
-    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Notion", "use"], ["Canva", "learn"], ["Zapier / automation", "learn"]] },
-    { group: "Admin & social", items: [["Email management", "learn"], ["Scheduling tools", "learn"], ["Content calendars", "learn"], ["Client communication", "learn"]] }
+    { group: "Tech", items: [["HTML / CSS / JS", "use"], ["C#", "use"], ["MySQL", "use"], ["Python basics", "use"], ["Cisco Packet Tracer basics", "use"], ["Git & GitHub", "use"], ["Bootstrap", "learn"], ["WordPress", "learn"]] },
+    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Jira", "use"], ["Figma", "use"], ["Canva", "use"], ["Vercel", "use"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
+    { group: "Client Support", items: [["Email management", "use"], ["Scheduling tools", "use"], ["Content calendars", "learn"], ["Client communication", "learn"]] }
   ],
   projectsNote: "Early work from school and self-study. Newer projects and client work will replace the placeholders as I finish them.",
   projects: [
@@ -55,19 +50,28 @@ const SECTIONS = [["home", "Home"], ["services", "Services"], ["skills", "Skills
 
 document.title = DATA.name + " · Virtual Assistant";
 $("#brand").textContent = DATA.name; $("#name").textContent = DATA.name;
+const aka = $("#aka");
+if (DATA.nicknames && DATA.nicknames.length) {
+  aka.innerHTML = "You can call me " + DATA.nicknames.map(n => `<button class="nick">${esc(n)}</button>`).join(" or ");
+    aka.onclick = e => {
+    const b = e.target.closest(".nick"); if (!b) return;
+    const h = $("#name"), current = h.textContent;
+    h.textContent = b.textContent;   // heading takes the name on the button
+    b.textContent = current;         // button takes the name that was in the heading
+  };
+} else aka.remove();
 $("#tagline").textContent = DATA.tagline; $("#intro").textContent = DATA.intro;
 $("#avail").textContent = DATA.available; $("#mail").textContent = DATA.email; $("#mail").href = "mailto:" + DATA.email;
 $("#photo").innerHTML = DATA.photo ? `<img src="${esc(DATA.photo)}" alt="${esc(DATA.name)}">` : `<span>${esc(DATA.initials)}</span>`;
 $("#socials").innerHTML = DATA.socials.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`).join("");
 $("#stats").innerHTML = DATA.stats.map(s => `<div><b>${esc(s.value)}</b><small>${esc(s.label)}</small></div>`).join("");
-$("#serviceGrid").innerHTML = DATA.services.map(s => `<div class="card"><span class="tag ${s.status}">${s.status === "use" ? "Using" : "Learning"}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>`).join("");
+$("#serviceGrid").innerHTML = DATA.services.map(s => `<div class="card"><span class="tag ${s.status}">${s.status === "use" ? "Achieved" : "In Progress"}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>`).join("");
 $("#skillList").innerHTML = DATA.skills.map(g => `<div class="skillrow"><h3>${esc(g.group)}</h3><div>${g.items.map(i => `<span class="tag ${i[1]}">${esc(i[0])}</span>`).join("")}</div></div>`).join("");
 $("#steps").innerHTML = DATA.process.map(p => `<div><b>${esc(p.title)}</b><span>${esc(p.text)}</span></div>`).join("");
 $("#projSub").textContent = DATA.projectsNote;
-$("#foot").textContent = "© " + new Date().getFullYear() + " " + DATA.name + ". Built by hand with HTML, CSS and JavaScript.";
+$("#foot").textContent = "© " + new Date().getFullYear() + " " + DATA.name;
 $("#nav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">${s[1]}</a>`).join("");
-$("#mobnav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}">${s[1]}</a>`).join("");
-$("#fType").innerHTML = `<option>General question</option>` + DATA.services.map(s => `<option>${esc(s.title)}</option>`).join("");
+$("#mobnav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">${s[1]}</a>`).join("");$("#fType").innerHTML = `<option>General question</option>` + DATA.services.map(s => `<option>${esc(s.title)}</option>`).join("");
 
 /* projects with filter + expand */
 const cats = ["All", ...new Set(DATA.projects.map(p => p.category))];
@@ -110,7 +114,7 @@ $("#theme").onclick = () => { mode = modes[(modes.indexOf(mode) + 1) % 3]; try {
 applyTheme();
 
 /* active nav */
-const links = [...document.querySelectorAll("#nav a")];
+const links = [...document.querySelectorAll("#nav a, #mobnav a")];
 const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) links.forEach(l => l.classList.toggle("on", l.dataset.s === en.target.id)); }), { rootMargin: "-40% 0px -55% 0px" });
 SECTIONS.forEach(s => io.observe(document.getElementById(s[0])));
 
@@ -137,3 +141,9 @@ document.addEventListener("keydown", e => {
     [...palList.querySelectorAll("button")].forEach((b, n) => b.classList.toggle("sel", n === sel));
   }
 });
+
+$("#mobnav").insertAdjacentHTML("beforeend",
+  '<button class="mobbtn" id="mobTheme" aria-label="Change theme">◐</button>' +
+  '<button class="mobbtn" id="mobJump" aria-label="Jump to a section">⌕</button>');
+$("#mobTheme").onclick = () => $("#theme").click();
+$("#mobJump").onclick = openPal;
