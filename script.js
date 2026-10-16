@@ -68,8 +68,8 @@ const DATA = {
       { title: "Technical Committee", text: "Valenzuela Information Technology Society", meta: "2026" },
       { title: "Creatives Officer", text: "Valenzuela Tigers Haud Ka'Bu", meta: "2026" } ] },
     { group: "Competition", items: [
-      { title: "C# Programming · Participant", text: "PLV ITlympics, problem solving", meta: "2025" },
-      { title: "Networking · Finalist", text: "PLV ITlympics, hardware and Cisco Packet Tracer", meta: "2026" } ] },
+      { title: "C# Programming · Participant", text: "PLV ITlympics, Problem solving", meta: "2025" },
+      { title: "Networking · Finalist", text: "PLV ITlympics, Hardware and Cisco Packet Tracer", meta: "2026" } ] },
     { group: "Certificates", items: [
       { title: "Introduction to Digital Marketing", text: "TESDA", meta: "2026" },
       { title: "Web Development Fundamentals", text: "IBM", meta: "2026" },
