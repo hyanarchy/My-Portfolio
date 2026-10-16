@@ -23,16 +23,57 @@ const DATA = {
     { title: "Social media support", text: "Post scheduling, simple graphics, caption drafts, basic reporting.", status: "use" }
   ],
   skills: [
-    { group: "Tech", items: [["HTML / CSS / JS", "use"], ["C#", "use"], ["MySQL", "use"], ["Python basics", "use"], ["Cisco Packet Tracer basics", "use"], ["Git & GitHub", "use"], ["Bootstrap", "learn"], ["WordPress", "learn"]] },
-    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Jira", "use"], ["Figma", "use"], ["Canva", "use"], ["Vercel", "use"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
+    { group: "Tech", items: [["HTML / CSS / JS", "use"], ["C#", "use"], ["MySql", "use"], ["Python basics", "use"], ["Cisco Packet Tracer basics", "use"], ["Git & GitHub", "use"], ["Bootstrap", "learn"], ["WordPress", "learn"]] },
+    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Figma", "use"], ["Canva", "use"], ["Vercel", "use"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
     { group: "Client Support", items: [["Email management", "use"], ["Scheduling tools", "use"], ["Content calendars", "learn"], ["Client communication", "learn"]] }
   ],
-  projectsNote: "Early work from school and self-study. Newer projects and client work will replace the placeholders as I finish them.",
+    projectsNote: "College and personal projects. Some are still in progress, and source code is linked where it's on GitHub.",
   projects: [
-    { title: "Project name one", category: "Web", year: "2024", placeholder: true, stack: ["HTML", "CSS", "JavaScript"], summary: "One sentence on what this project does and who it is for.", details: "Add 2 to 3 sentences here: the problem, what you built, and what you learned.", link: "" },
-    { title: "Project name two", category: "Database", year: "2024", placeholder: true, stack: ["Python", "SQLite"], summary: "A small system for tracking something, such as inventory or students.", details: "Explain how it works and one thing you would improve.", link: "" },
-    { title: "Project name three", category: "Automation", year: "2025", placeholder: true, stack: ["Google Sheets", "Apps Script"], summary: "A sheet that saves time by doing a repeated task automatically.", details: "Describe the before and after, for example hours saved each week.", link: "" },
-    { title: "Social media sample set", category: "Social", year: "2026", placeholder: true, stack: ["Canva", "Content calendar"], summary: "A week of sample posts for a small business.", details: "Share the brand, the posting plan and the graphics you made.", link: "" }
+    { title: "TAPLY", category: "Capstone", year: "2026", status: "Ongoing", placeholder: false, role: "Backend programmer / QA",
+      stack: ["IoT", "Telemetry", "Game"], image: "",
+      summary: "An IoT-enabled aquarium game that uses smart faucet telemetry to encourage household water conservation.",
+      details: "My capstone project. I work on the backend and on quality assurance.",
+      repo: "", demo: "" },
+    { title: "Mindweaver", category: "Game dev", year: "2026", status: "Ongoing", placeholder: false, role: "Project manager",
+      stack: ["Jira", "Scrum"], image: "",
+      summary: "A tabletop game that is moving toward a digital hybrid version.",
+      details: "I lead the team using Jira and Scrum for sprint planning and tracking.",
+      repo: "", demo: "" },
+    { title: "DORM", category: "Web", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
+      stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "",
+      summary: "A web project for my Event Driven Programming course.",
+      details: "I built the frontend. The source code is on GitHub. Add one sentence here about what the system does.",
+      repo: "", demo: "" },
+    { title: "2K2J", category: "Web", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
+      stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "",
+      summary: "A web project for my Web Development course.",
+      details: "I built the frontend. The source code is on GitHub. Add one sentence here about what the site does.",
+      repo: "", demo: "" },
+    { title: "Link-In", category: "Film", year: "2026", status: "Completed", placeholder: false, role: "Director",
+      stack: ["Directing", "Pre-production", "Post-production"], image: "",
+      summary: "A film for the IT Film Fest.",
+      details: "I directed the whole film and helped with every stage, from pre-production to post-production.",
+      repo: "", demo: "" },
+    { title: "Personal portfolio", category: "Personal", year: "2026", status: "Live", placeholder: false, role: "Designer and developer",
+      stack: ["HTML", "CSS", "JavaScript", "Vercel", "GitHub"], image: "",
+      summary: "This website. It's built by hand and updates from one data block.",
+      details: "Responsive layout, light and dark themes, project filters and a live viewer count.",
+      repo: "https://github.com/hyanarchy/My-Portfolio", demo: "https://adrianmcabaluna.vercel.app" }
+  
+  ],
+    background: [
+    { group: "Experience", items: [
+      { title: "Technical Committee", text: "VITS", meta: "2026" },
+      { title: "Creatives Officer", text: "VTHK", meta: "2026" } ] },
+    { group: "Contests", items: [
+      { title: "C# Programming · Participant", text: "PLV ITlympics, problem solving", meta: "2025" },
+      { title: "Networking · Finalist", text: "PLV ITlympics, hardware and Cisco Packet Tracer", meta: "2026" } ] },
+    { group: "Certificates", items: [
+      { title: "Introduction to Digital Marketing", text: "TESDA", meta: "2026" },
+      { title: "Web Development Fundamentals", text: "IBM", meta: "2026" },
+      { title: "Introduction to Data Analysis with Python", text: "CodeSignal", meta: "2026" } ] },
+    { group: "Seminars", items: [
+      { title: "Unlocking Security: The Power of Identity & Access Management", text: "Seminars and Colloquia", meta: "2025" } ] }
   ],
   process: [
     { title: "You send a message", text: "Tell me the task, the deadline and the tools you use." },
@@ -46,8 +87,7 @@ const DATA = {
 const $ = s => document.querySelector(s);
 const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const SECTIONS = [["home", "Home"], ["services", "Services"], ["skills", "Skills"], ["projects", "Projects"], ["process", "Process"], ["contact", "Contact"]];
-
+const SECTIONS = [["home", "Home"], ["services", "Services"], ["skills", "Skills"], ["projects", "Projects"], ["background", "Background"], ["process", "Process"], ["contact", "Contact"]];
 document.title = DATA.name + " · Virtual Assistant";
 $("#brand").textContent = DATA.name; $("#name").textContent = DATA.name;
 const aka = $("#aka");
@@ -67,6 +107,7 @@ $("#socials").innerHTML = DATA.socials.map(s => `<a href="${esc(s.url)}" target=
 $("#stats").innerHTML = DATA.stats.map(s => `<div><b>${esc(s.value)}</b><small>${esc(s.label)}</small></div>`).join("");
 $("#serviceGrid").innerHTML = DATA.services.map(s => `<div class="card"><span class="tag ${s.status}">${s.status === "use" ? "Achieved" : "In Progress"}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>`).join("");
 $("#skillList").innerHTML = DATA.skills.map(g => `<div class="skillrow"><h3>${esc(g.group)}</h3><div>${g.items.map(i => `<span class="tag ${i[1]}">${esc(i[0])}</span>`).join("")}</div></div>`).join("");
+$("#bgList").innerHTML = DATA.background.map(g => `<div class="skillrow"><h3>${esc(g.group)}</h3><div>${g.items.map(i => `<div class="entry"><div><b>${esc(i.title)}</b>${i.text ? `<span>${esc(i.text)}</span>` : ""}</div><small>${esc(i.meta)}</small></div>`).join("")}</div></div>`).join("");
 $("#steps").innerHTML = DATA.process.map(p => `<div><b>${esc(p.title)}</b><span>${esc(p.text)}</span></div>`).join("");
 $("#projSub").textContent = DATA.projectsNote;
 $("#foot").textContent = "© " + new Date().getFullYear() + " " + DATA.name;
@@ -81,13 +122,11 @@ function renderProjects() {
   const g = $("#projGrid"); g.innerHTML = "";
   DATA.projects.filter(p => cat === "All" || p.category === cat).forEach(p => {
     const c = el("div", "card");
-    c.innerHTML = `<button class="proj" aria-expanded="false"><div class="thumb">${p.placeholder ? "image placeholder" : "preview"}</div>
-      <div class="top"><span>${esc(p.category)} · ${esc(p.year)}</span><span>${p.placeholder ? "placeholder" : "live"}</span></div>
-      <h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p></button>
-      <div class="more"><p style="margin-bottom:10px">${esc(p.details)}</p>${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}${p.link ? `<p><a href="${esc(p.link)}" target="_blank" rel="noopener" style="color:var(--acc)">View project ↗</a></p>` : ""}</div>`;
-    const b = c.querySelector(".proj");
-    b.onclick = () => { const o = c.classList.toggle("open"); b.setAttribute("aria-expanded", o); };
-    g.appendChild(c);
+        c.innerHTML = `<button class="proj" aria-expanded="false"><div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot" loading="lazy">` : "no preview yet"}</div>
+      <div class="top"><span>${esc(p.category)} · ${esc(p.year)}</span><span>${esc(p.status || (p.demo ? "live" : "on GitHub"))}</span></div>
+      <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}<p>${esc(p.summary)}</p></button>
+      <div class="more"><p style="margin-bottom:10px">${esc(p.details)}</p>${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}
+      <p class="plinks">${p.demo ? `<a href="${esc(p.demo)}" target="_blank" rel="noopener">Live demo ↗</a>` : ""}${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">Source code ↗</a>` : ""}</p></div>`;
   });
 }
 $("#chips").onclick = e => { const c = e.target.closest("[data-c]"); if (c) { cat = c.dataset.c; renderProjects(); } };
