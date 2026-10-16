@@ -90,7 +90,7 @@ const $ = s => document.querySelector(s);
 const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const SECTIONS = [["home", "Home"], ["services", "Services"], ["skills", "Skills"], ["projects", "Projects"], ["background", "Background"], ["process", "Process"], ["contact", "Contact"]];
-document.title = DATA.name + " · Virtual Assistant";
+document.title = DATA.name ;
 $("#brand").textContent = DATA.name; $("#name").textContent = DATA.name;
 const aka = $("#aka");
 if (DATA.nicknames && DATA.nicknames.length) {
