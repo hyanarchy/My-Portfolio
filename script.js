@@ -27,7 +27,7 @@ const DATA = {
     { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Figma", "use"], ["Canva", "use"], ["Vercel", "use"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
     { group: "Client Support", items: [["Email management", "use"], ["Scheduling tools", "use"], ["Content calendars", "learn"], ["Client communication", "learn"]] }
   ],
-    projectsNote: "Academic and personal builds across web, IoT and game development.",
+  projectsNote: "Academic and personal builds across web, IoT and game development.",
   projects: [
     { title: "TAPLY", category: "Capstone", year: "2026", status: "Ongoing", placeholder: false, role: "Backend programmer",
       stack: ["IoT", "Telemetry", "Game"], image: "asset/asset/taply.png",
@@ -50,20 +50,19 @@ const DATA = {
       details: "Developed frontend interfaces and interactive features",
       repo: "https://github.com/hyanarchy/2k2j-system", demo: "" },
     { title: "Link-In", category: "Film", year: "2026", status: "Completed", placeholder: false, role: "Director",
-  stack: ["Directing", "Production"], image: "asset/asset/linkin.png",
-  summary: "A film for the IT Film Fest.",
-  details: "I directed the whole film and helped with every stage, from pre-production to post-production.",
-  note: "The full film is not publicly released, since it was made for and shown only at our school.",
-  trailer: "https://www.facebook.com/reel/1892957314745360",
-  repo: "", demo: "" },
+      stack: ["Directing", "Production"], image: "asset/asset/linkin.png",
+      summary: "A film for the IT Film Fest.",
+      details: "I directed the whole film and helped with every stage, from pre-production to post-production.",
+      note: "The full film is not publicly released, since it was made for and shown only at our school.",
+      trailer: "https://www.facebook.com/reel/1892957314745360",
+      repo: "", demo: "" },
     { title: "Portfolio", category: "Personal", year: "2026", status: "Live", placeholder: false, role: "Designer and developer",
       stack: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel", "GitHub"], image: "asset/asset/portfolio.png",
       summary: "A responsive website showcasing technical projects, skills, and creative work.",
       details: "Responsive layout, light and dark themes, project filters and a live viewer count.",
       repo: "https://github.com/hyanarchy/My-Portfolio", demo: "https://adrianmcabaluna.vercel.app" }
-  
   ],
-    background: [
+  background: [
     { group: "Experience", items: [
       { title: "Technical Committee", text: "Valenzuela Information Technology Society", meta: "2026" },
       { title: "Creatives Officer", text: "Valenzuela Tigers Haud Ka'Bu", meta: "2026" } ] },
@@ -71,11 +70,12 @@ const DATA = {
       { title: "C# Programming · Participant", text: "PLV ITlympics, Problem solving", meta: "2025" },
       { title: "Networking · Finalist", text: "PLV ITlympics, Hardware and Cisco Packet Tracer", meta: "2026" } ] },
     { group: "Certificates", items: [
-      { title: "Introduction to Digital Marketing", text: "TESDA", meta: "2026" },
-      { title: "Web Development Fundamentals", text: "IBM", meta: "2026" },
-      { title: "Introduction to Data Analysis with Python", text: "CodeSignal", meta: "2026" } ] },
+      { title: "Introduction to Digital Marketing", text: "TESDA, Digital Marketing lll", meta: "2026", file: "asset/asset/digital_marketing_cert.pdf" },
+      { title: "Web Development Fundamentals", text: "IBM", meta: "2026", file: "asset/asset/IBM_cert.pdf" },
+      { title: "Fundamentals of Artificial Intelligence", text: "TESDA, Amazon Web Services", meta: "2026", file: "asset/asset/ai_cert.pdf" },
+      { title: "Introduction to Data Analysis with Python", text: "CodeSignal", meta: "2026", file: "asset/asset/data_analysis.pdf" } ] },
     { group: "Seminars", items: [
-      { title: "Unlocking Security: The Power of Identity & Access Management", text: "Seminars and Colloquia", meta: "2025" } ] }
+      { title: "Unlocking Security: The Power of Identity & Access Management", text: "Seminars and Colloquia", meta: "2025", file: "asset/asset/seminars-and-colloquia.jpg" } ] }
   ],
   process: [
     { title: "You send a message", text: "Tell me the task, the deadline and the tools you use." },
@@ -90,12 +90,12 @@ const $ = s => document.querySelector(s);
 const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const SECTIONS = [["home", "Home"], ["services", "Services"], ["skills", "Skills"], ["projects", "Projects"], ["background", "Background"], ["process", "Process"], ["contact", "Contact"]];
-document.title = DATA.name ;
+document.title = DATA.name;
 $("#brand").textContent = DATA.name; $("#name").textContent = DATA.name;
 const aka = $("#aka");
 if (DATA.nicknames && DATA.nicknames.length) {
   aka.innerHTML = "You can call me " + DATA.nicknames.map(n => `<button class="nick">${esc(n)}</button>`).join(" or ");
-    aka.onclick = e => {
+  aka.onclick = e => {
     const b = e.target.closest(".nick"); if (!b) return;
     const h = $("#name"), current = h.textContent;
     h.textContent = b.textContent;   // heading takes the name on the button
@@ -109,14 +109,91 @@ $("#socials").innerHTML = DATA.socials.map(s => `<a href="${esc(s.url)}" target=
 $("#stats").innerHTML = DATA.stats.map(s => `<div><b>${esc(s.value)}</b><small>${esc(s.label)}</small></div>`).join("");
 $("#serviceGrid").innerHTML = DATA.services.map(s => `<div class="card"><span class="tag ${s.status}">${s.status === "use" ? "Achieved" : "In Progress"}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>`).join("");
 $("#skillList").innerHTML = DATA.skills.map(g => `<div class="skillrow"><h3>${esc(g.group)}</h3><div>${g.items.map(i => `<span class="tag ${i[1]}">${esc(i[0])}</span>`).join("")}</div></div>`).join("");
-$("#bgList").innerHTML = DATA.background.map(g => `<div class="skillrow"><h3>${esc(g.group)}</h3><div>${g.items.map(i => `<div class="entry"><div><b>${esc(i.title)}</b>${i.text ? `<span>${esc(i.text)}</span>` : ""}</div><small>${esc(i.meta)}</small></div>`).join("")}</div></div>`).join("");
+$("#bgList").innerHTML = DATA.background.map(g => `<div class="skillrow"><h3>${esc(g.group)}</h3><div>${g.items.map(i => `<div class="entry"><div>${i.file ? `<button class="entry-link" data-file="${esc(i.file)}" data-title="${esc(i.title)}" aria-haspopup="dialog">${esc(i.title)} <i>↗</i></button>` : `<b>${esc(i.title)}</b>`}${i.text ? `<span>${esc(i.text)}</span>` : ""}</div><small>${esc(i.meta)}</small></div>`).join("")}</div></div>`).join("");
 $("#steps").innerHTML = DATA.process.map(p => `<div><b>${esc(p.title)}</b><span>${esc(p.text)}</span></div>`).join("");
 $("#projSub").textContent = DATA.projectsNote;
 $("#foot").textContent = "© " + new Date().getFullYear() + " " + DATA.name;
 $("#nav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">${s[1]}</a>`).join("");
-$("#mobnav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">${s[1]}</a>`).join("");$("#fType").innerHTML = `<option>General question</option>` + DATA.services.map(s => `<option>${esc(s.title)}</option>`).join("");
+$("#mobnav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">${s[1]}</a>`).join("");
+$("#fType").innerHTML = `<option>General question</option>` + DATA.services.map(s => `<option>${esc(s.title)}</option>`).join("");
 
-/* projects with filter + expand */
+/* project popup */
+const pm = el("div", "pmodal");
+pm.innerHTML = `<div class="pbox" role="dialog" aria-modal="true" aria-label="Project details"><button class="pclose" aria-label="Close">×</button><div class="pbody"></div></div>`;
+document.body.appendChild(pm);
+const pbox = pm.querySelector(".pbox"), pbody = pm.querySelector(".pbody");
+let lastCard = null;
+
+function openProject(p, card) {
+  const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"]]
+    .filter(l => p[l[0]]).map(l => `<a href="${esc(p[l[0]])}" target="_blank" rel="noopener">${l[1]} ↗</a>`).join("");
+  pbody.innerHTML = `
+    <div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot">` : "no preview yet"}</div>
+    <div class="top"><span>${esc(p.category)} · ${esc(p.year)}</span><span>${esc(p.status || "")}</span></div>
+    <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}
+    <p class="psum">${esc(p.summary)}</p>
+    <p>${esc(p.details)}</p>
+    ${p.note ? `<p class="note">${esc(p.note)}</p>` : ""}
+    <div class="ptags">${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}</div>
+    ${links ? `<p class="plinks">${links}</p>` : ""}`;
+
+  // start the popup at the clicked card's position, then let it grow to center
+  const r = card.getBoundingClientRect();
+  pbox.style.transition = "none";
+  pbox.style.transform = `translate(${r.left + r.width / 2 - innerWidth / 2}px, ${r.top + r.height / 2 - innerHeight / 2}px) scale(.35)`;
+  pbox.style.opacity = "0";
+  pm.classList.add("open");
+  pbox.scrollTop = 0;
+  void pbox.offsetWidth;                 // force reflow so the start position sticks
+  pbox.style.transition = pbox.style.transform = pbox.style.opacity = "";
+
+  document.body.style.overflow = "hidden";
+  lastCard = card;
+  pm.querySelector(".pclose").focus();
+}
+function closeProject() {
+  if (!pm.classList.contains("open")) return;
+  pm.classList.remove("open");
+  document.body.style.overflow = "";
+  if (lastCard) { const b = lastCard.querySelector(".proj"); if (b) b.focus(); }
+}
+pm.onclick = e => { if (e.target === pm || e.target.closest(".pclose")) closeProject(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeProject(); });
+
+/* certificate popup */
+const cm = el("div", "pmodal");
+cm.innerHTML = `<div class="pbox cbox" role="dialog" aria-modal="true" aria-label="Certificate"><button class="pclose" aria-label="Close">×</button><p class="ctitle"></p><div class="cview"></div><p class="plinks"><a class="copen" target="_blank" rel="noopener">Open in new tab ↗</a></p></div>`;
+document.body.appendChild(cm);
+const cview = cm.querySelector(".cview"), ctitle = cm.querySelector(".ctitle"), copen = cm.querySelector(".copen");
+let lastCert = null;
+
+function openCert(file, title, trigger) {
+  const isPdf = /\.pdf($|\?)/i.test(file);
+  cview.innerHTML = isPdf
+    ? `<iframe src="${esc(file)}" title="${esc(title)}"></iframe>`
+    : `<img src="${esc(file)}" alt="${esc(title)}">`;
+  ctitle.textContent = title;
+  copen.href = file;
+  cm.classList.add("open");
+  document.body.style.overflow = "hidden";
+  lastCert = trigger;
+  cm.querySelector(".pclose").focus();
+}
+function closeCert() {
+  if (!cm.classList.contains("open")) return;
+  cm.classList.remove("open");
+  document.body.style.overflow = "";
+  cview.innerHTML = "";               // stops the PDF from loading in the background
+  if (lastCert) lastCert.focus();
+}
+cm.onclick = e => { if (e.target === cm || e.target.closest(".pclose")) closeCert(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeCert(); });
+$("#bgList").onclick = e => {
+  const b = e.target.closest(".entry-link");
+  if (b) openCert(b.dataset.file, b.dataset.title, b);
+};
+
+/* projects with filter + popup */
 const cats = ["All", ...new Set(DATA.projects.map(p => p.category))];
 let cat = "All";
 let showAll = false;
@@ -125,19 +202,14 @@ function renderProjects() {
   const g = $("#projGrid"); g.innerHTML = "";
   DATA.projects.filter(p => cat === "All" || p.category === cat).forEach(p => {
     const c = el("div", "card");
-        c.dataset.title = p.title;
-    const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"]].filter(l => p[l[0]]).map(l => `<a href="${esc(p[l[0]])}" target="_blank" rel="noopener">${l[1]} ↗</a>`).join("");
-       c.innerHTML = `<button class="proj" aria-expanded="false"><div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot" loading="lazy">` : "no preview yet"}</div>
+    c.dataset.title = p.title;
+    c.innerHTML = `<button class="proj" aria-haspopup="dialog"><div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot" loading="lazy">` : "no preview yet"}</div>
       <div class="top"><span>${esc(p.category)} · ${esc(p.year)}</span><span>${esc(p.status || (p.demo ? "live" : "on GitHub"))}</span></div>
-      <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}<p class="summary">${esc(p.summary)}</p></button>
-      <div class="more"><p style="margin-bottom:10px">${esc(p.details)}</p>${p.note ? `<p class="note">${esc(p.note)}</p>` : ""}
-      ${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}${links ? `<p class="plinks">${links}</p>` : ""}</div>`;
-    const b = c.querySelector(".proj");
-    b.onclick = () => { const o = c.classList.toggle("open"); b.setAttribute("aria-expanded", o); };
+      <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}</button>`;
+    c.querySelector(".proj").onclick = () => openProject(p, c);
     g.appendChild(c);
-
   });
-    const total = DATA.projects.filter(p => cat === "All" || p.category === cat).length;
+  const total = DATA.projects.filter(p => cat === "All" || p.category === cat).length;
   const sm = $("#seeMore");
   g.classList.toggle("collapsed", !showAll);
   sm.hidden = total <= 1;
@@ -174,7 +246,8 @@ SECTIONS.forEach(s => io.observe(document.getElementById(s[0])));
 
 /* command palette (Alt+K) */
 const pal = $("#pal"), palIn = $("#palIn"), palList = $("#palList"); let items = [], sel = 0;
-const all = [...SECTIONS.map(s => ({ label: s[1], go: "#" + s[0] })), ...DATA.projects.map(p => ({ label: "Project: " + p.title, go: "#projects", proj: p.title }))];function drawPal() {
+const all = [...SECTIONS.map(s => ({ label: s[1], go: "#" + s[0] })), ...DATA.projects.map(p => ({ label: "Project: " + p.title, go: "#projects", proj: p.title }))];
+function drawPal() {
   const q = palIn.value.toLowerCase(); items = all.filter(i => i.label.toLowerCase().includes(q)); sel = 0;
   palList.innerHTML = items.map((i, n) => `<li><button class="${n ? "" : "sel"}" data-n="${n}">${esc(i.label)}</button></li>`).join("");
 }
@@ -191,7 +264,8 @@ const go = n => {
   }
   const t = document.querySelector(it.go);
   if (t) { t.scrollIntoView({ behavior: "smooth" }); history.replaceState(null, "", it.go); }
-};$("#openPal").onclick = openPal; palIn.oninput = drawPal;
+};
+$("#openPal").onclick = openPal; palIn.oninput = drawPal;
 palList.onclick = e => { const b = e.target.closest("button"); if (b) go(+b.dataset.n); };
 pal.onclick = e => { if (e.target === pal) closePal(); };
 document.addEventListener("keydown", e => {
