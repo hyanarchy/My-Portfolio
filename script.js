@@ -142,8 +142,35 @@ document.addEventListener("keydown", e => {
   }
 });
 
-$("#mobnav").insertAdjacentHTML("beforeend",
-  '<button class="mobbtn" id="mobTheme" aria-label="Change theme">◐</button>' +
-  '<button class="mobbtn" id="mobJump" aria-label="Jump to a section">⌕</button>');
-$("#mobTheme").onclick = () => $("#theme").click();
-$("#mobJump").onclick = openPal;
+/* hamburger menu (phones) */
+const burger = $("#burger"), mobmenu = $("#mobmenu");
+$("#mbrand").textContent = DATA.name;
+$("#mobextra").innerHTML = `<button class="pill" id="mobTheme">${$("#theme").textContent}</button><button class="pill" id="mobJump">Jump to…</button><a class="mono" href="mailto:${esc(DATA.email)}">${esc(DATA.email)}</a>`;
+const setMenu = open => { mobmenu.classList.toggle("open", open); burger.setAttribute("aria-expanded", open); burger.setAttribute("aria-label", open ? "Close menu" : "Open menu"); };
+burger.onclick = () => setMenu(!mobmenu.classList.contains("open"));
+mobmenu.addEventListener("click", e => { if (e.target.closest("#mobnav a")) setMenu(false); });
+document.addEventListener("click", e => { if (!e.target.closest(".mobtop")) setMenu(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+window.matchMedia("(min-width:861px)").addEventListener("change", () => setMenu(false));
+$("#mobTheme").onclick = () => { $("#theme").click(); $("#mobTheme").textContent = $("#theme").textContent; };
+$("#mobJump").onclick = () => { setMenu(false); openPal(); };
+
+/* live viewers: count only */
+const LIVE = {
+  url: "https://glnvbwlpehxbxgzbffat.supabase.co",
+  key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsbnZid2xwZWh4YnhnemJmZmF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIxMTIzNzksImV4cCI6MjEwNzY4ODM3OX0.6J5RGx5HsyaU9N_VXisZMu_N-X26BOfSn_Ia3zYVU1k"
+};
+(function () {
+  const mx = $("#mobextra");
+  if (mx) mx.insertAdjacentHTML("afterbegin", '<div class="live"></div>');
+  const boxes = document.querySelectorAll(".live");
+  if (!window.supabase || LIVE.url.startsWith("PASTE")) { boxes.forEach(b => b.remove()); return; }
+  const sb = window.supabase.createClient(LIVE.url, LIVE.key);
+  const me = Math.random().toString(36).slice(2, 10);
+  const ch = sb.channel("portfolio-live", { config: { presence: { key: me } } });
+  const draw = () => {
+    const n = Math.max(1, Object.keys(ch.presenceState()).length);
+    boxes.forEach(b => { b.innerHTML = `<i class="dot"></i><span><b>${n}</b> ${n === 1 ? "person" : "people"} viewing now</span>`; });
+  };
+  ch.on("presence", { event: "sync" }, draw).subscribe(async s => { if (s === "SUBSCRIBED") await ch.track({ id: me }); });
+})();

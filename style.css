@@ -166,3 +166,50 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .links a:hover,.mobtop a.on{text-shadow:0 0 12px var(--glow)}
 input:focus,textarea:focus,select:focus{box-shadow:0 0 0 3px var(--glow-soft),0 0 20px -4px var(--glow)}
 .stats{box-shadow:0 0 50px -24px var(--glow)}
+
+/* phone: smaller, centered photo */
+@media(max-width:860px){
+ .hero{justify-items:center}
+ .photo{width:min(170px,46vw);max-width:none;margin:0 auto;justify-self:center}
+ .hero>div:last-child{width:100%}
+}
+
+/* ===== Phone layout + hamburger ===== */
+@media(max-width:860px){
+ .mobtop{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;overflow:visible;gap:0;padding:10px 20px;padding-top:calc(10px + env(safe-area-inset-top,0px));background:var(--bg);border-bottom:1px solid var(--line)}
+ .mobtop .mbrand{font:500 18px "JetBrains Mono",monospace;color:var(--text);padding:0;white-space:nowrap}
+ .burger{width:42px;height:42px;margin-right:-8px;border:0;background:none;display:grid;place-content:center;gap:5px;padding:0}
+ .burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .2s}
+ .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+ .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+ .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+ .mobmenu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:6px 20px 20px;box-shadow:0 24px 40px -20px #000a}
+ .mobmenu.open{display:block;animation:drop .2s ease}
+ @keyframes drop{from{opacity:0;transform:translateY(-8px)}}
+ .mobmenu nav{display:flex;flex-direction:column}
+ .mobtop .mobmenu nav a{font:16px "JetBrains Mono",monospace;color:var(--mute);padding:14px 4px;border-bottom:1px solid var(--line);border-radius:0;display:flex;justify-content:space-between;white-space:normal}
+ .mobtop .mobmenu nav a.on{color:var(--acc)}
+ .mobmenu nav a.on::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--acc);align-self:center;box-shadow:0 0 10px var(--acc)}
+ .mobextra{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:16px}
+ #mobTheme,#mobJump{margin:0}
+ .mobtop .mobextra a{flex-basis:100%;font-size:14px;color:var(--text);padding:6px 0}
+
+ main{padding:0 20px 60px}
+ .hero{display:flex;flex-direction:column;align-items:stretch;gap:24px;padding-top:28px!important;min-height:0}
+ .photo{width:min(280px,66vw);max-width:none;margin:0 auto;align-self:center}
+ .hero>div:last-child{width:100%;text-align:left}
+ .namerow{flex-direction:column;align-items:flex-start;gap:8px;margin:0 0 16px}
+ .hero h1{font-size:clamp(36px,11vw,48px)}
+ .nameside{padding-bottom:0}
+}
+
+/* center the name block on phones */
+@media(max-width:860px){
+ .namerow{align-items:center;text-align:center}
+ .nameside{align-items:center;text-align:center}
+ .nameside .lead,.aka{text-align:center}
+}
+
+/* live viewers */
+.live{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute)}
+.live b{color:var(--text)}
