@@ -27,45 +27,47 @@ const DATA = {
     { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Figma", "use"], ["Canva", "use"], ["Vercel", "use"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
     { group: "Client Support", items: [["Email management", "use"], ["Scheduling tools", "use"], ["Content calendars", "learn"], ["Client communication", "learn"]] }
   ],
-    projectsNote: "College and personal projects. Some are still in progress, and source code is linked where it's on GitHub.",
+    projectsNote: "Academic and personal builds across web, IoT and game development.",
   projects: [
-    { title: "TAPLY", category: "Capstone", year: "2026", status: "Ongoing", placeholder: false, role: "Backend programmer / QA",
-      stack: ["IoT", "Telemetry", "Game"], image: "",
+    { title: "TAPLY", category: "Capstone", year: "2026", status: "Ongoing", placeholder: false, role: "Backend programmer",
+      stack: ["IoT", "Telemetry", "Game"], image: "asset/asset/taply.png",
       summary: "An IoT-enabled aquarium game that uses smart faucet telemetry to encourage household water conservation.",
-      details: "My capstone project. I work on the backend and on quality assurance.",
+      details: "Develop backend components and conduct quality assurance for an ongoing capstone project.",
       repo: "", demo: "" },
-    { title: "Mindweaver", category: "Game dev", year: "2026", status: "Ongoing", placeholder: false, role: "Project manager",
-      stack: ["Jira", "Scrum"], image: "",
+    { title: "Mindweaver", category: "Game", year: "2026", status: "Ongoing", placeholder: false, role: "Project manager",
+      stack: ["Jira", "Scrum"], image: "asset/asset/mindweaver.jpg",
       summary: "A tabletop game that is moving toward a digital hybrid version.",
-      details: "I lead the team using Jira and Scrum for sprint planning and tracking.",
-      repo: "", demo: "" },
-    { title: "DORM", category: "Web", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
-      stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "",
-      summary: "A web project for my Event Driven Programming course.",
-      details: "I built the frontend. The source code is on GitHub. Add one sentence here about what the system does.",
-      repo: "", demo: "" },
+      details: "Manage team coordination, sprint planning, task assignments, and progress tracking using Jira and Scrum.",
+      repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
+    { title: "Dorm ni Kuya", category: "Web", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
+      stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "asset/asset/dorm.png",
+      summary: "A web-based dorm information system for accommodation inquiries focuses on Event Driven Programming",
+      details: "Develop frontend interfaces and interactive features.",
+      repo: "https://github.com/hyanarchy/dorm-ni-kuya", demo: "" },
     { title: "2K2J", category: "Web", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
-      stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "",
-      summary: "A web project for my Web Development course.",
-      details: "I built the frontend. The source code is on GitHub. Add one sentence here about what the site does.",
-      repo: "", demo: "" },
+      stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "asset/asset/2k2j.jpg",
+      summary: " A web-based application developed as part of a Web Development course, applying fundamental web technologies to build a functional and interactive system.",
+      details: "Developed frontend interfaces and interactive features",
+      repo: "https://github.com/hyanarchy/2k2j-system", demo: "" },
     { title: "Link-In", category: "Film", year: "2026", status: "Completed", placeholder: false, role: "Director",
-      stack: ["Directing", "Pre-production", "Post-production"], image: "",
-      summary: "A film for the IT Film Fest.",
-      details: "I directed the whole film and helped with every stage, from pre-production to post-production.",
-      repo: "", demo: "" },
-    { title: "Personal portfolio", category: "Personal", year: "2026", status: "Live", placeholder: false, role: "Designer and developer",
-      stack: ["HTML", "CSS", "JavaScript", "Vercel", "GitHub"], image: "",
-      summary: "This website. It's built by hand and updates from one data block.",
+  stack: ["Directing", "Production"], image: "asset/asset/linkin.png",
+  summary: "A film for the IT Film Fest.",
+  details: "I directed the whole film and helped with every stage, from pre-production to post-production.",
+  note: "The full film is not publicly released, since it was made for and shown only at our school.",
+  trailer: "https://www.facebook.com/reel/1892957314745360",
+  repo: "", demo: "" },
+    { title: "Portfolio", category: "Personal", year: "2026", status: "Live", placeholder: false, role: "Designer and developer",
+      stack: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel", "GitHub"], image: "asset/asset/portfolio.png",
+      summary: "A responsive website showcasing technical projects, skills, and creative work.",
       details: "Responsive layout, light and dark themes, project filters and a live viewer count.",
       repo: "https://github.com/hyanarchy/My-Portfolio", demo: "https://adrianmcabaluna.vercel.app" }
   
   ],
     background: [
     { group: "Experience", items: [
-      { title: "Technical Committee", text: "VITS", meta: "2026" },
-      { title: "Creatives Officer", text: "VTHK", meta: "2026" } ] },
-    { group: "Contests", items: [
+      { title: "Technical Committee", text: "Valenzuela Information Technology Society", meta: "2026" },
+      { title: "Creatives Officer", text: "Valenzuela Tigers Haud Ka'Bu", meta: "2026" } ] },
+    { group: "Competition", items: [
       { title: "C# Programming · Participant", text: "PLV ITlympics, problem solving", meta: "2025" },
       { title: "Networking · Finalist", text: "PLV ITlympics, hardware and Cisco Packet Tracer", meta: "2026" } ] },
     { group: "Certificates", items: [
@@ -117,19 +119,32 @@ $("#mobnav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">
 /* projects with filter + expand */
 const cats = ["All", ...new Set(DATA.projects.map(p => p.category))];
 let cat = "All";
+let showAll = false;
 function renderProjects() {
   $("#chips").innerHTML = cats.map(c => `<button class="chip" aria-pressed="${c === cat}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
   const g = $("#projGrid"); g.innerHTML = "";
   DATA.projects.filter(p => cat === "All" || p.category === cat).forEach(p => {
     const c = el("div", "card");
-        c.innerHTML = `<button class="proj" aria-expanded="false"><div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot" loading="lazy">` : "no preview yet"}</div>
+        c.dataset.title = p.title;
+    const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"]].filter(l => p[l[0]]).map(l => `<a href="${esc(p[l[0]])}" target="_blank" rel="noopener">${l[1]} ↗</a>`).join("");
+       c.innerHTML = `<button class="proj" aria-expanded="false"><div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot" loading="lazy">` : "no preview yet"}</div>
       <div class="top"><span>${esc(p.category)} · ${esc(p.year)}</span><span>${esc(p.status || (p.demo ? "live" : "on GitHub"))}</span></div>
-      <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}<p>${esc(p.summary)}</p></button>
-      <div class="more"><p style="margin-bottom:10px">${esc(p.details)}</p>${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}
-      <p class="plinks">${p.demo ? `<a href="${esc(p.demo)}" target="_blank" rel="noopener">Live demo ↗</a>` : ""}${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">Source code ↗</a>` : ""}</p></div>`;
+      <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}<p class="summary">${esc(p.summary)}</p></button>
+      <div class="more"><p style="margin-bottom:10px">${esc(p.details)}</p>${p.note ? `<p class="note">${esc(p.note)}</p>` : ""}
+      ${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}${links ? `<p class="plinks">${links}</p>` : ""}</div>`;
+    const b = c.querySelector(".proj");
+    b.onclick = () => { const o = c.classList.toggle("open"); b.setAttribute("aria-expanded", o); };
+    g.appendChild(c);
+
   });
+    const total = DATA.projects.filter(p => cat === "All" || p.category === cat).length;
+  const sm = $("#seeMore");
+  g.classList.toggle("collapsed", !showAll);
+  sm.hidden = total <= 1;
+  sm.textContent = showAll ? "See less" : `See more (${total - 1})`;
 }
-$("#chips").onclick = e => { const c = e.target.closest("[data-c]"); if (c) { cat = c.dataset.c; renderProjects(); } };
+$("#chips").onclick = e => { const c = e.target.closest("[data-c]"); if (c) { cat = c.dataset.c; showAll = false; renderProjects(); } };
+$("#seeMore").onclick = () => { showAll = !showAll; renderProjects(); if (!showAll) $("#projects").scrollIntoView(); };
 renderProjects();
 
 /* toast, copy, contact */
@@ -159,15 +174,24 @@ SECTIONS.forEach(s => io.observe(document.getElementById(s[0])));
 
 /* command palette (Alt+K) */
 const pal = $("#pal"), palIn = $("#palIn"), palList = $("#palList"); let items = [], sel = 0;
-const all = [...SECTIONS.map(s => ({ label: s[1], go: "#" + s[0] })), ...DATA.projects.map(p => ({ label: "Project: " + p.title, go: "#projects" }))];
-function drawPal() {
+const all = [...SECTIONS.map(s => ({ label: s[1], go: "#" + s[0] })), ...DATA.projects.map(p => ({ label: "Project: " + p.title, go: "#projects", proj: p.title }))];function drawPal() {
   const q = palIn.value.toLowerCase(); items = all.filter(i => i.label.toLowerCase().includes(q)); sel = 0;
   palList.innerHTML = items.map((i, n) => `<li><button class="${n ? "" : "sel"}" data-n="${n}">${esc(i.label)}</button></li>`).join("");
 }
 const openPal = () => { pal.classList.add("open"); palIn.value = ""; drawPal(); palIn.focus(); };
 const closePal = () => pal.classList.remove("open");
-const go = n => { if (items[n]) { location.hash = items[n].go; closePal(); } };
-$("#openPal").onclick = openPal; palIn.oninput = drawPal;
+const go = n => {
+  const it = items[n]; if (!it) return;
+  closePal();
+  if (it.proj) {
+    cat = "All"; showAll = true; renderProjects();
+    const card = [...document.querySelectorAll("#projGrid .card")].find(c => c.dataset.title === it.proj);
+    if (card) { card.scrollIntoView({ behavior: "smooth", block: "center" }); card.classList.add("flash"); setTimeout(() => card.classList.remove("flash"), 1800); }
+    return;
+  }
+  const t = document.querySelector(it.go);
+  if (t) { t.scrollIntoView({ behavior: "smooth" }); history.replaceState(null, "", it.go); }
+};$("#openPal").onclick = openPal; palIn.oninput = drawPal;
 palList.onclick = e => { const b = e.target.closest("button"); if (b) go(+b.dataset.n); };
 pal.onclick = e => { if (e.target === pal) closePal(); };
 document.addEventListener("keydown", e => {
