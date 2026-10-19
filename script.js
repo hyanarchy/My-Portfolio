@@ -4,12 +4,12 @@ const DATA = {
   email: "cabalunaadrianm@gmail.com",
   photo: "asset/asset/mypicture.jpg",                       // e.g. "me.jpg" (black and white looks best)
   available: "Open for clients",   // or "Fully booked until Dec"
-  tagline: "Tech Builder | Freelancer",
+  tagline: "Virtual Assistant | Freelancer",
   nicknames: ["Ahyan"],
-  intro: "I build apps and websites, and I like leading projects from first idea to working product. Currently, my focus is on solving real-world problems with technology by working with businesses and teams work smarter.",
+  intro: "I’m a freelancer with a background in IT. I’m currently focused on social media management, and administrative support to help businesses stay organized and maintain their online presence.",
   socials: [
-    { label: "linkedin", url: "https://www.linkedin.com/in/adrian-marie-cabaluna-a42555386/?isSelfProfile=true" },
     { label: "github", url: "https://github.com/hyanarchy" },
+    { label: "linkedin", url: "https://www.linkedin.com/in/adrian-marie-cabaluna-a42555386/?isSelfProfile=true" },
     { label: "onlinejobs.ph", url: "https://v2.onlinejobs.ph/jobseekers/info/5465586" }
   ],
   stats: [
@@ -18,39 +18,39 @@ const DATA = {
     { value: "3", label: "Areas of support" }
   ],
   services: [
-    { title: "Development", text: "Website updates, tool setup, spreadsheets and automations, basic troubleshooting.", status: "use" },
-    { title: "Admin Support", text: "Email and calendar handling, data entry, research, document formatting.", status: "use" },
-    { title: "Social media support", text: "Post scheduling, simple graphics, caption drafts, basic reporting.", status: "use" }
+    { title: "Development", text: "Website/App updates, Project Management, Tool Setup, Spreadsheets, QA testing, Troubleshooting...", status: "use" },
+    { title: "Admin Support", text: "Email Management, Inbox Organization, calendar handling, data entry, research, document formatting...", status: "use" },
+    { title: "Social media support", text: "Content Planning, Social Media Management, Graphics, Caption Writing, Post Scheduling, Content Coordination...", status: "use" }
   ],
   skills: [
-    { group: "Tech", items: [["HTML / CSS / JS", "use"], ["C#", "use"], ["MySql", "use"], ["Python basics", "use"], ["Cisco Packet Tracer basics", "use"], ["Git & GitHub", "use"], ["Bootstrap", "learn"], ["WordPress", "learn"]] },
-    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Figma", "use"], ["Canva", "use"], ["Vercel", "use"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
-    { group: "Client Support", items: [["Email management", "use"], ["Scheduling tools", "use"], ["Content calendars", "learn"], ["Client communication", "learn"]] }
+    { group: "Tech Stack", items: [["HTML & CSS", "use"], ["JavaScript", "use"], ["C#", "use"], ["MySql", "use"], ["Python basics", "use"], ["Cisco Packet Tracer", "use"], ["Git & GitHub", "use"], ["Bootstrap", "learn"], ["WordPress", "learn"]] },
+    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Trello", "use"], ["Figma", "use"], ["Canva", "use"], ["Capcut", "use"], ["Vercel", "use"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
+    { group: "Client Support", items: [["Email management", "use"], ["Schedule management", "use"], ["Promotional Graphics", "use"], ["Online Community Support", "use"], ["Content calendars", "use"], ["Client communication", "use"]] }
   ],
-  projectsNote: "Academic and personal builds across web, IoT and game development.",
+  projectsNote: "Client-based and personal builds across Development, Media Creation and Management.",
   projects: [
-    { title: "TAPLY", category: "Capstone", year: "2026", status: "Ongoing", placeholder: false, role: "Backend programmer",
+    { title: "TAPLY", category: "Development", year: "2026", status: "Ongoing", placeholder: false, role: "Backend programmer",
       stack: ["IoT", "Telemetry", "Game"], image: "asset/asset/taply.png",
       summary: "An IoT-enabled aquarium game that uses smart faucet telemetry to encourage household water conservation.",
       details: "Develop backend components and conduct quality assurance for an ongoing capstone project.",
       repo: "", demo: "" },
-    { title: "Mindweaver", category: "Game", year: "2026", status: "Ongoing", placeholder: false, role: "Project manager",
+    { title: "Mindweaver", category: "Development", year: "2026", status: "Ongoing", placeholder: false, role: "Project manager",
       stack: ["Jira", "Scrum"], image: "asset/asset/mindweaver.jpg",
       summary: "A tabletop game that is moving toward a digital hybrid version.",
       details: "Manage team coordination, sprint planning, task assignments, and progress tracking using Jira and Scrum.",
       repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
-    { title: "Dorm ni Kuya", category: "Web", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
+    { title: "Dorm ni Kuya", category: "Development", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
       stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "asset/asset/dorm.png",
       summary: "A web-based dorm information system for accommodation inquiries focuses on Event Driven Programming",
       details: "Develop frontend interfaces and interactive features.",
       repo: "https://github.com/hyanarchy/dorm-ni-kuya", demo: "" },
-    { title: "2K2J", category: "Web", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
+    { title: "2K2J", category: "Development", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
       stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "asset/asset/2k2j.jpg",
       summary: " A web-based application developed as part of a Web Development course, applying fundamental web technologies to build a functional and interactive system.",
       details: "Developed frontend interfaces and interactive features",
       repo: "https://github.com/hyanarchy/2k2j-system", demo: "" },
-    { title: "Link-In", category: "Film", year: "2026", status: "Completed", placeholder: false, role: "Director",
-      stack: ["Directing", "Production"], image: "asset/asset/linkin.png",
+    { title: "Link-In", category: "Media Creation", year: "2026", status: "Completed", placeholder: false, role: "Director",
+      stack: ["Directing", "Production", "Management"], image: "asset/asset/linkin.png",
       summary: "A film for the IT Film Fest.",
       details: "I directed the whole film and helped with every stage, from pre-production to post-production.",
       note: "The full film is not publicly released, since it was made for and shown only at our school.",
@@ -65,7 +65,10 @@ const DATA = {
   background: [
     { group: "Experience", items: [
       { title: "Technical Committee", text: "Valenzuela Information Technology Society", meta: "2026" },
-      { title: "Creatives Officer", text: "Valenzuela Tigers Haud Ka'Bu", meta: "2026" } ] },
+      { title: "Creatives Officer", text: "Valenzuela Tigers Haud Ka'Bu", meta: "2026" },
+      { title: "Social Media and Content Creation", text: "Insightblitz Solutions, @xis_NFT", meta: "2025" },
+      { title: "Digital Marketing", text: "NFT Communities", meta: "2022" }
+ ] },
     { group: "Competition", items: [
       { title: "C# Programming · Participant", text: "PLV ITlympics, Problem solving", meta: "2025" },
       { title: "Networking · Finalist", text: "PLV ITlympics, Hardware and Cisco Packet Tracer", meta: "2026" } ] },
