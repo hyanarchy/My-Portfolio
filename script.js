@@ -2,8 +2,8 @@ const DATA = {
   name: "Adrian",
   initials: "AC",
   email: "cabalunaadrianm@gmail.com",
-  photo: "asset/asset/mypicture.jpg",                       // e.g. "me.jpg" (black and white looks best)
-  available: "Open for clients",   // or "Fully booked until Dec"
+  photo: "asset/asset/mypicture.jpg",
+  available: "Open for clients",
   tagline: "Virtual Assistant | Freelancer",
   nicknames: ["Ahyan"],
   intro: "I’m a freelancer with a background in IT. I’m currently focused on social media management, and administrative support to help businesses stay organized and maintain their online presence.",
@@ -29,34 +29,59 @@ const DATA = {
   ],
   projectsNote: "Client-based and personal builds across Development, Media Creation and Management.",
   projects: [
-    { title: "TAPLY", category: "Development", year: "2026", status: "Ongoing", placeholder: false, role: "Backend programmer",
+    { title: "TAPLY", category: "Development", year: "2026", status: "Ongoing", role: "Backend programmer",
       stack: ["IoT", "Telemetry", "Game"], image: "asset/asset/taply.png",
       summary: "An IoT-enabled aquarium game that uses smart faucet telemetry to encourage household water conservation.",
       details: "Develop backend components and conduct quality assurance for an ongoing capstone project.",
       repo: "", demo: "" },
-    { title: "Mindweaver", category: "Development", year: "2026", status: "Ongoing", placeholder: false, role: "Project manager",
-      stack: ["Jira", "Scrum"], image: "asset/asset/mindweaver.jpg",
+    { title: "Mindweaver", featured: true, category: "Development", year: "2026", status: "Ongoing", role: "Project manager",
+      stack: ["Jira", "Scrum", "Discord"], image: "asset/asset/mindweaver.jpg",
       summary: "A tabletop game that is moving toward a digital hybrid version.",
       details: "Manage team coordination, sprint planning, task assignments, and progress tracking using Jira and Scrum.",
       repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
-    { title: "Dorm ni Kuya", category: "Development", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
+    { title: "Dorm ni Kuya", category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",
       stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "asset/asset/dorm.png",
       summary: "A web-based dorm information system for accommodation inquiries focuses on Event Driven Programming",
       details: "Develop frontend interfaces and interactive features.",
       repo: "https://github.com/hyanarchy/dorm-ni-kuya", demo: "" },
-    { title: "2K2J", category: "Development", year: "2026", status: "Not deployed", placeholder: false, role: "Frontend programmer",
-      stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "asset/asset/2k2j.jpg",
-      summary: " A web-based application developed as part of a Web Development course, applying fundamental web technologies to build a functional and interactive system.",
+{ title: "2K2J", featured: true, category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",      stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "asset/asset/2k2j.jpg",
+      summary: "A web-based application developed as part of a Web Development course, applying fundamental web technologies to build a functional and interactive system.",
       details: "Developed frontend interfaces and interactive features",
       repo: "https://github.com/hyanarchy/2k2j-system", demo: "" },
-    { title: "Link-In", category: "Media Creation", year: "2026", status: "Completed", placeholder: false, role: "Director",
+    { title: "Link-In", category: "Media Creation", year: "2026", status: "Completed", role: "Director",
       stack: ["Directing", "Production", "Management"], image: "asset/asset/linkin.png",
       summary: "A film for the IT Film Fest.",
       details: "I directed the whole film and helped with every stage, from pre-production to post-production.",
       note: "The full film is not publicly released, since it was made for and shown only at our school.",
       trailer: "https://www.facebook.com/reel/1892957314745360",
       repo: "", demo: "" },
-    { title: "Portfolio", category: "Personal", year: "2026", status: "Live", placeholder: false, role: "Designer and developer",
+    { title: "Rebels", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
+      stack: ["Social Media", "Content Creation", "Community Management"], image: "asset/asset/rebels.jpg",
+      summary: "A digital art NFT collection by Night Labs featuring dynamic NFTs designed as a form of digital identity and self-expression.",
+      details: "Supported the project's online presence through social media and content creation, helping communicate its artwork and creative identity using X and discord.",
+      X: "https://x.com/rebelsbynight?utm_source=chatgpt.com",
+      repo: "", demo: "" },
+    { title: "Lost Eden", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
+      stack: ["Social Media", "Content Creation", "Community Management"],
+      image: "asset/asset/losteden1.jpg",
+      images: ["asset/asset/losteden1.jpg", "asset/asset/losteden2.jpg"],
+      summary: "A Web3 gaming and esports project featuring the Lost Eden Origins NFT collection, with holder benefits connected to its gaming ecosystem.",
+      details: "Supported social media and content creation to help present the project's digital collectibles, gaming identity, and community initiatives using X and discord.",
+      repo: "", demo: "" },
+    { title: "Lonely Pop", featured: true, category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",      stack: ["Social Media", "Content Creation", "Community Management"],
+      image: "asset/asset/lonelypop1.jpg",
+      images: ["asset/asset/lonelypop1.jpg", "asset/asset/lonelypop2.jpg"],
+      summary: "An art-centered NFT collection founded by Noinah and 0xStudio, inspired by personal experiences with loneliness and the importance of mental health.",
+      details: "Supported the project's social media and content creation using X and discord, helping communicate its artistic vision, community values, and mental health message.",
+      X: "https://x.com/LonelyPopNFT?utm_source=chatgpt.com",
+      repo: "", demo: "" },
+    { title: "Shamanz", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
+      stack: ["Social Media", "Content Creation", "Community Management"], image: "asset/asset/shamanz.jpg",
+      summary: "An NFT project inspired by shamanic imagery and mystical themes, bringing digital collectibles and community participation together.",
+      details: "Contributed to their social media and content creation using X and discord to support the project's online community and showcase its digital artwork.",
+      Medium: "https://medium.com/@shamanzs?utm_source=chatgpt.com",
+      repo: "", demo: "" },
+    { title: "Portfolio", category: "Personal", year: "2026", status: "Live", role: "Designer and developer",
       stack: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel", "GitHub"], image: "asset/asset/portfolio.png",
       summary: "A responsive website showcasing technical projects, skills, and creative work.",
       details: "Responsive layout, light and dark themes, project filters and a live viewer count.",
@@ -68,7 +93,7 @@ const DATA = {
       { title: "Creatives Officer", text: "Valenzuela Tigers Haud Ka'Bu", meta: "2026" },
       { title: "Social Media and Content Creation", text: "Insightblitz Solutions, @xis_NFT", meta: "2025" },
       { title: "Digital Marketing", text: "NFT Communities", meta: "2022" }
- ] },
+    ] },
     { group: "Competition", items: [
       { title: "C# Programming · Participant", text: "PLV ITlympics, Problem solving", meta: "2025" },
       { title: "Networking · Finalist", text: "PLV ITlympics, Hardware and Cisco Packet Tracer", meta: "2026" } ] },
@@ -92,8 +117,7 @@ const DATA = {
 const $ = s => document.querySelector(s);
 const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const SECTIONS = [["home", "Home"], ["services", "Services"], ["skills", "Skills"], ["projects", "Projects"], ["background", "Background"], ["process", "Process"], ["contact", "Contact"]];
-document.title = DATA.name;
+const SECTIONS = [["home", "Home"], ["services", "Services"], ["skills", "Skills"], ["projects", "Projects"], ["background", "Background"], ["process", "Process"], ["contact", "Contact"]];document.title = DATA.name;
 $("#brand").textContent = DATA.name; $("#name").textContent = DATA.name;
 const aka = $("#aka");
 if (DATA.nicknames && DATA.nicknames.length) {
@@ -101,8 +125,8 @@ if (DATA.nicknames && DATA.nicknames.length) {
   aka.onclick = e => {
     const b = e.target.closest(".nick"); if (!b) return;
     const h = $("#name"), current = h.textContent;
-    h.textContent = b.textContent;   // heading takes the name on the button
-    b.textContent = current;         // button takes the name that was in the heading
+    h.textContent = b.textContent;
+    b.textContent = current;
   };
 } else aka.remove();
 $("#tagline").textContent = DATA.tagline; $("#intro").textContent = DATA.intro;
@@ -118,36 +142,57 @@ $("#projSub").textContent = DATA.projectsNote;
 $("#foot").textContent = "© " + new Date().getFullYear() + " " + DATA.name;
 $("#nav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">${s[1]}</a>`).join("");
 $("#mobnav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">${s[1]}</a>`).join("");
-$("#fType").innerHTML = `<option>General question</option>` + DATA.services.map(s => `<option>${esc(s.title)}</option>`).join("");
 
 /* project popup */
 const pm = el("div", "pmodal");
 pm.innerHTML = `<div class="pbox" role="dialog" aria-modal="true" aria-label="Project details"><button class="pclose" aria-label="Close">×</button><div class="pbody"></div></div>`;
 document.body.appendChild(pm);
 const pbox = pm.querySelector(".pbox"), pbody = pm.querySelector(".pbody");
-let lastCard = null;
+let lastCard = null, pStep = null;
 
 function openProject(p, card) {
-  const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"]]
+  const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"],["X", "X"], ["Medium", "Medium"]]
     .filter(l => p[l[0]]).map(l => `<a href="${esc(p[l[0]])}" target="_blank" rel="noopener">${l[1]} ↗</a>`).join("");
-  pbody.innerHTML = `
-    <div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot">` : "no preview yet"}</div>
+  const imgs = (p.images || [p.image]).filter(Boolean), multi = imgs.length > 1;
+  const car = imgs.length
+    ? `<div class="pcar${multi ? " multi" : ""}"><div class="pstage">${imgs.map(src => `<div class="pslide"><img src="${esc(src)}" alt="${esc(p.title)} artwork"></div>`).join("")}</div>${multi ? `<div class="cnav"><button class="pill pprev" type="button" aria-label="Previous image">←</button><div class="dots pdots">${imgs.map(() => "<i></i>").join("")}</div><button class="pill pnext" type="button" aria-label="Next image">→</button></div>` : ""}</div>`
+    : `<div class="pcar"><div class="thumb">no preview yet</div></div>`;
+  pbox.classList.add("pwide");
+  pbody.innerHTML = `<div class="pgrid">${car}<div class="pinfo">
     <div class="top"><span>${esc(p.category)} · ${esc(p.year)}</span><span>${esc(p.status || "")}</span></div>
     <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}
     <p class="psum">${esc(p.summary)}</p>
     <p>${esc(p.details)}</p>
     ${p.note ? `<p class="note">${esc(p.note)}</p>` : ""}
     <div class="ptags">${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}</div>
-    ${links ? `<p class="plinks">${links}</p>` : ""}`;
+    ${links ? `<p class="plinks">${links}</p>` : ""}</div></div>`;
 
-  // start the popup at the clicked card's position, then let it grow to center
+  // popup image carousel: centre image large, neighbours peeking, whole image always visible
+  const slides = [...pbody.querySelectorAll(".pslide")]; let ci = 0;
+  const paint = () => {
+    const n = slides.length;
+    slides.forEach((sl, i) => { let o = i - ci; if (o > n / 2) o -= n; if (o < -n / 2) o += n; sl.dataset.pos = Math.abs(o) > 1 ? "hidden" : String(o); });
+    pbody.querySelectorAll(".pdots i").forEach((d, i) => d.classList.toggle("on", i === ci));
+  };
+  const step = d => { ci = (ci + d + slides.length) % slides.length; paint(); };
+  paint();
+  pStep = multi ? step : null;
+  if (multi) {
+    pbody.querySelector(".pprev").onclick = () => step(-1);
+    pbody.querySelector(".pnext").onclick = () => step(1);
+    slides.forEach((sl, i) => { sl.onclick = () => { if (i !== ci) { ci = i; paint(); } }; });
+    let x0 = null; const st = pbody.querySelector(".pstage");
+    st.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+    st.addEventListener("touchend", e => { if (x0 === null) return; const d = e.changedTouches[0].clientX - x0; if (Math.abs(d) > 40) step(d < 0 ? 1 : -1); x0 = null; });
+  }
+
   const r = card.getBoundingClientRect();
   pbox.style.transition = "none";
   pbox.style.transform = `translate(${r.left + r.width / 2 - innerWidth / 2}px, ${r.top + r.height / 2 - innerHeight / 2}px) scale(.35)`;
   pbox.style.opacity = "0";
   pm.classList.add("open");
   pbox.scrollTop = 0;
-  void pbox.offsetWidth;                 // force reflow so the start position sticks
+  void pbox.offsetWidth;
   pbox.style.transition = pbox.style.transform = pbox.style.opacity = "";
 
   document.body.style.overflow = "hidden";
@@ -161,7 +206,7 @@ function closeProject() {
   if (lastCard) { const b = lastCard.querySelector(".proj"); if (b) b.focus(); }
 }
 pm.onclick = e => { if (e.target === pm || e.target.closest(".pclose")) closeProject(); };
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeProject(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeProject(); if (pStep && pm.classList.contains("open")) { if (e.key === "ArrowRight") pStep(1); if (e.key === "ArrowLeft") pStep(-1); } });
 
 /* certificate popup */
 const cm = el("div", "pmodal");
@@ -186,7 +231,7 @@ function closeCert() {
   if (!cm.classList.contains("open")) return;
   cm.classList.remove("open");
   document.body.style.overflow = "";
-  cview.innerHTML = "";               // stops the PDF from loading in the background
+  cview.innerHTML = "";
   if (lastCert) lastCert.focus();
 }
 cm.onclick = e => { if (e.target === cm || e.target.closest(".pclose")) closeCert(); };
@@ -197,13 +242,18 @@ $("#bgList").onclick = e => {
 };
 
 /* projects with filter + popup */
-const cats = ["All", ...new Set(DATA.projects.map(p => p.category))];
-let cat = "All";
+const STAR = "★";
+const cats = [STAR, ...new Set(DATA.projects.map(p => p.category))];
+let cat = STAR;
 let showAll = false;
+const inCat = p => cat === STAR ? p.featured : p.category === cat;
 function renderProjects() {
-  $("#chips").innerHTML = cats.map(c => `<button class="chip" aria-pressed="${c === cat}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+  $("#chips").innerHTML = cats.map(c => c === STAR
+    ? `<button class="chip chip-star" aria-pressed="${c === cat}" data-c="${STAR}" aria-label="Main projects" title="Main projects">${STAR}</button>`
+    : `<button class="chip" aria-pressed="${c === cat}" data-c="${esc(c)}">${esc(c)}</button>`
+  ).join("");
   const g = $("#projGrid"); g.innerHTML = "";
-  DATA.projects.filter(p => cat === "All" || p.category === cat).forEach(p => {
+  DATA.projects.filter(inCat).forEach(p => {
     const c = el("div", "card");
     c.dataset.title = p.title;
     c.innerHTML = `<button class="proj" aria-haspopup="dialog"><div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot" loading="lazy">` : "no preview yet"}</div>
@@ -212,7 +262,7 @@ function renderProjects() {
     c.querySelector(".proj").onclick = () => openProject(p, c);
     g.appendChild(c);
   });
-  const total = DATA.projects.filter(p => cat === "All" || p.category === cat).length;
+  const total = DATA.projects.filter(inCat).length;
   const sm = $("#seeMore");
   g.classList.toggle("collapsed", !showAll);
   sm.hidden = total <= 1;
@@ -222,13 +272,16 @@ $("#chips").onclick = e => { const c = e.target.closest("[data-c]"); if (c) { ca
 $("#seeMore").onclick = () => { showAll = !showAll; renderProjects(); if (!showAll) $("#projects").scrollIntoView(); };
 renderProjects();
 
-/* toast, copy, contact */
+/* toast + contact form */
 const toast = m => { const t = $("#toast"); t.textContent = m; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2200); };
-$("#copy").onclick = () => { (navigator.clipboard ? navigator.clipboard.writeText(DATA.email) : Promise.reject()).then(() => toast("Email copied"), () => toast(DATA.email)); };
+$("#mail2").textContent = DATA.email; $("#mail2").href = "mailto:" + DATA.email;
 $("#form").onsubmit = e => {
   e.preventDefault();
-  const subj = encodeURIComponent($("#fType").value + " · from " + $("#fName").value);
-  const body = encodeURIComponent($("#fMsg").value + "\n\n" + $("#fName").value);
+  const v = id => $(id).value.trim();
+  const subj = encodeURIComponent("Inquiry: " + v("#fProject") + " · from " + v("#fName"));
+  const body = encodeURIComponent(
+    "Name: " + v("#fName") + "\nEmail: " + v("#fEmail") + "\nCompany: " + v("#fCompany") +
+    "\nBudget: " + v("#fBudget") + "\nTimeline: " + v("#fTime") + "\n\n" + v("#fMsg"));
   location.href = `mailto:${DATA.email}?subject=${subj}&body=${body}`; toast("Opening your email app");
 };
 
@@ -245,7 +298,7 @@ applyTheme();
 /* active nav */
 const links = [...document.querySelectorAll("#nav a, #mobnav a")];
 const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) links.forEach(l => l.classList.toggle("on", l.dataset.s === en.target.id)); }), { rootMargin: "-40% 0px -55% 0px" });
-SECTIONS.forEach(s => io.observe(document.getElementById(s[0])));
+SECTIONS.forEach(s => { const n = document.getElementById(s[0]); if (n) io.observe(n); });
 
 /* command palette (Alt+K) */
 const pal = $("#pal"), palIn = $("#palIn"), palList = $("#palList"); let items = [], sel = 0;
@@ -260,8 +313,8 @@ const go = n => {
   const it = items[n]; if (!it) return;
   closePal();
   if (it.proj) {
-    cat = "All"; showAll = true; renderProjects();
-    const card = [...document.querySelectorAll("#projGrid .card")].find(c => c.dataset.title === it.proj);
+    const tp = DATA.projects.find(p => p.title === it.proj);
+    cat = tp && tp.featured ? STAR : (tp ? tp.category : STAR); showAll = true; renderProjects();    const card = [...document.querySelectorAll("#projGrid .card")].find(c => c.dataset.title === it.proj);
     if (card) { card.scrollIntoView({ behavior: "smooth", block: "center" }); card.classList.add("flash"); setTimeout(() => card.classList.remove("flash"), 1800); }
     return;
   }

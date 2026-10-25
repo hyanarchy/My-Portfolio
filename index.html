@@ -7,11 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<!-- Favicon for browser tab -->
 <link rel="icon" type="image/png" sizes="32x32" href="asset/asset/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="asset/asset/favicon.png">
-
-
 </head>
 <body>
 <aside class="side">
@@ -19,7 +16,7 @@
   <nav id="nav" aria-label="Sections"></nav>
   <button class="kbd" id="openPal"><span>Jump to</span><kbd>Alt</kbd>+<kbd>K</kbd></button>
   <div class="tools">
-       <div class="live"></div>
+    <div class="live"></div>
     <span class="status"><i class="dot"></i><span id="avail"></span></span>
     <div><button class="pill" id="theme" aria-label="Toggle light and dark theme">Theme: auto</button></div>
     <span>Reach me at<br><a class="mono" id="mail" style="color:var(--text)"></a></span>
@@ -38,12 +35,12 @@
     <div class="photo" id="photo"></div>
     <div>
       <div class="namerow">
-  <h1 id="name"></h1>
-  <div class="nameside">
-    <p class="lead" id="tagline"></p>
-    <p class="aka" id="aka"></p>
-  </div>
-</div>
+        <h1 id="name"></h1>
+        <div class="nameside">
+          <p class="lead" id="tagline"></p>
+          <p class="aka" id="aka"></p>
+        </div>
+      </div>
       <p class="lead" id="intro" style="font-size:17px"></p>
       <p style="margin-top:26px"><a class="cta" href="#contact">Work with me</a><a class="cta ghost" href="#projects">See my work</a></p>
       <div class="links" id="socials"></div>
@@ -55,16 +52,28 @@
   <section id="skills"><h2>Skills</h2><p class="sub">Honest levels, so you know what to expect.</p>
     <p class="legend"><span class="tag use">Achieved</span> ready for client work <span class="tag learn"> In Progress</span> in practice right now</p><div id="skillList"></div></section>
   <section id="projects"><h2>Projects</h2><p class="sub" id="projSub"></p><div class="chips" id="chips"></div>
-  <div class="grid" id="projGrid"></div>
-<button class="pill seemore" id="seeMore" type="button"></button></div></section>
+    <div class="grid" id="projGrid"></div>
+    <button class="pill seemore" id="seeMore" type="button"></button>
+  </section>
+
   <section id="background"><h2>Background</h2><p class="sub">My leadership roles, competitions, certifications and seminars.</p><div id="bgList"></div></section>
   <section id="process"><h2>How we'd work together</h2><p class="sub"></p><div class="steps" id="steps"></div></section>
-  <section id="contact"><h2>Contact</h2><p class="sub">Tell me what you need. The button opens your email app with the message ready to send.</p>
-    <form id="form">
-      <input id="fName" placeholder="Your name" required aria-label="Your name">
-      <select id="fType" aria-label="What do you need help with"></select>
-      <textarea id="fMsg" rows="5" placeholder="What are you working on, and by when?" required aria-label="Message"></textarea>
-      <div><button class="cta" type="submit" style="border:0">Send email</button><button class="cta ghost" type="button" id="copy">Copy my email</button></div>
+
+  <section id="contact"><h2>Contact</h2><p class="sub">Tell me about your project. The button opens your email app with the message ready to send.</p>
+    <form id="form" class="cform">
+      <div><label for="fName">Name<em>*</em></label><input id="fName" required placeholder="Your name"></div>
+      <div><label for="fEmail">Email<em>*</em></label><input id="fEmail" type="email" required placeholder="you@company.com"></div>
+      <div><label for="fCompany">Company / Organization</label><input id="fCompany" placeholder="Optional"></div>
+      <div><label for="fProject">Campaign or project<em>*</em></label><input id="fProject" required placeholder="e.g. Social media management, website update"></div>
+      <div><label for="fBudget">Budget range</label>
+        <select id="fBudget"><option value="">Select one (optional)</option><option>Under ₱1,000</option><option>₱1,000 – ₱5,000</option><option>₱5,000 – ₱15,000</option><option>₱15,000 – ₱30,000</option><option>₱30,000+</option></select></div>
+      <div><label for="fTime">Ideal timeline</label><input id="fTime" placeholder="e.g. October, next quarter, flexible"></div>
+      <div class="full"><label for="fMsg">Project details<em>*</em></label><textarea id="fMsg" rows="7" required placeholder="What are you working on, who is it for, and what would a successful outcome look like?"></textarea></div>
+      <p class="fnote full">Please don’t include passwords, API keys, or other sensitive information.</p>
+      <div class="cfoot full">
+        <p>Prefer email? <a class="mono" id="mail2"></a></p>
+        <button class="cta" type="submit" style="border:0;margin:0">Send inquiry →</button>
+      </div>
     </form>
   </section>
   <footer id="foot"></footer>
@@ -73,7 +82,7 @@
 <div class="pal" id="pal" role="dialog" aria-label="Jump to section"><div class="box"><input id="palIn" placeholder="Jump to a section or project…" aria-label="Search"><ul id="palList"></ul></div></div>
 <div class="toast" id="toast" role="status"></div>
 
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

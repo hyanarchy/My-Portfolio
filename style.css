@@ -275,3 +275,103 @@ input:focus,textarea:focus,select:focus{border-color:var(--acc);outline:none;box
  .cbox .ctitle{font-size:12px;margin-bottom:8px}
  .cbox .cview iframe{height:55vh}
 }
+
+/* ===== Contact form ===== */
+form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
+.cform .full{grid-column:1/-1}
+.cform label{display:block;font:500 12px/1 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.cform label em{color:#e5484d;font-style:normal;margin-left:4px}
+.cform input,.cform select,.cform textarea{background:var(--bg);border-radius:12px;padding:15px 18px}
+.cform textarea{min-height:200px;resize:vertical}
+.fnote{margin:-8px 0 0;font-size:13px;color:var(--mute)}
+.cfoot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.cfoot p{margin:0;color:var(--mute);font-size:14px}
+.cfoot a{color:var(--text);text-decoration:none}
+
+@media(max-width:860px){
+ form.cform{grid-template-columns:1fr}
+ .slide[data-pos="-1"]{transform:translateX(-150px) scale(.75)}
+ .slide[data-pos="1"]{transform:translateX(150px) scale(.75)}
+ .cfoot .cta{width:100%;justify-content:center}
+}
+
+/* ===== Full-size artwork viewer (paste at the end of style.css) ===== */
+.pbox.lbox{width:min(900px,100%);padding:14px}
+.lview{display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
+.lview img{display:block;max-width:100%;max-height:70vh;width:auto;height:auto;object-fit:contain;border-radius:6px}
+.lcap{margin:12px 44px 0 2px;color:var(--mute);font-size:14px}
+.lcap b{color:var(--text);font-weight:500}
+.lbox .plinks{margin:12px 0 0}
+.lmore{font-size:12px}
+@media(max-width:860px){
+ .pbox.lbox{width:min(100%,520px);padding:10px}
+ .lview img{max-height:62vh}
+ .lcap{font-size:12.5px}
+}
+
+/* center slide is clickable */
+.slide[data-pos="0"]{cursor:pointer}
+
+/* ===== Full-size artwork viewer (paste at the end of style.css) ===== */
+.pbox.lbox{width:min(900px,100%);padding:14px}
+.lview{display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
+.lview img{display:block;max-width:100%;max-height:70vh;width:auto;height:auto;object-fit:contain;border-radius:6px}
+.lcap{margin:12px 44px 0 2px;color:var(--mute);font-size:14px}
+.lcap b{color:var(--text);font-weight:500}
+.lbox .plinks{margin:12px 0 0}
+.lmore{font-size:12px}
+@media(max-width:860px){
+ .pbox.lbox{width:min(100%,520px);padding:10px}
+ .lview img{max-height:62vh}
+ .lcap{font-size:12.5px}
+}
+
+/* center slide is clickable */
+.slide[data-pos="0"]{cursor:pointer}
+
+/* ===== Project popup: show the whole image, no cropping ===== */
+.pbody .thumb{display:grid;gap:8px;aspect-ratio:auto;border:0;background:none;overflow:visible;place-items:stretch}
+.pbody .thumb img{position:static;display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+@media(max-width:860px){
+ .pbody .thumb{aspect-ratio:auto}
+ .pbody .thumb img{max-height:55vh;border-radius:8px}
+}
+/* ===== Full-size artwork viewer (paste at the end of style.css) ===== */
+.pbox.lbox{width:min(900px,100%);padding:14px}
+.lview{display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
+.lview img{display:block;max-width:100%;max-height:70vh;width:auto;height:auto;object-fit:contain;border-radius:6px}
+.lcap{margin:12px 44px 0 2px;color:var(--mute);font-size:14px}
+.lcap b{color:var(--text);font-weight:500}
+.lbox .plinks{margin:12px 0 0}
+.lmore{font-size:12px}
+@media(max-width:860px){
+ .pbox.lbox{width:min(100%,520px);padding:10px}
+ .lview img{max-height:62vh}
+ .lcap{font-size:12.5px}
+}
+
+/* center slide is clickable */
+.slide[data-pos="0"]{cursor:pointer}
+
+/* ===== Project popup: side-by-side, image carousel, no scrolling ===== */
+.pbox.pwide{width:min(980px,100%);max-height:92vh}
+.pgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:center}
+.pcar{min-width:0}
+.pstage{position:relative;height:min(62vh,460px);overflow:hidden;touch-action:pan-y}
+.pslide{position:absolute;top:0;left:50%;width:58%;height:100%;transform:translateX(-50%);border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);transition:transform .45s ease,opacity .45s ease,filter .45s ease}
+.pslide img{display:block;width:100%;height:100%;object-fit:contain}
+.pcar:not(.multi) .pslide{width:100%}
+.pslide[data-pos="0"]{z-index:3;border-color:var(--acc);box-shadow:0 0 30px -8px var(--glow)}
+.pslide[data-pos="-1"]{transform:translateX(calc(-50% - 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}
+.pslide[data-pos="1"]{transform:translateX(calc(-50% + 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}
+.pslide[data-pos="hidden"]{opacity:0;pointer-events:none}
+.pcar .cnav{margin-top:12px}
+.pinfo{min-width:0}
+@media(max-width:860px){
+ .pbox.pwide{width:min(100%,420px)}
+ .pgrid{grid-template-columns:1fr;gap:14px}
+ .pstage{height:36vh}
+}
+
+/* star filter chip */
+.chip-star{font-size:17px;line-height:1;padding:4px 14px}
