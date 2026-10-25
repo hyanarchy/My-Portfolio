@@ -51,7 +51,7 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 .nameside .lead{margin:0;font-size:18px}
 .aka{color:var(--mute);font-size:15px;margin:0}
 .nick{border:1px dashed var(--line);background:none;border-radius:999px;padding:2px 12px;font:13px "JetBrains Mono",monospace;color:var(--acc);margin:0 2px;text-shadow:0 0 10px var(--glow);box-shadow:0 0 12px -3px var(--glow)}
-.nick:hover,.nick.on{border-style:solid;border-color:var(--acc);box-shadow:0 0 16px -2px var(--glow)}
+.nick:hover{border-style:solid;border-color:var(--acc);box-shadow:0 0 16px -2px var(--glow)}
 .links{display:flex;gap:18px;flex-wrap:wrap;font:14px "JetBrains Mono",monospace;margin-top:22px}
 .links a{color:var(--mute);text-decoration:underline;text-underline-offset:4px}
 .links a:hover{color:var(--acc);text-shadow:0 0 12px var(--glow)}
@@ -69,6 +69,7 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px}
 .card{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:22px;transition:border-color .2s,transform .2s}
 .card:hover{border-color:var(--acc);transform:translateY(-3px);box-shadow:0 0 30px -8px var(--glow)}
+.card.flash{border-color:var(--acc);box-shadow:0 0 30px var(--glow)}
 .card h3{margin:0 0 6px;font-size:19px}
 .card p{margin:0;color:var(--mute);font-size:15px}
 .tag{display:inline-block;font:12px "JetBrains Mono",monospace;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mute);margin:0 6px 6px 0}
@@ -82,28 +83,28 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 .entry b{display:block;font-weight:500}
 .entry span{display:block;color:var(--mute);font-size:14px}
 .entry small{color:var(--mute);font:12px "JetBrains Mono",monospace;white-space:nowrap;padding-top:4px}
+.entry-link{background:none;border:0;padding:0;text-align:left;font-weight:500;color:var(--text);text-decoration:underline dotted var(--acc);text-underline-offset:4px;transition:color .15s}
+.entry-link i{font-style:normal;color:var(--acc);font-size:13px}
+.entry-link:hover{color:var(--acc);text-shadow:0 0 12px var(--glow)}
 
 /* ===== Projects ===== */
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .chip{border:1px solid var(--line);background:none;border-radius:999px;padding:5px 14px;font:13px "JetBrains Mono",monospace;color:var(--mute)}
 .chip[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);box-shadow:0 0 16px var(--glow)}
+.chip-star{font-size:17px;line-height:1;padding:4px 14px}
 #projGrid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:12px}
 #projGrid .card{padding:14px;border-radius:12px}
-.proj{width:100%;text-align:left;display:block;padding:0;border:0;background:none}
-.proj .top{display:flex;justify-content:space-between;gap:10px;font:11px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:8px}
-.thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:8px;border:1px dashed var(--line);margin-bottom:10px;display:grid;place-items:center;color:var(--mute);font:12px "JetBrains Mono",monospace;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--line) 10px 11px)}
-.thumb img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 #projGrid .card h3{font-size:16px;margin-bottom:4px}
 #projGrid .card p{font-size:13px;line-height:1.5}
 #projGrid .card .role{color:var(--acc);font:11px "JetBrains Mono",monospace;margin:0 0 4px}
-#projGrid .tag{font-size:11px;padding:1px 8px}
+.proj{width:100%;text-align:left;display:block;padding:0;border:0;background:none}
+.proj:hover h3{color:var(--acc)}
+.proj .top{display:flex;justify-content:space-between;gap:10px;font:11px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:8px}
+.thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:8px;border:1px dashed var(--line);margin-bottom:10px;display:grid;place-items:center;color:var(--mute);font:12px "JetBrains Mono",monospace;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--line) 10px 11px)}
+.thumb img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 .plinks{display:flex;gap:12px;flex-wrap:wrap}
-#projGrid .card>.plinks{margin:10px 0 0}
 .plinks a{color:var(--acc);font:12px "JetBrains Mono",monospace;text-decoration:none}
 .plinks a:hover{text-decoration:underline;text-underline-offset:4px}
-.more{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-size:14px;color:var(--mute)}
-.card.open .more{display:block}
-.card .note{margin:0 0 10px;padding:10px 12px;border-left:2px solid var(--acc);background:var(--glow-soft);border-radius:0 8px 8px 0;color:var(--text);font-size:14px}
 .seemore{display:none}
 
 /* ===== Process + contact ===== */
@@ -115,6 +116,16 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 form{display:grid;gap:12px;max-width:560px}
 input,textarea,select{width:100%;font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 14px}
 input:focus,textarea:focus,select:focus{border-color:var(--acc);outline:none;box-shadow:0 0 0 3px var(--glow-soft),0 0 20px -4px var(--glow)}
+form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
+.cform .full{grid-column:1/-1}
+.cform label{display:block;font:500 12px/1 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.cform label em{color:#e5484d;font-style:normal;margin-left:4px}
+.cform input,.cform select,.cform textarea{background:var(--bg);border-radius:12px;padding:15px 18px}
+.cform textarea{min-height:200px;resize:vertical}
+.fnote{margin:-8px 0 0;font-size:13px;color:var(--mute)}
+.cfoot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.cfoot p{margin:0;color:var(--mute);font-size:14px}
+.cfoot a{color:var(--text);text-decoration:none}
 
 /* ===== Toast + jump menu ===== */
 .toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,30px);opacity:0;background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;font:13px "JetBrains Mono",monospace;transition:.25s;z-index:30;pointer-events:none}
@@ -125,6 +136,49 @@ input:focus,textarea:focus,select:focus{border-color:var(--acc);outline:none;box
 .pal ul{list-style:none;margin:8px 0 0;padding:0}
 .pal li button{width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;font:14px "JetBrains Mono",monospace}
 .pal li button.sel,.pal li button:hover{background:var(--bg);color:var(--acc)}
+
+/* ===== Popups (project + certificate) ===== */
+.pmodal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s .3s}
+.pmodal.open{opacity:1;visibility:visible;transition:opacity .3s ease}
+.pbox{position:relative;width:min(540px,100%);max-height:88vh;overflow-y:auto;background:var(--panel);border:1px solid var(--acc);border-radius:16px;padding:18px;box-shadow:0 0 60px -10px var(--glow);transform:scale(.9);opacity:0;transition:transform .45s cubic-bezier(.2,.9,.3,1.1),opacity .3s ease}
+.pmodal.open .pbox{transform:none;opacity:1}
+.pclose{position:absolute;top:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:20px;line-height:1;display:grid;place-items:center;padding:0}
+.pclose:hover{border-color:var(--acc);color:var(--acc)}
+.pbody .top{display:flex;justify-content:space-between;gap:10px;font:12px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:8px}
+.pbody h3{margin:0 0 4px;font-size:22px}
+.pbody .role{color:var(--acc);font:12px "JetBrains Mono",monospace;margin:0 0 12px}
+.pbody p{margin:0 0 12px;color:var(--mute);font-size:15px}
+.pbody .psum{color:var(--text)}
+.pbody .note{padding:10px 12px;border-left:2px solid var(--acc);background:var(--glow-soft);border-radius:0 8px 8px 0;color:var(--text);font-size:14px}
+.pbody .ptags{margin-bottom:6px}
+.pbody .plinks{margin:12px 0 0}
+
+/* certificate popup */
+.cbox{width:min(780px,100%)}
+.cbox .ctitle{margin:0 44px 12px 0;font:500 15px "JetBrains Mono",monospace;color:var(--text)}
+.cbox .cview img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+.cbox .cview iframe{display:block;width:100%;height:70vh;border:0;border-radius:8px;background:#fff}
+.cbox .plinks{margin:12px 0 0}
+
+/* project popup: side-by-side layout + image carousel */
+.pbox.pwide{width:min(980px,100%);max-height:92vh}
+.pgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:center}
+.pcar,.pinfo{min-width:0}
+.pstage{position:relative;height:min(62vh,460px);overflow:hidden;touch-action:pan-y}
+.pslide{position:absolute;top:0;left:50%;width:58%;height:100%;transform:translateX(-50%);border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);transition:transform .45s ease,opacity .45s ease,filter .45s ease}
+.pslide img{display:block;width:100%;height:100%;object-fit:contain}
+.pcar:not(.multi) .pslide{width:100%}
+.pslide[data-pos="0"]{z-index:3;border-color:var(--acc);box-shadow:0 0 30px -8px var(--glow)}
+.pslide[data-pos="-1"]{transform:translateX(calc(-50% - 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}
+.pslide[data-pos="1"]{transform:translateX(calc(-50% + 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}
+.pslide[data-pos="hidden"]{opacity:0;pointer-events:none}
+
+/* carousel arrows + dots */
+.cnav{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:12px}
+.cnav .pill{width:42px;height:42px;padding:0;display:grid;place-items:center;font-size:16px;flex:none}
+.dots{display:flex;gap:6px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--acc);box-shadow:0 0 10px var(--acc)}
 
 /* ===== Phone top bar (hidden on desktop) ===== */
 .mobtop{display:none}
@@ -182,13 +236,42 @@ input:focus,textarea:focus,select:focus{border-color:var(--acc);outline:none;box
  .stats b{font-size:20px}
  .stats small{font-size:12px;line-height:1.3;display:block}
  .chip{padding:8px 14px}
- #projGrid.collapsed .card:nth-child(n+2){display:none}
- .seemore:not([hidden]){display:block;width:100%;margin-top:14px;padding:12px;text-align:center}
+ .chip-star{padding:5px 14px}
  input,textarea,select{font-size:16px}
- form{max-width:none}
+ form.cform{grid-template-columns:1fr}
  form .cta{width:100%;justify-content:center;margin:0 0 10px}
  .pal{padding-top:8vh}
  .pal li button{padding:13px 12px}
+
+ /* project cards: one visible until "See more" */
+ #projGrid{gap:10px}
+ #projGrid.collapsed .card:nth-child(n+2){display:none}
+ #projGrid .card{padding:10px;border-radius:10px;max-width:340px;margin-inline:auto;width:100%}
+ #projGrid .thumb{aspect-ratio:2/1;margin-bottom:8px;border-radius:6px}
+ #projGrid .proj .top{font-size:10px;margin-bottom:6px}
+ #projGrid .card h3{font-size:15px;margin-bottom:2px}
+ #projGrid .card .role{font-size:10px;margin-bottom:2px}
+ #projGrid .card p{font-size:12px}
+ .seemore:not([hidden]){display:block;width:100%;max-width:340px;margin:14px auto 0;padding:10px;font-size:12px;text-align:center}
+
+ /* popups */
+ .pmodal{padding:14px}
+ .pbox{width:min(320px,100%);max-height:80vh;padding:12px;border-radius:12px}
+ .pclose{top:8px;right:8px;width:28px;height:28px;font-size:17px}
+ .pbody .top{font-size:10px;margin-bottom:6px}
+ .pbody h3{font-size:17px;margin-bottom:2px}
+ .pbody .role{font-size:10px;margin-bottom:8px}
+ .pbody p{font-size:12.5px;line-height:1.5;margin-bottom:8px}
+ .pbody .note{font-size:12px;padding:8px 10px}
+ .pbody .tag{font-size:10px;padding:1px 7px;margin:0 4px 4px 0}
+ .pbody .plinks{gap:10px;margin-top:8px}
+ .pbody .plinks a{font-size:11px}
+ .cbox{width:min(340px,100%);padding:12px}
+ .cbox .ctitle{font-size:12px;margin-bottom:8px}
+ .cbox .cview iframe{height:55vh}
+ .pbox.pwide{width:min(100%,420px)}
+ .pgrid{grid-template-columns:1fr;gap:14px}
+ .pstage{height:36vh}
 }
 @media(max-width:380px){
  .stats{grid-template-columns:1fr}
@@ -204,174 +287,3 @@ input:focus,textarea:focus,select:focus{border-color:var(--acc);outline:none;box
  button,.cta{min-height:40px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-
-.card.flash{border-color:var(--acc);box-shadow:0 0 30px var(--glow)}
-
-/* project card: collapsed shows image + title only, click for details */
-#projGrid .summary{display:none;margin-top:6px}
-#projGrid .card.open .summary{display:block}
-.more .plinks{margin:10px 0 0}
-.proj:hover h3{color:var(--acc)}
-
-/* smaller project cards on phones */
-@media(max-width:860px){
- #projGrid{gap:10px}
- #projGrid .card{padding:10px;border-radius:10px;max-width:340px;margin-inline:auto;width:100%}
- #projGrid .thumb{aspect-ratio:2/1;margin-bottom:8px;border-radius:6px}
- #projGrid .proj .top{font-size:10px;margin-bottom:6px}
- #projGrid .card h3{font-size:15px;margin-bottom:2px}
- #projGrid .card .role{font-size:10px;margin-bottom:2px}
- #projGrid .card p{font-size:12px}
- .seemore:not([hidden]){max-width:340px;margin-inline:auto;padding:10px;font-size:12px}
-}
-
-/* ===== Project popup ===== */
-.pmodal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s .3s}
-.pmodal.open{opacity:1;visibility:visible;transition:opacity .3s ease}
-.pbox{position:relative;width:min(540px,100%);max-height:88vh;overflow-y:auto;background:var(--panel);border:1px solid var(--acc);border-radius:16px;padding:18px;box-shadow:0 0 60px -10px var(--glow);transform:scale(.9);opacity:0;transition:transform .45s cubic-bezier(.2,.9,.3,1.1),opacity .3s ease}
-.pmodal.open .pbox{transform:none;opacity:1}
-.pclose{position:absolute;top:12px;right:12px;z-index:2;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:20px;line-height:1;display:grid;place-items:center;padding:0}
-.pclose:hover{border-color:var(--acc);color:var(--acc)}
-.pbody .thumb{margin-bottom:12px;border-radius:10px}
-.pbody .top{display:flex;justify-content:space-between;gap:10px;font:12px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:8px}
-.pbody h3{margin:0 0 4px;font-size:22px}
-.pbody .role{color:var(--acc);font:12px "JetBrains Mono",monospace;margin:0 0 12px}
-.pbody p{margin:0 0 12px;color:var(--mute);font-size:15px}
-.pbody .psum{color:var(--text)}
-.pbody .note{padding:10px 12px;border-left:2px solid var(--acc);background:var(--glow-soft);border-radius:0 8px 8px 0;color:var(--text);font-size:14px}
-.pbody .ptags{margin-bottom:6px}
-.pbody .plinks{margin:12px 0 0}
-
-/* ===== Project popup: smaller on phones ===== */
-@media(max-width:860px){
- .pmodal{padding:14px}
- .pbox{width:min(320px,100%);max-height:80vh;padding:12px;border-radius:12px}
- .pclose{top:8px;right:8px;width:28px;height:28px;font-size:17px}
- .pbody .thumb{aspect-ratio:2/1;margin-bottom:8px;border-radius:8px}
- .pbody .top{font-size:10px;margin-bottom:6px}
- .pbody h3{font-size:17px;margin-bottom:2px}
- .pbody .role{font-size:10px;margin-bottom:8px}
- .pbody p{font-size:12.5px;line-height:1.5;margin-bottom:8px}
- .pbody .note{font-size:12px;padding:8px 10px}
- .pbody .tag{font-size:10px;padding:1px 7px;margin:0 4px 4px 0}
- .pbody .plinks{gap:10px;margin-top:8px}
- .pbody .plinks a{font-size:11px}
-}
-
-/* ===== Clickable certificate entries ===== */
-.entry-link{background:none;border:0;padding:0;text-align:left;font-weight:500;color:var(--text);text-decoration:underline dotted var(--acc);text-underline-offset:4px;transition:color .15s}
-.entry-link i{font-style:normal;color:var(--acc);font-size:13px}
-.entry-link:hover{color:var(--acc);text-shadow:0 0 12px var(--glow)}
-
-/* ===== Certificate popup ===== */
-.cbox{width:min(780px,100%)}
-.cbox .ctitle{margin:0 44px 12px 0;font:500 15px "JetBrains Mono",monospace;color:var(--text)}
-.cbox .cview img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
-.cbox .cview iframe{display:block;width:100%;height:70vh;border:0;border-radius:8px;background:#fff}
-.cbox .plinks{margin:12px 0 0}
-
-@media(max-width:860px){
- .cbox{width:min(340px,100%);padding:12px}
- .cbox .ctitle{font-size:12px;margin-bottom:8px}
- .cbox .cview iframe{height:55vh}
-}
-
-/* ===== Contact form ===== */
-form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
-.cform .full{grid-column:1/-1}
-.cform label{display:block;font:500 12px/1 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
-.cform label em{color:#e5484d;font-style:normal;margin-left:4px}
-.cform input,.cform select,.cform textarea{background:var(--bg);border-radius:12px;padding:15px 18px}
-.cform textarea{min-height:200px;resize:vertical}
-.fnote{margin:-8px 0 0;font-size:13px;color:var(--mute)}
-.cfoot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.cfoot p{margin:0;color:var(--mute);font-size:14px}
-.cfoot a{color:var(--text);text-decoration:none}
-
-@media(max-width:860px){
- form.cform{grid-template-columns:1fr}
- .slide[data-pos="-1"]{transform:translateX(-150px) scale(.75)}
- .slide[data-pos="1"]{transform:translateX(150px) scale(.75)}
- .cfoot .cta{width:100%;justify-content:center}
-}
-
-/* ===== Full-size artwork viewer (paste at the end of style.css) ===== */
-.pbox.lbox{width:min(900px,100%);padding:14px}
-.lview{display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
-.lview img{display:block;max-width:100%;max-height:70vh;width:auto;height:auto;object-fit:contain;border-radius:6px}
-.lcap{margin:12px 44px 0 2px;color:var(--mute);font-size:14px}
-.lcap b{color:var(--text);font-weight:500}
-.lbox .plinks{margin:12px 0 0}
-.lmore{font-size:12px}
-@media(max-width:860px){
- .pbox.lbox{width:min(100%,520px);padding:10px}
- .lview img{max-height:62vh}
- .lcap{font-size:12.5px}
-}
-
-/* center slide is clickable */
-.slide[data-pos="0"]{cursor:pointer}
-
-/* ===== Full-size artwork viewer (paste at the end of style.css) ===== */
-.pbox.lbox{width:min(900px,100%);padding:14px}
-.lview{display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
-.lview img{display:block;max-width:100%;max-height:70vh;width:auto;height:auto;object-fit:contain;border-radius:6px}
-.lcap{margin:12px 44px 0 2px;color:var(--mute);font-size:14px}
-.lcap b{color:var(--text);font-weight:500}
-.lbox .plinks{margin:12px 0 0}
-.lmore{font-size:12px}
-@media(max-width:860px){
- .pbox.lbox{width:min(100%,520px);padding:10px}
- .lview img{max-height:62vh}
- .lcap{font-size:12.5px}
-}
-
-/* center slide is clickable */
-.slide[data-pos="0"]{cursor:pointer}
-
-/* ===== Project popup: show the whole image, no cropping ===== */
-.pbody .thumb{display:grid;gap:8px;aspect-ratio:auto;border:0;background:none;overflow:visible;place-items:stretch}
-.pbody .thumb img{position:static;display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
-@media(max-width:860px){
- .pbody .thumb{aspect-ratio:auto}
- .pbody .thumb img{max-height:55vh;border-radius:8px}
-}
-/* ===== Full-size artwork viewer (paste at the end of style.css) ===== */
-.pbox.lbox{width:min(900px,100%);padding:14px}
-.lview{display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
-.lview img{display:block;max-width:100%;max-height:70vh;width:auto;height:auto;object-fit:contain;border-radius:6px}
-.lcap{margin:12px 44px 0 2px;color:var(--mute);font-size:14px}
-.lcap b{color:var(--text);font-weight:500}
-.lbox .plinks{margin:12px 0 0}
-.lmore{font-size:12px}
-@media(max-width:860px){
- .pbox.lbox{width:min(100%,520px);padding:10px}
- .lview img{max-height:62vh}
- .lcap{font-size:12.5px}
-}
-
-/* center slide is clickable */
-.slide[data-pos="0"]{cursor:pointer}
-
-/* ===== Project popup: side-by-side, image carousel, no scrolling ===== */
-.pbox.pwide{width:min(980px,100%);max-height:92vh}
-.pgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:center}
-.pcar{min-width:0}
-.pstage{position:relative;height:min(62vh,460px);overflow:hidden;touch-action:pan-y}
-.pslide{position:absolute;top:0;left:50%;width:58%;height:100%;transform:translateX(-50%);border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);transition:transform .45s ease,opacity .45s ease,filter .45s ease}
-.pslide img{display:block;width:100%;height:100%;object-fit:contain}
-.pcar:not(.multi) .pslide{width:100%}
-.pslide[data-pos="0"]{z-index:3;border-color:var(--acc);box-shadow:0 0 30px -8px var(--glow)}
-.pslide[data-pos="-1"]{transform:translateX(calc(-50% - 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}
-.pslide[data-pos="1"]{transform:translateX(calc(-50% + 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}
-.pslide[data-pos="hidden"]{opacity:0;pointer-events:none}
-.pcar .cnav{margin-top:12px}
-.pinfo{min-width:0}
-@media(max-width:860px){
- .pbox.pwide{width:min(100%,420px)}
- .pgrid{grid-template-columns:1fr;gap:14px}
- .pstage{height:36vh}
-}
-
-/* star filter chip */
-.chip-star{font-size:17px;line-height:1;padding:4px 14px}

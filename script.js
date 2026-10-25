@@ -25,7 +25,7 @@ const DATA = {
   skills: [
     { group: "Tech Stack", items: [["HTML & CSS", "use"], ["JavaScript", "use"], ["C#", "use"], ["MySql", "use"], ["Python basics", "use"], ["Cisco Packet Tracer", "use"], ["Git & GitHub", "use"], ["Bootstrap", "learn"], ["WordPress", "learn"]] },
     { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Trello", "use"], ["Figma", "use"], ["Canva", "use"], ["Capcut", "use"], ["Vercel", "use"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
-    { group: "Client Support", items: [["Email management", "use"], ["Schedule management", "use"], ["Promotional Graphics", "use"], ["Online Community Support", "use"], ["Content calendars", "use"], ["Client communication", "use"]] }
+    { group: "Client Support", items: [["Email management", "use"], ["Schedule management", "use"], ["Inquiry Handling", "use"], ["Promotional Graphics", "use"], ["Online Community Support", "use"], ["Content calendars", "use"], ["Time Zone Coordination", "use"], ["Client communication", "use"]] }
   ],
   projectsNote: "Client-based and personal builds across Development, Media Creation and Management.",
   projects: [
@@ -34,11 +34,6 @@ const DATA = {
       summary: "An IoT-enabled aquarium game that uses smart faucet telemetry to encourage household water conservation.",
       details: "Develop backend components and conduct quality assurance for an ongoing capstone project.",
       repo: "", demo: "" },
-    { title: "Mindweaver", featured: true, category: "Development", year: "2026", status: "Ongoing", role: "Project manager",
-      stack: ["Jira", "Scrum", "Discord"], image: "asset/asset/mindweaver.jpg",
-      summary: "A tabletop game that is moving toward a digital hybrid version.",
-      details: "Manage team coordination, sprint planning, task assignments, and progress tracking using Jira and Scrum.",
-      repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
     { title: "Dorm ni Kuya", category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",
       stack: ["PHP", "HTML", "CSS", "JavaScript", "VS Code", "GitHub"], image: "asset/asset/dorm.png",
       summary: "A web-based dorm information system for accommodation inquiries focuses on Event Driven Programming",
@@ -81,6 +76,11 @@ const DATA = {
       details: "Contributed to their social media and content creation using X and discord to support the project's online community and showcase its digital artwork.",
       Medium: "https://medium.com/@shamanzs?utm_source=chatgpt.com",
       repo: "", demo: "" },
+       { title: "Mindweaver", featured: true, category: "Management", year: "2026", status: "Ongoing", role: "Project manager",
+      stack: ["Jira", "Scrum", "Discord"], image: "asset/asset/mindweaver.jpg",
+      summary: "A tabletop game that is moving toward a digital hybrid version.",
+      details: "Manage team coordination, sprint planning, task assignments, and progress tracking using Jira and Scrum.",
+      repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
     { title: "Portfolio", category: "Personal", year: "2026", status: "Live", role: "Designer and developer",
       stack: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel", "GitHub"], image: "asset/asset/portfolio.png",
       summary: "A responsive website showcasing technical projects, skills, and creative work.",
