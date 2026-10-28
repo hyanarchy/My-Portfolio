@@ -4,7 +4,7 @@ const DATA = {
   email: "cabalunaadrianm@gmail.com",
   photo: "asset/asset/mypicture.jpg",
   available: "Open for clients",
-  tagline: "Virtual Assistant | Freelancer",
+  tagline: "IT | Freelancer",
   nicknames: ["Ahyan"],
   intro: "I’m a freelancer with a background in IT. I’m currently focused on social media management, and administrative support to help businesses stay organized and maintain their online presence.",
   socials: [
