@@ -2,37 +2,48 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- viewport-fit=cover lets the page extend under phone notches; the CSS adds safe-area padding -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Adrian</title>
+
+<!-- Fonts: JetBrains Mono (headings, labels) and Space Grotesk (body text) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" sizes="32x32" href="asset/asset/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="asset/asset/favicon.png">
 </head>
 
 <body>
+  <!-- Animated starfield background (drawn by script.js, sits behind all content) -->
   <canvas id="stars" aria-hidden="true"></canvas>
+
+<!-- ===== Sidebar (desktop and tablet only) ===== -->
 <aside class="side">
   <a class="brand" href="#home" id="brand"></a>
-  <nav id="nav" aria-label="Sections"></nav>
+  <nav id="nav" aria-label="Sections"></nav>   <!-- links filled in by script.js -->
   <button class="kbd" id="openPal"><span>Jump to</span><kbd>Alt</kbd>+<kbd>K</kbd></button>
   <div class="tools">
-    <div class="live"></div>
+    <div class="live"></div>                   <!-- live viewer count (Supabase) -->
     <span class="status"><i class="dot"></i><span id="avail"></span></span>
     <div><button class="pill" id="theme" aria-label="Toggle light and dark theme">Theme: auto</button></div>
     <span>Reach me at<br><a class="mono" id="mail" style="color:var(--text)"></a></span>
   </div>
 </aside>
+
+<!-- ===== Top bar + hamburger menu (phones only) ===== -->
 <header class="mobtop">
   <a class="mbrand" href="#home" id="mbrand"></a>
   <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobmenu"><span></span><span></span><span></span></button>
   <div class="mobmenu" id="mobmenu">
     <nav id="mobnav" aria-label="Sections"></nav>
-    <div class="mobextra" id="mobextra"></div>
+    <div class="mobextra" id="mobextra"></div>   <!-- theme, jump and email buttons added by script.js -->
   </div>
 </header>
+
 <main>
+  <!-- ===== Home / hero ===== -->
   <section id="home" class="hero" style="padding-top:60px">
     <div class="photo" id="photo"></div>
     <div>
@@ -40,7 +51,7 @@
         <h1 id="name"></h1>
         <div class="nameside">
           <p class="lead" id="tagline"></p>
-          <p class="aka" id="aka"></p>
+          <p class="aka" id="aka"></p>   <!-- "You can call me ..." -->
         </div>
       </div>
       <p class="lead" id="intro" style="font-size:17px"></p>
@@ -48,19 +59,31 @@
       <div class="links" id="socials"></div>
     </div>
   </section>
+
+  <!-- Quick stats bar -->
   <div style="max-width:940px;margin:0 auto"><div class="stats" id="stats"></div></div>
 
+  <!-- ===== Services ===== -->
   <section id="services"><h2>Services</h2><p class="sub">What I can take off your plate. Admin and Social media support is my current interest; the rest is growing.</p><div class="grid" id="serviceGrid"></div></section>
+
+  <!-- ===== Skills ===== -->
   <section id="skills"><h2>Skills</h2><p class="sub">Honest levels, so you know what to expect.</p>
     <p class="legend"><span class="tag use">Achieved</span> ready for client work <span class="tag learn"> In Progress</span> in practice right now</p><div id="skillList"></div></section>
+
+  <!-- ===== Projects (filter chips, cards, "See more" on phones) ===== -->
   <section id="projects"><h2>Projects</h2><p class="sub" id="projSub"></p><div class="chips" id="chips"></div>
     <div class="grid" id="projGrid"></div>
     <button class="pill seemore" id="seeMore" type="button"></button>
   </section>
 
+  <!-- ===== Background (experience, competitions, certificates, seminars) ===== -->
   <section id="background"><h2>Background</h2><p class="sub">My leadership roles, competitions, certifications and seminars.</p><div id="bgList"></div></section>
+
+  <!-- ===== How we'd work together ===== -->
   <section id="process"><h2>How we'd work together</h2><p class="sub"></p><div class="steps" id="steps"></div></section>
 
+  <!-- ===== Contact =====
+       No backend: submitting builds a mailto: link (see script.js) -->
   <section id="contact"><h2>Contact</h2><p class="sub">Tell me about your project. The button opens your email app with the message ready to send.</p>
     <form id="form" class="cform">
       <div><label for="fName">Name<em>*</em></label><input id="fName" required placeholder="Your name"></div>
@@ -78,12 +101,18 @@
       </div>
     </form>
   </section>
+
   <footer id="foot"></footer>
 </main>
 
+<!-- ===== Jump menu (Alt+K) ===== -->
 <div class="pal" id="pal" role="dialog" aria-label="Jump to section"><div class="box"><input id="palIn" placeholder="Jump to a section or project…" aria-label="Search"><ul id="palList"></ul></div></div>
+
+<!-- Small notification used by the contact form -->
 <div class="toast" id="toast" role="status"></div>
 
+<!-- Supabase client (used for the live viewer count), then my own script.
+     The project and certificate popups are created by script.js, so they are not in this file. -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="script.js"></script>
 </body>

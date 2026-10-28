@@ -1,126 +1,251 @@
-/* ===== Theme ===== */
-:root{--bg:#0c0d0f;--panel:#141619;--line:#24272c;--text:#eceef0;--mute:#9399a1;--acc:#ffb6dc;--acc-ink:#3a0b25;--warn:#ffb98a;--glow:rgba(255,170,215,.55);--glow-soft:rgba(255,170,215,.14);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f7f8;--panel:#fff;--line:#dfe2e6;--text:#14171a;--mute:#5d646c;--acc:#db2777;--acc-ink:#fff;--warn:#c2410c;--glow:rgba(236,72,153,.4);--glow-soft:rgba(244,114,182,.16);color-scheme:light}}
-:root[data-theme="light"]{--bg:#f6f7f8;--panel:#fff;--line:#dfe2e6;--text:#14171a;--mute:#5d646c;--acc:#db2777;--acc-ink:#fff;--warn:#c2410c;--glow:rgba(236,72,153,.4);--glow-soft:rgba(244,114,182,.16);color-scheme:light}
-:root[data-theme="dark"]{--bg:#0c0d0f;--panel:#141619;--line:#24272c;--text:#eceef0;--mute:#9399a1;--acc:#ffb6dc;--acc-ink:#3a0b25;--warn:#ffb98a;--glow:rgba(255,170,215,.55);--glow-soft:rgba(255,170,215,.14);color-scheme:dark}
+/* ==========================================================================
+   Portfolio – style.css
+   --------------------------------------------------------------------------
+   Contents
+     1. Theme variables (dark default, light via system or manual toggle)
+     2. Base styles + starfield canvas
+     3. Sidebar (desktop)
+     4. Hero + stats
+     5. Cards, tags, skills, background entries
+     6. Projects grid + filter chips
+     7. Process steps + contact form
+     8. Toast + jump menu (Alt+K)
+     9. Popups: project, certificate, image carousel
+    10. Responsive: tablets, phones, small phones
+    11. Touch screens + reduced motion
+   ========================================================================== */
 
-/* ===== Base ===== */
+
+/* ==========================================================================
+   1. Theme
+   - Dark is the default (:root).
+   - Light is used when the system prefers it AND I haven't forced dark,
+     or when the toggle forces data-theme="light".
+   - Forcing dark needs no extra block, because the defaults are already dark.
+   - The env() padding keeps content clear of phone notches / home bars.
+   ========================================================================== */
+:root{
+  --bg:#0c0d0f;            /* page background */
+  --panel:#141619;         /* cards, popups, inputs */
+  --line:#24272c;          /* borders and dividers */
+  --text:#eceef0;          /* main text */
+  --mute:#9399a1;          /* secondary text */
+  --acc:#ffb6dc;           /* accent (pink) */
+  --acc-ink:#3a0b25;       /* text drawn on top of the accent */
+  --warn:#ffb98a;          /* "In Progress" tags */
+  --glow:rgba(255,170,215,.55);
+  --glow-soft:rgba(255,170,215,.14);
+  color-scheme:dark;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+/* Light theme: follows the system setting unless dark is forced */
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f6f7f8;--panel:#fff;--line:#dfe2e6;--text:#14171a;--mute:#5d646c;
+    --acc:#db2777;--acc-ink:#fff;--warn:#c2410c;
+    --glow:rgba(236,72,153,.4);--glow-soft:rgba(244,114,182,.16);
+    color-scheme:light;
+  }
+}
+
+/* Light theme: forced by the toggle (needed when the system is in dark mode) */
+:root[data-theme="light"]{
+  --bg:#f6f7f8;--panel:#fff;--line:#dfe2e6;--text:#14171a;--mute:#5d646c;
+  --acc:#db2777;--acc-ink:#fff;--warn:#c2410c;
+  --glow:rgba(236,72,153,.4);--glow-soft:rgba(244,114,182,.16);
+  color-scheme:light;
+}
+
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+
+/* Animated starfield canvas (drawn by script.js), sits behind everything */
 #stars{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}  /* keeps anchor targets clear of the sticky mobile bar */
 *{box-sizing:border-box}
+
+/* Dotted grid background */
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 "Space Grotesk",system-ui,sans-serif;background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:22px 22px;background-attachment:fixed}
+
+/* Soft pink glow in the top-right and bottom-left corners */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(640px 420px at 88% 0%,var(--glow-soft),transparent 70%),radial-gradient(520px 380px at 8% 100%,var(--glow-soft),transparent 70%)}
+
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
 a{color:inherit}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+
+/* Page layout: content sits to the right of the fixed sidebar */
 main{margin-left:250px;padding:0 clamp(20px,5vw,72px) 80px}
 section{max-width:940px;margin:0 auto;padding:84px 0 20px}
+
 h1{font:500 clamp(42px,7vw,84px)/1 "JetBrains Mono",monospace;letter-spacing:-.04em;margin:0 0 22px}
 h2{font:500 28px "JetBrains Mono",monospace;letter-spacing:-.03em;margin:0 0 8px}
 .lead{font-size:clamp(18px,2vw,22px);color:var(--mute);max-width:58ch;margin:0 0 16px}
 .sub{color:var(--mute);margin:0 0 28px;max-width:60ch}
 footer{max-width:940px;margin:60px auto 0;color:var(--mute);font-size:13px;border-top:1px solid var(--line);padding-top:20px}
 
-/* ===== Sidebar ===== */
+
+/* ==========================================================================
+   3. Sidebar (hidden on phones, replaced by the top bar)
+   ========================================================================== */
 .side{position:fixed;inset:0 auto 0 0;width:250px;padding:28px 22px;padding-top:calc(28px + env(safe-area-inset-top,0px));border-right:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column;gap:22px;z-index:5}
 .brand{font:500 18px "JetBrains Mono",monospace;text-decoration:none}
 .side nav{display:flex;flex-direction:column;gap:2px}
 .side nav a{font:400 14px "JetBrains Mono",monospace;color:var(--mute);text-decoration:none;padding:7px 10px;border-radius:8px;display:flex;justify-content:space-between;transition:background .15s,color .15s}
 .side nav a:hover,.side nav a.on{color:var(--text);background:var(--panel)}
+
+/* Current section: glowing text + a dot on the right */
 .side nav a.on{text-shadow:0 0 12px var(--glow)}
 .side nav a.on::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc);align-self:center;box-shadow:0 0 10px var(--acc)}
+
+/* Bottom of the sidebar: live viewers, availability, theme button, email */
 .tools{margin-top:auto;display:flex;flex-direction:column;gap:14px;font-size:13px;color:var(--mute)}
 .status,.live{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--mute)}
 .live b{color:var(--text)}
+
+/* Pulsing dot used by the availability status and the viewer count */
 .dot{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 0 var(--acc);animation:pulse 2.4s infinite;filter:drop-shadow(0 0 6px var(--acc))}
 @keyframes pulse{70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+/* "Jump to Alt+K" hint */
 .kbd{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute);background:none;border:0;padding:0}
 kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background:var(--panel);padding:1px 6px;border-radius:5px}
+
+/* Small rounded button (theme toggle, carousel arrows, "See more") */
 .pill{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 14px;font:13px "JetBrains Mono",monospace}
 .pill:hover{border-color:var(--acc)}
 
-/* ===== Hero ===== */
+
+/* ==========================================================================
+   4. Hero + stats
+   ========================================================================== */
 .hero{display:grid;grid-template-columns:260px 1fr;gap:44px;align-items:center;min-height:calc(100vh - 100px)}
+
+/* Photo frame with a dotted placeholder pattern behind it */
 .photo{aspect-ratio:4/5;border-radius:14px;border:1px solid var(--line);overflow:hidden;background:var(--panel);background-image:radial-gradient(var(--mute) 1.1px,transparent 1.3px);background-size:7px 7px;display:grid;place-items:center;position:relative;box-shadow:0 0 60px -14px var(--glow)}
 .photo img{width:100%;height:100%;object-fit:cover}
-.photo span{font:500 56px "JetBrains Mono",monospace;background:var(--bg);padding:6px 16px;border-radius:12px;border:1px solid var(--line)}
+.photo span{font:500 56px "JetBrains Mono",monospace;background:var(--bg);padding:6px 16px;border-radius:12px;border:1px solid var(--line)}  /* initials fallback */
+
 .hero h1{text-shadow:0 0 30px var(--glow)}
 .namerow{display:flex;align-items:flex-end;flex-wrap:wrap;gap:6px 18px;margin:0 0 22px}
 .namerow h1{margin:0}
 .nameside{display:flex;flex-direction:column;gap:6px;padding-bottom:10px}
 .nameside .lead{margin:0;font-size:18px}
+
+/* "You can call me ..." line + the clickable nickname pill */
 .aka{color:var(--mute);font-size:15px;margin:0}
 .nick{border:1px dashed var(--line);background:none;border-radius:999px;padding:2px 12px;font:13px "JetBrains Mono",monospace;color:var(--acc);margin:0 2px;text-shadow:0 0 10px var(--glow);box-shadow:0 0 12px -3px var(--glow)}
 .nick:hover{border-style:solid;border-color:var(--acc);box-shadow:0 0 16px -2px var(--glow)}
+
+/* Social links */
 .links{display:flex;gap:18px;flex-wrap:wrap;font:14px "JetBrains Mono",monospace;margin-top:22px}
 .links a{color:var(--mute);text-decoration:underline;text-underline-offset:4px}
 .links a:hover{color:var(--acc);text-shadow:0 0 12px var(--glow)}
+
+/* Call-to-action buttons ("Work with me" / "See my work") */
 .cta{display:inline-flex;gap:8px;align-items:center;background:var(--acc);color:var(--acc-ink);text-decoration:none;font-weight:700;padding:11px 20px;border-radius:999px;margin-right:10px;transition:transform .15s;box-shadow:0 0 18px var(--glow),0 0 42px -8px var(--glow)}
 .cta:hover{transform:translateY(-2px);box-shadow:0 0 26px var(--glow),0 0 64px -6px var(--glow)}
 .cta.ghost{background:none;color:var(--text);border:1px solid var(--line);box-shadow:none}
 .cta.ghost:hover{border-color:var(--acc);box-shadow:0 0 18px -2px var(--glow)}
+
+/* Stats bar under the hero */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:1px solid var(--line);border-radius:14px;background:var(--panel);margin-top:48px;box-shadow:0 0 50px -24px var(--glow)}
 .stats div{padding:20px 22px;border-right:1px solid var(--line)}
 .stats div:last-child{border:0}
 .stats b{display:block;font:500 28px "JetBrains Mono",monospace}
 .stats small{color:var(--mute)}
 
-/* ===== Cards, tags, skills ===== */
+
+/* ==========================================================================
+   5. Cards, tags, skills, background entries
+   ========================================================================== */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px}
 .card{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:22px;transition:border-color .2s,transform .2s}
 .card:hover{border-color:var(--acc);transform:translateY(-3px);box-shadow:0 0 30px -8px var(--glow)}
-.card.flash{border-color:var(--acc);box-shadow:0 0 30px var(--glow)}
+.card.flash{border-color:var(--acc);box-shadow:0 0 30px var(--glow)}  /* highlight added by the jump menu */
 .card h3{margin:0 0 6px;font-size:19px}
 .card p{margin:0;color:var(--mute);font-size:15px}
+
+/* Tags: .use = achieved (accent), .learn = in progress (warm orange) */
 .tag{display:inline-block;font:12px "JetBrains Mono",monospace;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mute);margin:0 6px 6px 0}
 .tag.use{color:var(--acc);border-color:var(--acc);text-shadow:0 0 10px var(--glow);box-shadow:0 0 12px -3px var(--glow)}
 .tag.learn{color:var(--warn);border-color:var(--warn)}
 .legend{font-size:13px;color:var(--mute);margin-bottom:10px}
+
+/* Skills and Background share the same two-column row (label | content) */
 .skillrow{border-top:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:200px 1fr;gap:12px}
 .skillrow h3{margin:0;font:500 15px "JetBrains Mono",monospace}
+
+/* Background entries: title + description on the left, year on the right */
 .entry{display:flex;justify-content:space-between;gap:14px;padding:0 0 14px}
 .entry:last-child{padding-bottom:0}
 .entry b{display:block;font-weight:500}
 .entry span{display:block;color:var(--mute);font-size:14px}
 .entry small{color:var(--mute);font:12px "JetBrains Mono",monospace;white-space:nowrap;padding-top:4px}
+
+/* Clickable entry that opens the certificate popup */
 .entry-link{background:none;border:0;padding:0;text-align:left;font-weight:500;color:var(--text);text-decoration:underline dotted var(--acc);text-underline-offset:4px;transition:color .15s}
 .entry-link i{font-style:normal;color:var(--acc);font-size:13px}
 .entry-link:hover{color:var(--acc);text-shadow:0 0 12px var(--glow)}
 
-/* ===== Projects ===== */
+
+/* ==========================================================================
+   6. Projects – filter chips + compact grid
+   ========================================================================== */
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .chip{border:1px solid var(--line);background:none;border-radius:999px;padding:5px 14px;font:13px "JetBrains Mono",monospace;color:var(--mute)}
-.chip[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);box-shadow:0 0 16px var(--glow)}
-.chip-star{font-size:17px;line-height:1;padding:4px 14px}
+.chip[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);box-shadow:0 0 16px var(--glow)}  /* selected tab */
+.chip-star{font-size:17px;line-height:1;padding:4px 14px}  /* the ★ "Main projects" tab */
+
+/* Project cards are smaller than the service cards */
 #projGrid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:12px}
 #projGrid .card{padding:14px;border-radius:12px}
 #projGrid .card h3{font-size:16px;margin-bottom:4px}
-#projGrid .card p{font-size:13px;line-height:1.5}
 #projGrid .card .role{color:var(--acc);font:11px "JetBrains Mono",monospace;margin:0 0 4px}
+
+/* The whole card is one button that opens the popup */
 .proj{width:100%;text-align:left;display:block;padding:0;border:0;background:none}
 .proj:hover h3{color:var(--acc)}
 .proj .top{display:flex;justify-content:space-between;gap:10px;font:11px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:8px}
+
+/* Thumbnail: striped placeholder shown until / unless an image loads */
 .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:8px;border:1px dashed var(--line);margin-bottom:10px;display:grid;place-items:center;color:var(--mute);font:12px "JetBrains Mono",monospace;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--line) 10px 11px)}
 .thumb img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+
+/* Project / certificate links */
 .plinks{display:flex;gap:12px;flex-wrap:wrap}
 .plinks a{color:var(--acc);font:12px "JetBrains Mono",monospace;text-decoration:none}
 .plinks a:hover{text-decoration:underline;text-underline-offset:4px}
-.seemore{display:none}
 
-/* ===== Process + contact ===== */
+.seemore{display:none}  /* "See more" button is phone-only (shown in the phones block) */
+
+
+/* ==========================================================================
+   7. Process steps + contact form
+   ========================================================================== */
+/* Timeline: vertical line with a glowing dot beside each step */
 .steps{display:grid;border-left:1px solid var(--line);margin-left:6px}
 .steps div{padding:0 0 22px 22px;position:relative}
 .steps div::before{content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc)}
 .steps b{display:block}
 .steps span{color:var(--mute);font-size:15px}
+
+/* Form fields */
 form{display:grid;gap:12px;max-width:560px}
 input,textarea,select{width:100%;font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 14px}
 input:focus,textarea:focus,select:focus{border-color:var(--acc);outline:none;box-shadow:0 0 0 3px var(--glow-soft),0 0 20px -4px var(--glow)}
+
+/* Contact form: two columns, .full spans both */
 form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
 .cform .full{grid-column:1/-1}
 .cform label{display:block;font:500 12px/1 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
-.cform label em{color:#e5484d;font-style:normal;margin-left:4px}
+.cform label em{color:#e5484d;font-style:normal;margin-left:4px}  /* required asterisk */
 .cform input,.cform select,.cform textarea{background:var(--bg);border-radius:12px;padding:15px 18px}
 .cform textarea{min-height:200px;resize:vertical}
 .fnote{margin:-8px 0 0;font-size:13px;color:var(--mute)}
@@ -128,64 +253,89 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
 .cfoot p{margin:0;color:var(--mute);font-size:14px}
 .cfoot a{color:var(--text);text-decoration:none}
 
-/* ===== Toast + jump menu ===== */
+
+/* ==========================================================================
+   8. Toast + jump menu (Alt+K)
+   ========================================================================== */
+/* Toast: hidden below the screen, slides up when .show is added */
 .toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,30px);opacity:0;background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;font:13px "JetBrains Mono",monospace;transition:.25s;z-index:30;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* Jump menu: dark backdrop with the box near the top */
 .pal{position:fixed;inset:0;background:#0008;display:none;place-items:start center;padding-top:14vh;z-index:20}
 .pal.open{display:grid}
+
+/* The box is capped at 80% of the screen height. The search input stays fixed
+   and only the list scrolls (overscroll-behavior stops the page behind from scrolling). */
 .pal div.box{width:min(480px,92vw);max-height:80vh;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px}
 .pal ul{list-style:none;margin:8px 0 0;padding:0;overflow-y:auto;min-height:0;overscroll-behavior:contain}
 .pal li button{width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;font:14px "JetBrains Mono",monospace}
-.pal li button.sel,.pal li button:hover{background:var(--bg);color:var(--acc)}
+.pal li button.sel,.pal li button:hover{background:var(--bg);color:var(--acc)}  /* keyboard-selected or hovered result */
 
-/* ===== Popups (project + certificate) ===== */
+
+/* ==========================================================================
+   9. Popups (project + certificate) and the image carousel
+   ========================================================================== */
+/* Full-screen blurred backdrop. Hidden with visibility so it can fade in/out. */
 .pmodal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s .3s}
 .pmodal.open{opacity:1;visibility:visible;transition:opacity .3s ease}
+
+/* The popup box. JS sets its start position (over the clicked card), then it grows to the centre. */
 .pbox{position:relative;width:min(540px,100%);max-height:88vh;overflow-y:auto;background:var(--panel);border:1px solid var(--acc);border-radius:16px;padding:18px;box-shadow:0 0 60px -10px var(--glow);transform:scale(.9);opacity:0;transition:transform .45s cubic-bezier(.2,.9,.3,1.1),opacity .3s ease}
 .pmodal.open .pbox{transform:none;opacity:1}
+
 .pclose{position:absolute;top:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:20px;line-height:1;display:grid;place-items:center;padding:0}
 .pclose:hover{border-color:var(--acc);color:var(--acc)}
+
+/* Project details text */
 .pbody .top{display:flex;justify-content:space-between;gap:10px;font:12px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:8px}
 .pbody h3{margin:0 0 4px;font-size:22px}
 .pbody .role{color:var(--acc);font:12px "JetBrains Mono",monospace;margin:0 0 12px}
 .pbody p{margin:0 0 12px;color:var(--mute);font-size:15px}
-.pbody .psum{color:var(--text)}
+.pbody .psum{color:var(--text)}  /* summary paragraph is brighter than the details */
 .pbody .note{padding:10px 12px;border-left:2px solid var(--acc);background:var(--glow-soft);border-radius:0 8px 8px 0;color:var(--text);font-size:14px}
 .pbody .ptags{margin-bottom:6px}
-.pbody .plinks{margin:12px 0 0}
 
-/* certificate popup */
+/* Certificate popup */
 .cbox{width:min(780px,100%)}
 .cbox .ctitle{margin:0 44px 12px 0;font:500 15px "JetBrains Mono",monospace;color:var(--text)}
 .cbox .cview img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
 .cbox .cview iframe{display:block;width:100%;height:70vh;border:0;border-radius:8px;background:#fff}
-.cbox .plinks{margin:12px 0 0}
 
-/* project popup: side-by-side layout + image carousel */
+/* Link row below the details / certificate */
+.pbody .plinks,.cbox .plinks{margin:12px 0 0}
+
+/* Project popup: wider box, carousel on the left and info on the right */
 .pbox.pwide{width:min(980px,100%);max-height:92vh}
 .pgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:center}
-.pcar,.pinfo{min-width:0}
+.pcar,.pinfo{min-width:0}  /* lets the grid columns shrink instead of overflowing */
+
+/* Carousel: slides are stacked in the same spot and positioned by data-pos (set in script.js) */
 .pstage{position:relative;height:min(62vh,460px);overflow:hidden;touch-action:pan-y}
 .pslide{position:absolute;top:0;left:50%;width:58%;height:100%;transform:translateX(-50%);border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);transition:transform .45s ease,opacity .45s ease,filter .45s ease}
-.pslide img{display:block;width:100%;height:100%;object-fit:contain}
-.pcar:not(.multi) .pslide{width:100%}
-.pslide[data-pos="0"]{z-index:3;border-color:var(--acc);box-shadow:0 0 30px -8px var(--glow)}
-.pslide[data-pos="-1"]{transform:translateX(calc(-50% - 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}
-.pslide[data-pos="1"]{transform:translateX(calc(-50% + 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}
+.pslide img{display:block;width:100%;height:100%;object-fit:contain}  /* show the whole image, never crop */
+.pcar:not(.multi) .pslide{width:100%}  /* a single image fills the stage */
+.pslide[data-pos="0"]{z-index:3;border-color:var(--acc);box-shadow:0 0 30px -8px var(--glow)}  /* current slide */
+.pslide[data-pos="-1"]{transform:translateX(calc(-50% - 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}  /* previous slide, peeking on the left */
+.pslide[data-pos="1"]{transform:translateX(calc(-50% + 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}   /* next slide, peeking on the right */
 .pslide[data-pos="hidden"]{opacity:0;pointer-events:none}
 
-/* carousel arrows + dots */
+/* Carousel arrows + dots */
 .cnav{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:12px}
 .cnav .pill{width:42px;height:42px;padding:0;display:grid;place-items:center;font-size:16px;flex:none}
 .dots{display:flex;gap:6px}
 .dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
 .dots i.on{background:var(--acc);box-shadow:0 0 10px var(--acc)}
 
-/* ===== Phone top bar (hidden on desktop) ===== */
-.mobtop{display:none}
-@keyframes drop{from{opacity:0;transform:translateY(-8px)}}
 
-/* ===== Tablets ===== */
+/* ==========================================================================
+   10. Responsive
+   ========================================================================== */
+/* Phone top bar: hidden on desktop, turned on in the phones block */
+.mobtop{display:none}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}}  /* mobile menu slide-in */
+
+/* ----- Tablets: narrower sidebar and hero photo ----- */
 @media(min-width:861px) and (max-width:1100px){
  .side{width:200px;padding-left:16px;padding-right:16px}
  main{margin-left:200px}
@@ -193,16 +343,16 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  h1{font-size:clamp(38px,6vw,60px)}
 }
 
-/* ===== Phones ===== */
+/* ----- Phones: sidebar becomes a sticky top bar with a hamburger menu ----- */
 @media(max-width:860px){
  .side{display:none}
- body{background-attachment:scroll}
+ body{background-attachment:scroll}  /* fixed backgrounds are janky on mobile browsers */
  main{margin:0;padding:0 20px 60px;overflow-x:clip}
  section{padding-top:48px}
  h2{font-size:24px}
  .skillrow{grid-template-columns:1fr}
 
- /* top bar + hamburger */
+ /* Top bar + hamburger (three lines that morph into an X when open) */
  .mobtop{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:10px 20px;padding-top:calc(10px + env(safe-area-inset-top,0px));background:var(--bg);border-bottom:1px solid var(--line)}
  .mobtop .mbrand{font:500 18px "JetBrains Mono",monospace;color:var(--text);text-decoration:none;white-space:nowrap}
  .burger{width:42px;height:42px;margin-right:-8px;border:0;background:none;display:grid;place-content:center;gap:5px;padding:0}
@@ -210,6 +360,8 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+ /* Dropdown menu under the top bar */
  .mobmenu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:6px 20px 20px;box-shadow:0 24px 40px -20px #000a}
  .mobmenu.open{display:block;animation:drop .2s ease}
  .mobmenu nav{display:flex;flex-direction:column}
@@ -219,8 +371,8 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  .mobextra{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:16px}
  .mobextra a{flex-basis:100%;font-size:14px;color:var(--text);text-decoration:none;padding:6px 0}
 
- /* hero */
- .hero{display:flex;flex-direction:column;align-items:stretch;gap:24px;padding-top:28px!important;min-height:0}
+ /* Hero: photo on top, centred name, full-width buttons */
+ .hero{display:flex;flex-direction:column;align-items:stretch;gap:24px;padding-top:28px!important;min-height:0}  /* !important beats the inline padding-top in the HTML */
  .photo{width:min(280px,66vw);margin:0 auto;align-self:center}
  .hero>div:last-child{width:100%;text-align:left}
  .namerow{flex-direction:column;align-items:center;text-align:center;gap:8px;margin:0 0 16px}
@@ -231,20 +383,20 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  .links{gap:12px 16px}
  .links a{padding:6px 0}
 
- /* sections */
+ /* Sections */
  .stats{grid-template-columns:repeat(3,1fr);margin-top:32px}
  .stats div{padding:14px 12px}
  .stats b{font-size:20px}
  .stats small{font-size:12px;line-height:1.3;display:block}
  .chip{padding:8px 14px}
  .chip-star{padding:5px 14px}
- input,textarea,select{font-size:16px}
+ input,textarea,select{font-size:16px}  /* 16px stops iOS from zooming into inputs */
  form.cform{grid-template-columns:1fr}
  form .cta{width:100%;justify-content:center;margin:0 0 10px}
  .pal{padding-top:8vh}
  .pal li button{padding:13px 12px}
 
- /* project cards: one visible until "See more" */
+ /* Project cards: only the first card shows until "See more" is tapped */
  #projGrid{gap:10px}
  #projGrid.collapsed .card:nth-child(n+2){display:none}
  #projGrid .card{padding:10px;border-radius:10px;max-width:340px;margin-inline:auto;width:100%}
@@ -252,10 +404,9 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  #projGrid .proj .top{font-size:10px;margin-bottom:6px}
  #projGrid .card h3{font-size:15px;margin-bottom:2px}
  #projGrid .card .role{font-size:10px;margin-bottom:2px}
- #projGrid .card p{font-size:12px}
  .seemore:not([hidden]){display:block;width:100%;max-width:340px;margin:14px auto 0;padding:10px;font-size:12px;text-align:center}
 
- /* popups */
+ /* Popups: smaller boxes and text, carousel stacked above the info */
  .pmodal{padding:14px}
  .pbox{width:min(320px,100%);max-height:80vh;padding:12px;border-radius:12px}
  .pclose{top:8px;right:8px;width:28px;height:28px;font-size:17px}
@@ -274,17 +425,91 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  .pgrid{grid-template-columns:1fr;gap:14px}
  .pstage{height:36vh}
 }
+
+/* ----- Very small phones: stack the stats vertically ----- */
 @media(max-width:380px){
  .stats{grid-template-columns:1fr}
  .stats div{border-right:0;border-bottom:1px solid var(--line)}
  .stats div:last-child{border-bottom:0}
 }
 
-/* ===== Touch screens + reduced motion ===== */
+
+/* ==========================================================================
+   11. Touch screens + reduced motion
+   ========================================================================== */
+/* No hover on touch devices: skip the lift effect and make tap targets at least 40px */
 @media(hover:none){
  .card:hover{transform:none;border-color:var(--line)}
  .cta:hover{transform:none}
  .nick{padding:6px 14px}
  button,.cta{min-height:40px}
 }
+
+/* Respect "reduce motion": turn off animations, transitions and smooth scrolling */
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+/* ==========================================================================
+   12. Guided tour (game-style tutorial)
+   Layers: dim + spotlight (.tour-hole), bouncing arrow, message box.
+   The box has three layouts: floating (big screens), .dock (bottom sheet on
+   phones) and .dock-side (sheet on one side in landscape).
+   ========================================================================== */
+.tour{position:fixed;inset:0;z-index:90;touch-action:none}  /* touch-action: stops the page behind from scrolling on touch */
+.tour-back{position:absolute;inset:0}  /* catches clicks so the page behind can't be used mid-tour */
+
+/* Spotlight: the huge box-shadow dims everything except the target */
+.tour-hole{position:absolute;border-radius:14px;pointer-events:none;box-shadow:0 0 0 100vmax rgba(0,0,0,.66),0 0 0 2px var(--acc),0 0 28px 4px var(--glow)}
+.tour-hole.none{box-shadow:0 0 0 100vmax rgba(0,0,0,.66)}  /* message-only steps: no outline */
+
+/* Hand-drawn arrow that bobs toward the target */
+.tour-arrow{position:absolute;width:48px;height:64px;color:var(--acc);pointer-events:none}
+.tour-svg{display:block;overflow:visible;filter:drop-shadow(0 0 6px var(--glow));animation:tourBob 1s ease-in-out infinite}
+.tour-spark{animation:tourBlink 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes tourBob{50%{transform:translateY(-9px)}}
+@keyframes tourBlink{50%{opacity:.2;transform:scale(.6)}}
+
+/* Smooth movement between steps (class added by JS after the first placement) */
+.tour.ready .tour-hole{transition:left .35s ease,top .35s ease,width .35s ease,height .35s ease}
+.tour.ready .tour-arrow{transition:left .35s ease,top .35s ease,transform .35s ease}
+.tour.ready .tour-box{transition:left .35s ease,top .35s ease}
+
+/* Dialogue box (dashed inner border gives it a game-menu look) */
+.tour-box{position:absolute;width:min(320px,calc(100vw - 24px));max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;background:var(--panel);border:1px solid var(--acc);border-radius:16px;padding:16px;box-shadow:0 0 40px -8px var(--glow)}
+.tour-box::before{content:"";position:absolute;inset:5px;border:1px dashed var(--line);border-radius:12px;pointer-events:none}
+.tour-step{margin:0 0 6px;font:11px "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--acc)}
+.tour-title{margin:0 36px 6px 0;font:500 18px "JetBrains Mono",monospace}
+.tour-text{margin:0 0 12px;color:var(--mute);font-size:15px;line-height:1.5}
+.tour-rest{visibility:hidden}  /* not-yet-typed text keeps its space */
+.tour-dots{margin-bottom:12px}
+.tour-foot{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tour-btns{display:flex;gap:8px;align-items:center}
+.tour-skip{background:none;border:0;padding:6px 0;color:var(--mute);font:12px "JetBrains Mono",monospace;text-decoration:underline;text-underline-offset:3px}
+.tour-skip:hover{color:var(--acc)}
+.tour-next{background:var(--acc);color:var(--acc-ink);border:0;border-radius:999px;padding:8px 16px;font:700 13px "JetBrains Mono",monospace;box-shadow:0 0 16px var(--glow)}
+
+/* Close button: a fixed round size (the phone popup rules would otherwise squash it into an oval) */
+.tour-x{top:10px;right:10px;width:34px;height:34px;min-height:0;font-size:20px}
+
+/* Phone layout: bottom sheet, positioned by CSS instead of JS */
+.tour-box.dock{left:calc(12px + env(safe-area-inset-left,0px));right:calc(12px + env(safe-area-inset-right,0px));top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto;max-width:440px;margin:0 auto}
+
+/* Landscape phone layout: sheet on the right, or the left when the target is on the right */
+.tour-box.dock-side{left:auto;right:calc(12px + env(safe-area-inset-right,0px));top:12px;bottom:auto;width:min(300px,42vw);max-width:none;margin:0}
+.tour-box.dock-side.dock-left{left:calc(12px + env(safe-area-inset-left,0px));right:auto}
+
+/* "? Tour" replay button (bottom-right) */
+.tour-help{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:15;color:var(--acc);box-shadow:0 0 18px -4px var(--glow)}
+
+/* Smaller screens: tighter box, smaller text and a smaller replay button */
+@media(max-width:860px){
+ .tour-box{padding:14px}
+ .tour-step{margin-bottom:4px}
+ .tour-title{font-size:16px}
+ .tour-text{font-size:14px;margin-bottom:10px}
+ .tour-dots{margin-bottom:10px}
+ .tour-help{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:5px 12px;font-size:12px}
+}
+@media(max-height:480px){
+ .tour-box{padding:12px}
+ .tour-text{margin-bottom:8px}
+ .tour-dots{display:none}  /* save height on short landscape screens */
+}
