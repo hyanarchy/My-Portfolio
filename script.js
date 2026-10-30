@@ -38,7 +38,7 @@ const DATA = {
 
   /* --- Social links (shown under the hero) --- */
   socials: [
-    { label: "facebook", url: "https://www.facebook.com/adrianmarie.cabaluna.1" },
+    { label: "instagram", url: "https://www.instagram.com/ahyanaheim?srtk=YWJjd2xieXoweHYx" },
     { label: "linkedin", url: "https://www.linkedin.com/in/adrian-marie-cabaluna-a42555386/?isSelfProfile=true" },
     { label: "onlinejobs.ph", url: "https://v2.onlinejobs.ph/jobseekers/info/5465586" }
   ],
@@ -209,7 +209,6 @@ const DATA = {
       { title: "Introduction to Digital Marketing", text: "TESDA, Digital Marketing lll", meta: "2026", file: "asset/asset/digital_marketing_cert.pdf" },
       { title: "Web Development Fundamentals", text: "IBM", meta: "2026", file: "asset/asset/IBM_cert.pdf" },
       { title: "Fundamentals of Artificial Intelligence", text: "TESDA, Amazon Web Services", meta: "2026", file: "asset/asset/ai_cert.pdf" },
-      { title: "Introduction to Data Analysis with Python", text: "CodeSignal", meta: "2026", file: "asset/asset/data_analysis.pdf" }
     ] },
     { group: "Seminars", items: [
       { title: "Unlocking Security: The Power of Identity & Access Management", text: "Seminars and Colloquia", meta: "2025", file: "asset/asset/seminars-and-colloquia.jpg" }
@@ -551,9 +550,9 @@ $("#form").onsubmit = e => {
    8. Theme toggle: auto -> light -> dark
    "auto" removes data-theme so the CSS follows the visitor's system setting.
    ========================================================================== */
-const modes = ["auto", "light", "dark"];
-let mode = "auto";
-try { mode = localStorage.getItem("theme") || "auto"; } catch (e) {}   // saved choice (storage can be blocked)
+const modes = ["dark", "light", "auto"];   // order the button cycles through
+let mode = "dark";                          // dark is the default
+try { mode = localStorage.getItem("theme") || "dark"; } catch (e) {}   // saved choice (storage can be blocked)
 
 function applyTheme() {
   mode === "auto" ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", mode);
