@@ -180,6 +180,8 @@ const DATA = {
       ],
       repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
     
+  ],
+
   /* --- Background ---
      Entries that have a "file" become clickable and open the certificate
      popup (PDFs load in an iframe, images load in an <img>). */
