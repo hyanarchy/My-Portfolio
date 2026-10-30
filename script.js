@@ -18,6 +18,7 @@
     11. Mobile menu       – hamburger
     12. Live viewers      – Supabase presence counter
     13. Starfield         – animated neon stars on the canvas background
+    14. Guided tour       – small arrow tips for the main buttons
    ========================================================================== */
 
 
@@ -65,10 +66,11 @@ const DATA = {
     { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Trello", "use"], ["Figma", "use"], ["Canva", "use"], ["Capcut", "use"], ["Vercel", "use"], ["Buffer", "learn"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
     { group: "Client Support", items: [["Email management", "use"], ["Schedule management", "use"], ["Inquiry Handling", "use"], ["Promotional Graphics", "use"], ["Online Community Support", "use"], ["Content calendars", "use"], ["Time Zone Coordination", "use"], ["Client communication", "use"]] }
   ],
-
   /* --- Projects ---
      Fields:
        title / category / year / status / role / stack[] / summary / details
+       summary    – one sentence: what the project is
+       details    – a list of short points: what I did, with which tools (a plain string also works)
        image      – card thumbnail (and the only slide if "images" is missing)
        images[]   – optional list of images for the popup carousel
        featured   – true = appears under the ★ "Main projects" tab
@@ -79,18 +81,30 @@ const DATA = {
   projects: [
     { title: "TAPLY", category: "Development", year: "2026", status: "Ongoing", role: "Backend programmer",
       stack: ["IoT", "Telemetry", "Game"], image: "asset/asset/taply.png",
-      summary: "An IoT-enabled aquarium game that uses smart faucet telemetry to encourage household water conservation.",
-      details: "Develop backend components and conduct quality assurance for an ongoing capstone project.",
+      summary: "An aquarium game connected to smart faucets: a household's water usage becomes part of the gameplay, to encourage saving water.",
+      details: [
+        "Capstone project built by a team; I am the backend programmer.",
+        "I build the server-side parts that receive and handle the usage data sent by the smart faucets.",
+        "I also do quality assurance: testing features and checking that fixes work before the team moves on."
+      ],
       repo: "", demo: "" },
     { title: "Dorm ni Kuya", category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",
       stack: ["PHP", "HTML", "CSS", "JavaScript"], image: "asset/asset/dorm.png",
-      summary: "A web-based dorm information system for accommodation inquiries focuses on Event Driven Programming",
-      details: "Develop frontend interfaces and interactive features.",
+      summary: "A web-based dorm information system where visitors can learn about the dorm and send accommodation inquiries.",
+      details: [
+        "I was the frontend programmer: I built the pages and the interface visitors use.",
+        "Made with PHP, HTML, CSS and JavaScript for a course on event-driven programming, so the pages react to user actions like clicks and form submissions.",
+        "The code is on GitHub; it has not been deployed online."
+      ],
       repo: "https://github.com/hyanarchy/dorm-ni-kuya", demo: "" },
     { title: "2K2J", featured: true, category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",
       stack: ["PHP", "HTML", "CSS", "JavaScript"], image: "asset/asset/2k2j.jpg",
-      summary: "A web-based application developed as part of a Web Development course, applying fundamental web technologies to build a functional and interactive system.",
-      details: "Developed frontend interfaces and interactive features",
+      summary: "A web-based system built for a Web Development course.",
+      details: [
+        "I was the frontend programmer: I built the pages and the interactive parts users see.",
+        "Made with PHP, HTML, CSS and JavaScript, working as a team and sharing the code through GitHub.",
+        "It has not been deployed online; the full code is on GitHub."
+      ],
       repo: "https://github.com/hyanarchy/2k2j-system", demo: "" },
     { title: "VTHK", featured: true, category: "Media Creation", year: "2026", status: "Ongoing", role: "Head Creatives Officer",
       stack: ["Graphic Design", "Social Media Management", "Community Management"],
@@ -100,52 +114,81 @@ const DATA = {
         "asset/asset/WELCOME BACK.jpg", "asset/asset/GREETINGS1.jpg", "asset/asset/GREETINGS2.jpg",
         "asset/asset/RECOGNITION.jpg", "asset/asset/GRADUATION.jpg"
       ],
-      summary: "Creation and management of social media graphics and digital publication materials for organizational events, announcements, and activities.",
-      details: "I lead the social media and content creation to help present the project's digital collectibles, gaming identity, and community initiatives using Facebook",
+      summary: "The official social media graphics of the Valenzuela Tigers Haud Ka'Bu (VTHK) organization, published on its Facebook page.",
+      details: [
+        "As Head Creatives Officer, I lead the creative work: planning the posts and designing the graphics.",
+        "I design in Canva: event posters and banners, a booth poster, welcome-back posts, greetings, recognition posts and graduation posts (see the gallery).",
+        "I publish on the organization's Facebook page and handle its community management."
+      ],
       Facebook: "https://www.facebook.com/PLVVTHK", Canva: "https://www.canva.com/design/DAHZR1lHDLI/UJ_PvLLrQIWEJ6SNtEOt3A/edit" },
     { title: "Link-In", category: "Media Creation", year: "2026", status: "Completed", role: "Director",
       stack: ["Directing", "Production", "Management"], image: "asset/asset/linkin.png",
-      summary: "A film for the IT Film Fest.",
-      details: "I directed the whole film and helped with every stage, from pre-production to post-production.",
+      summary: "A film made for the IT Film Fest at our school.",
+      details: [
+        "I was the director and led the whole film from pre-production to post-production.",
+        "That meant planning and preparing the shoot, directing the production, and overseeing the editing and finishing of the film.",
+      ],
       note: "The full film is not publicly released, since it was made for and shown only at our school.",
       trailer: "https://www.facebook.com/reel/1892957314745360",
       repo: "", demo: "" },
     { title: "Rebels", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
-      stack: [ "Content Creation", "Graphic Design" ], image: "asset/asset/rebels.jpg",
-      summary: "A digital art NFT collection by Night Labs featuring dynamic NFTs designed as a form of digital identity and self-expression.",
-      details: "Supported the project's online presence through social media and content creation, helping communicate its artwork and creative identity using X and discord.",
-      X: "https://x.com/rebelsbynight?utm_source=chatgpt.com",
+      stack: ["Content Creation", "Graphic Design"], image: "asset/asset/rebels.jpg",
+      summary: "A digital art NFT collection by Night Labs with dynamic NFTs, designed as a form of digital identity and self-expression.",
+      details: [
+        "I was a content creator for the project's online presence.",
+        "I posted and engaged with the community on X and Discord."
+      ],
+      X: "https://x.com/rebelsbynight",
       repo: "", demo: "" },
     { title: "Lost Eden", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
       stack: ["Content Creation", "Graphic Design"],
       image: "asset/asset/losteden1.jpg",
       images: ["asset/asset/losteden1.jpg", "asset/asset/losteden2.jpg"],
-      summary: "A Web3 gaming and esports project featuring the Lost Eden Origins NFT collection, with holder benefits connected to its gaming ecosystem.",
-      details: "Supported social media and content creation to help present the project's digital collectibles, gaming identity, and community initiatives using X and discord.",
+      summary: "A Web3 gaming and esports project with the Lost Eden Origins NFT collection, where holder benefits connect to its gaming ecosystem.",
+      details: [
+        "I made content and graphics that presented the collectibles, the gaming identity and the community initiatives.",
+        "I posted and engaged with the community on X and Discord."
+      ],
       repo: "", demo: "" },
     { title: "Lonely Pop", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
       stack: ["Content Creation", "Graphic Design"],
       image: "asset/asset/lonelypop1.jpg",
       images: ["asset/asset/lonelypop1.jpg", "asset/asset/lonelypop2.jpg"],
-      summary: "An art-centered NFT collection founded by Noinah and 0xStudio, inspired by personal experiences with loneliness and the importance of mental health.",
-      details: "Supported the project's social media and content creation using X and discord, helping communicate its artistic vision, community values, and mental health message.",
-      X: "https://x.com/LonelyPopNFT?utm_source=chatgpt.com",
+      summary: "An art-centered NFT collection founded by Noinah and 0xStudio, inspired by personal experiences with loneliness and mental health.",
+      details: [
+        "I made content and graphics that communicated the artistic vision, the community values and the mental health message.",
+        "I posted and engaged with the community on X and Discord."
+      ],
+      X: "https://x.com/LonelyPopNFT",
       repo: "", demo: "" },
     { title: "Shamanz", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
       stack: ["Content Creation", "Graphic Design"], image: "asset/asset/shamanz.jpg",
       summary: "An NFT project inspired by shamanic imagery and mystical themes, bringing digital collectibles and community participation together.",
-      details: "Contributed to their social media and content creation using X and discord to support the project's online community and showcase its digital artwork.",
-      Medium: "https://medium.com/@shamanzs?utm_source=chatgpt.com",
+      details: [
+        "I was a content creator for the project's online community.",
+        "I made social media content that showcased the digital artwork.",
+        "I posted and engaged with the community on X and Discord."
+      ],
+      Medium: "https://medium.com/@shamanzs",
       repo: "", demo: "" },
     { title: "Mindweaver", featured: true, category: "Management", year: "2026", status: "Ongoing", role: "Project manager",
       stack: ["Jira", "Scrum", "Discord"], image: "asset/asset/mindweaver.jpg",
-      summary: "A tabletop game that is moving toward a digital hybrid version.",
-      details: "Manage team coordination, sprint planning, task assignments, and progress tracking using Jira and Scrum.",
+      summary: "A tabletop game that the team is developing into a digital hybrid version.",
+      details: [
+        "I am the project manager and keep the team coordinated.",
+        "I run Scrum: I plan each sprint and assign the tasks in Jira.",
+        "I track progress in Jira and keep the team in sync on Discord."
+      ],
       repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
     { title: "Portfolio", category: "Personal", year: "2026", status: "Live", role: "Designer and developer",
-      stack: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel", "GitHub"], image: "asset/asset/portfolio.png",
-      summary: "A responsive website showcasing technical projects, skills, and creative work.",
-      details: "Responsive layout, light and dark themes, project filters and a live viewer count.",
+      stack: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel"], image: "asset/asset/portfolio.png",
+      summary: "This website: a responsive portfolio that shows my projects, skills and background.",
+      details: [
+        "I designed and coded it myself with plain HTML, CSS and JavaScript, with no framework.",
+        "It has auto, light and dark themes and a layout that adapts to phones, tablets and desktops.",
+        "Visitors can filter projects, open each one in a gallery popup, and search any section with Alt + K.",
+        "A live counter shows how many people are viewing the site, built with Supabase. It is hosted on Vercel and the code is on GitHub."
+      ],
       repo: "https://github.com/hyanarchy/My-Portfolio" }
   ],
 
@@ -247,8 +290,14 @@ $("#stats").innerHTML = DATA.stats.map(s => `<div><b>${esc(s.value)}</b><small>$
 // Service cards
 $("#serviceGrid").innerHTML = DATA.services.map(s => `<div class="card"><span class="tag ${s.status}">${s.status === "use" ? "Achieved" : "In Progress"}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>`).join("");
 
-// Skill rows (the tag class "use" / "learn" controls the colour)
-$("#skillList").innerHTML = DATA.skills.map(g => `<div class="skillrow"><h3>${esc(g.group)}</h3><div>${g.items.map(i => `<span class="tag ${i[1]}">${esc(i[0])}</span>`).join("")}</div></div>`).join("");
+// Skills: plain text, one skill per line, sorted A-Z so a specific skill is easy to find.
+// "use" skills are the list; "learn" skills go in one short "Currently learning" line.
+const az = (a, b) => a.localeCompare(b, undefined, { sensitivity: "base" });
+$("#skillList").innerHTML = DATA.skills.map(g => {
+  const ready = g.items.filter(i => i[1] === "use").map(i => i[0]).sort(az);
+  const learning = g.items.filter(i => i[1] !== "use").map(i => i[0]).sort(az);
+  return `<div class="skillrow"><h3>${esc(g.group)}</h3><div><ul class="sklist">${ready.map(n => `<li>${esc(n)}</li>`).join("")}</ul>${learning.length ? `<p class="sknote">Currently learning: ${learning.map(esc).join(", ")}</p>` : ""}</div></div>`;
+}).join("");
 
 // Background list. Entries with a file render as a button that opens the certificate popup.
 $("#bgList").innerHTML = DATA.background.map(g => `<div class="skillrow"><h3>${esc(g.group)}</h3><div>${g.items.map(i => `<div class="entry"><div>${i.file ? `<button class="entry-link" data-file="${esc(i.file)}" data-title="${esc(i.title)}" aria-haspopup="dialog">${esc(i.title)} <i>↗</i></button>` : `<b>${esc(i.title)}</b>`}${i.text ? `<span>${esc(i.text)}</span>` : ""}</div><small>${esc(i.meta)}</small></div>`).join("")}</div></div>`).join("");
@@ -293,7 +342,9 @@ function openProject(p, card) {
     <div class="top"><span>${esc(p.category)} · ${esc(p.year)}</span><span>${esc(p.status || "")}</span></div>
     <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}
     <p class="psum">${esc(p.summary)}</p>
-    <p>${esc(p.details)}</p>
+        ${Array.isArray(p.details)
+      ? `<ul class="pdetails">${p.details.map(d => `<li>${esc(d)}</li>`).join("")}</ul>`
+      : `<p>${esc(p.details)}</p>`}
     ${p.note ? `<p class="note">${esc(p.note)}</p>` : ""}
     <div class="ptags">${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}</div>
     ${links ? `<p class="plinks">${links}</p>` : ""}</div></div>`;
@@ -489,14 +540,13 @@ $("#mail2").href = "mailto:" + DATA.email;
 $("#form").onsubmit = e => {
   e.preventDefault();
   const v = id => $(id).value.trim();
-  const subj = encodeURIComponent("Inquiry: " + v("#fProject") + " · from " + v("#fName"));
+  const subj = encodeURIComponent("Inquiry from " + v("#fName"));
   const body = encodeURIComponent(
     "Name: " + v("#fName") + "\nEmail: " + v("#fEmail") + "\nCompany: " + v("#fCompany") +
-    "\nBudget: " + v("#fBudget") + "\nTimeline: " + v("#fTime") + "\n\n" + v("#fMsg"));
+    "\nBudget: " + v("#fBudget") + "\n\n" + v("#fMsg"));
   location.href = `mailto:${DATA.email}?subject=${subj}&body=${body}`;
   toast("Opening your email app");
 };
-
 
 /* ==========================================================================
    8. Theme toggle: auto -> light -> dark
@@ -768,67 +818,52 @@ const LIVE = {
   requestAnimationFrame(draw);
 })();
 /* ==========================================================================
-   14. Guided tour – game-style tutorial with arrows
-   - Starts automatically on the first visit, then never again (saved in localStorage).
-   - The "? Tour" button replays it. The X, Skip, Esc and swipe-less closing all work.
-   - Each step dims the page, spotlights one element and points an arrow at it.
-   - Steps whose target isn't visible (e.g. the sidebar on phones) are skipped.
-
-   Layout modes (chosen in place()):
-     float  – big screens: the message box sits beside the target with the arrow between.
-     dock   – phones: the message box is a sheet fixed to the bottom; the target is
-              scrolled into the free space above it.
-     side   – landscape phones: the sheet sits on the side opposite the target.
-   If a target is too big for "float", it falls back to "dock".
+   14. Guided tour – small arrow tips (no overlay)
+   - 3 tips: Work with me / See my work, the menu, the theme button.
+   - No dimming and no scroll lock: the page stays usable while a tip is showing.
+   - Starts once on the first visit (saved in localStorage). The "? Tour" button replays it.
+   - A tip is skipped if its target isn't on screen (e.g. the theme button lives
+     inside the hamburger menu on phones).
    ========================================================================== */
 (function () {
   const KEY = "tourSeen";
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isPhone = () => matchMedia("(max-width:860px)").matches;
 
-  const M = 12;     // minimum margin to the screen edge
-  const PAD = 8;    // spotlight padding around the target
-  const ARW = 68;   // space the arrow needs between the target and the box
+  const M = 12;              // minimum margin to the screen edge
+  const PAD = 6;             // ring padding around the target
+  const AW = 40, AH = 54;    // arrow size (width, length)
+  const GAP = PAD + AH + 4;  // distance from the target's edge to the tag
 
-  // The tour script. sel() returns a CSS selector (or null to skip the step);
-  // text can be a string or a function; center: true = message box with no arrow.
+  // The tips. "side" = preferred sides for the arrow, in order.
+  // "scroll" = bring the target into view first (it lives in the page, not in a fixed bar).
   const STEPS = [
-    { center: true, title: "Welcome!", text: "Hi, I'm Adrian! Want a quick tour of my site? It only takes about 30 seconds." },
-    { sel: () => isPhone() ? "#burger" : "#nav", title: "Your map", text: () => isPhone() ? "Tap the menu to hop between sections." : "Click any section here to fly straight to it. The dot shows where you are." },
-    { sel: () => isPhone() ? null : "#openPal", title: "Secret shortcut", text: "Press Alt + K to search any section or project instantly." },
-    { sel: () => isPhone() ? null : "#theme", title: "Pick your vibe", text: "Switch between auto, light and dark theme." },
-    { sel: () => ".hero .cta", title: "Let's team up", text: "Have a task in mind? Start here and send me an inquiry." },
-    { sel: () => "#chips", title: "Filter my work", text: "The ★ shows my main projects. Tap a category to see the rest." },
-    { sel: () => "#projGrid .card", title: "Open a card", text: "Tap a project to see its details, links and a gallery you can swipe through." },
-    { center: true, title: "Quest complete!", text: "That's everything. Enjoy exploring, and say hi when you're ready :)" }
+    { els: () => document.querySelectorAll(".hero .cta"), side: ["below", "above"], scroll: true,
+      title: "Start here", text: () => "Hire me with “Work with me”, or browse my projects with “See my work”." },
+    { els: () => document.querySelectorAll(isPhone() ? "#burger" : "#nav"), side: isPhone() ? ["below", "above"] : ["right", "below", "above"],
+      title: "Menu", text: () => isPhone() ? "Jump to any section here. You can switch the theme in this menu too." : "Jump to any section from here. Tip: Alt + K searches everything." },
+    { els: () => isPhone() ? [] : document.querySelectorAll("#theme"), side: ["right", "below", "above"],
+      title: "Theme", text: () => "Switch between auto, light and dark." }
   ];
 
   /* ----- Build the tour UI once ----- */
   const root = el("div", "tour");
   root.hidden = true;
   root.innerHTML = `
-    <div class="tour-back"></div>
     <div class="tour-hole"></div>
     <div class="tour-arrow" aria-hidden="true">
-      <svg class="tour-svg" viewBox="0 0 60 80" width="48" height="64" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="tour-svg" viewBox="0 0 60 80" width="${AW}" height="${AH}" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M31 76 C 10 62, 50 44, 29 10"/>
         <path d="M29 10 C 25 18, 19 24, 12 28"/>
         <path d="M29 10 C 33 17, 40 22, 48 24"/>
-        <path class="tour-spark" d="M52 52 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="currentColor" stroke-width="1"/>
       </svg>
     </div>
-    <div class="tour-box" role="dialog" aria-modal="true" aria-label="Website tutorial">
-      <button class="pclose tour-x" type="button" aria-label="Close tutorial">×</button>
-      <p class="tour-step"></p>
-      <h3 class="tour-title"></h3>
+    <div class="tour-box" role="region" aria-label="Website tip" aria-live="polite">
+      <button class="tour-x" type="button" aria-label="Close tutorial">×</button>
+      <p class="tour-title"></p>
       <p class="tour-text"></p>
-      <div class="dots tour-dots"></div>
       <div class="tour-foot">
-        <button class="tour-skip" type="button">Skip tour</button>
-        <div class="tour-btns">
-          <button class="pill tour-prev" type="button">← Back</button>
-          <button class="tour-next" type="button">Next ▶</button>
-        </div>
+        <span class="tour-count"></span>
+        <button class="tour-next" type="button">Next ▶</button>
       </div>
     </div>`;
   document.body.appendChild(root);
@@ -840,27 +875,22 @@ const LIVE = {
   document.body.appendChild(help);
 
   const q = s => root.querySelector(s);
-  const box = q(".tour-box"), arrow = q(".tour-arrow"), hole = q(".tour-hole");
-  const nextBtn = q(".tour-next"), prevBtn = q(".tour-prev"), skipBtn = q(".tour-skip");
-  let list = [], i = 0, timer = null;
+  const box = q(".tour-box"), arrow = q(".tour-arrow"), hole = q(".tour-hole"), nextBtn = q(".tour-next");
+  let list = [], i = 0, raf = 0;
 
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
-  /* ----- Typewriter effect: the full text is laid out first (the hidden part keeps
-         its space) so the box never changes size while it types ----- */
-  function type(text) {
-    clearInterval(timer);
-    const t = q(".tour-text");
-    if (reduce) { t.textContent = text; return; }
-    let n = 0;
-    const paint = () => { t.innerHTML = `${esc(text.slice(0, n))}<span class="tour-rest">${esc(text.slice(n))}</span>`; };
-    paint();
-    timer = setInterval(() => { n++; paint(); if (n >= text.length) clearInterval(timer); }, 18);
+  // Rectangle that covers every element of a target (so two buttons share one ring)
+  function rectOf(nodes) {
+    let l = 1e9, t = 1e9, r = -1e9, b = -1e9;
+    nodes.forEach(n => {
+      const k = n.getBoundingClientRect();
+      l = Math.min(l, k.left); t = Math.min(t, k.top); r = Math.max(r, k.right); b = Math.max(b, k.bottom);
+    });
+    return { left: l, top: t, right: r, bottom: b, width: r - l, height: b - t };
   }
 
-  /* ----- Small helpers used by the placement functions ----- */
-
-  // Scroll instantly. The page uses smooth scrolling, which would make measurements wrong.
+  // Instant scroll (the page uses smooth scrolling, which would make measurements wrong)
   function jump(fn) {
     const h = document.documentElement;
     h.style.scrollBehavior = "auto";
@@ -868,146 +898,79 @@ const LIVE = {
     h.style.scrollBehavior = "";
   }
 
-  // Spotlight around a rectangle
-  function setHole(r) {
-    hole.classList.remove("none");
+  /* ----- Position the ring, arrow and tag for the current step.
+         Runs on every scroll/resize so everything stays attached to the target. ----- */
+  function place() {
+    const s = list[i], vw = innerWidth, vh = innerHeight;
+    const r = rectOf(s.nodes), bw = box.offsetWidth, bh = box.offsetHeight;
+
+    // Target scrolled off screen: hide the ring + arrow and park the tag at the bottom edge
+    const off = r.bottom < 0 || r.top > vh || r.right < 0 || r.left > vw;
+    root.classList.toggle("off", off);
+    if (off) {
+      box.style.left = clamp((vw - bw) / 2, M, vw - bw - M) + "px";
+      box.style.top = Math.max(M, vh - bh - M) + "px";
+      return;
+    }
+
+    // Ring around the target
     hole.style.cssText = `left:${r.left - PAD}px;top:${r.top - PAD}px;width:${r.width + PAD * 2}px;height:${r.height + PAD * 2}px`;
-  }
 
-  // Arrow centred on (ax, ay). rot: 0 = points up, 90 = right, 180 = down, -90 = left.
-  function setArrow(ax, ay, rot) {
-    arrow.style.display = "";
-    arrow.style.left = (ax - 24) + "px";
-    arrow.style.top = (ay - 32) + "px";
-    arrow.style.transform = `rotate(${rot}deg)`;
-  }
-
-  const undock = () => box.classList.remove("dock", "dock-side", "dock-left");
-
-  /* ----- Message-only steps: centred box, no arrow, whole screen dimmed ----- */
-  function placeCenter() {
-    undock();
-    hole.classList.add("none");
-    hole.style.cssText = `left:${innerWidth / 2}px;top:${innerHeight / 2}px;width:0;height:0`;
-    arrow.style.display = "none";
-    box.style.left = Math.max(M, (innerWidth - box.offsetWidth) / 2) + "px";
-    box.style.top = Math.max(M, (innerHeight - box.offsetHeight) / 2) + "px";
-  }
-
-  /* ----- Float mode (big screens): box beside the target, arrow in between.
-         Returns false if the box doesn't fit on any side. ----- */
-  function placeFloat(s) {
-    jump(() => s.el.scrollIntoView({ block: "center" }));
-    undock();
-    const r = s.el.getBoundingClientRect(), vw = innerWidth, vh = innerHeight;
-    const bw = box.offsetWidth, bh = box.offsetHeight;
-
-    // Which sides have enough room for the arrow + the box?
+    // Choose the first preferred side that has room for the arrow + the tag
     const fits = {
-      right: r.right + PAD + ARW + bw + M <= vw,
-      below: r.bottom + PAD + ARW + bh + M <= vh,
-      above: r.top - PAD - ARW - bh >= M,
-      left:  r.left - PAD - ARW - bw >= M
+      right: r.right + GAP + bw + M <= vw,
+      left:  r.left - GAP - bw >= M,
+      below: r.bottom + GAP + bh + M <= vh,
+      above: r.top - GAP - bh >= M
     };
-    // Sidebar items prefer the right; everything else prefers below
-    const order = r.left < 260 ? ["right", "below", "above", "left"] : ["below", "above", "right", "left"];
-    const side = order.find(k => fits[k]);
-    if (!side) return false;
+    const side = [...s.side, "below", "above", "right", "left"].find(k => fits[k]) || "below";
 
     const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-    let ax, ay, rot, bx, by;   // arrow centre, arrow rotation, box position
+    const edge = PAD + 2 + AH / 2;   // arrow centre distance from the target's edge
+    let ax, ay, rot, bx, by;         // arrow centre, arrow rotation (0 = points up), tag position
     if (side === "right") {
-      ax = r.right + PAD + 34;  ay = clamp(cy, 40, vh - 40); rot = -90;
-      bx = r.right + PAD + ARW; by = ay - bh / 2;
+      ax = r.right + edge; ay = clamp(cy, 30, vh - 30); rot = -90;
+      bx = r.right + GAP;  by = ay - bh / 2;
     } else if (side === "left") {
-      ax = r.left - PAD - 34;   ay = clamp(cy, 40, vh - 40); rot = 90;
-      bx = r.left - PAD - ARW - bw; by = ay - bh / 2;
+      ax = r.left - edge;  ay = clamp(cy, 30, vh - 30); rot = 90;
+      bx = r.left - GAP - bw; by = ay - bh / 2;
     } else if (side === "below") {
-      ax = clamp(cx, M + 24, vw - M - 24); ay = r.bottom + PAD + 34; rot = 0;
-      bx = cx - bw / 2; by = r.bottom + PAD + ARW;
+      ax = clamp(cx, M + AW / 2, vw - M - AW / 2); ay = r.bottom + edge; rot = 0;
+      bx = cx - bw / 2;    by = r.bottom + GAP;
     } else {
-      ax = clamp(cx, M + 24, vw - M - 24); ay = r.top - PAD - 34; rot = 180;
-      bx = cx - bw / 2; by = r.top - PAD - ARW - bh;
+      ax = clamp(cx, M + AW / 2, vw - M - AW / 2); ay = r.top - edge; rot = 180;
+      bx = cx - bw / 2;    by = r.top - GAP - bh;
     }
-    setHole(r);
-    setArrow(ax, ay, rot);
+    arrow.style.left = (ax - AW / 2) + "px";
+    arrow.style.top = (ay - AH / 2) + "px";
+    arrow.style.transform = `rotate(${rot}deg)`;
     box.style.left = clamp(bx, M, vw - bw - M) + "px";
     box.style.top = clamp(by, M, vh - bh - M) + "px";
-    return true;
   }
 
-  /* ----- Dock mode (phones): the box is a sheet fixed to the bottom (or a side in
-         landscape). The target is scrolled into the free area left over. ----- */
-  function placeDock(s) {
-    const vw = innerWidth, vh = innerHeight;
-    const side = vh < 480 && vw > vh;   // landscape phone: not enough height for a bottom sheet
-    const r0 = s.el.getBoundingClientRect();
-    const onRight = r0.left + r0.width / 2 > vw / 2;   // put the sheet on the opposite side of the target
-
-    box.classList.add("dock");
-    box.classList.toggle("dock-side", side);
-    box.classList.toggle("dock-left", side && onRight);
-    box.style.left = box.style.top = "";   // position now comes from the CSS
-    const b = box.getBoundingClientRect();
-
-    // The sticky phone top bar also covers part of the screen
-    const mt = document.querySelector(".mobtop"), mr = mt ? mt.getBoundingClientRect() : null;
-    const inset = mr && mr.width ? mr.bottom : 0;
-
-    // Free area = the part of the screen not covered by the sheet or the top bar
-    const area = side
-      ? { top: inset + M, bottom: vh - M, left: onRight ? b.right + M : M, right: onRight ? vw - M : b.left - M }
-      : { top: inset + M, bottom: b.top - M, left: M, right: vw - M };
-
-    // Scroll so the target (plus its arrow) is centred in the free area.
-    // If the target is taller than the free area, line up its top edge instead.
-    const h = area.bottom - area.top, need = r0.height + PAD * 2 + (side ? 0 : ARW);
-    const want = (need <= h ? area.top + (h - need) / 2 : area.top) + PAD;
-    const dy = r0.top - want;
-    if (Math.abs(dy) > 1 && !s.el.closest(".mobtop")) jump(() => scrollBy(0, dy));   // the sticky bar never scrolls
-
-    const r = s.el.getBoundingClientRect();
-    setHole(r);
-
-    // Arrow goes in the gap next to the target, or is hidden if there's no room
-    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-    if (side) {
-      const roomL = r.left - PAD - area.left, roomR = area.right - r.right - PAD;
-      if (roomL >= 66) setArrow(r.left - PAD - 34, clamp(cy, 40, vh - 40), 90);
-      else if (roomR >= 66) setArrow(r.right + PAD + 34, clamp(cy, 40, vh - 40), -90);
-      else arrow.style.display = "none";
-    } else {
-      const roomB = area.bottom - r.bottom - PAD, roomA = r.top - PAD - area.top;
-      const ax = clamp(cx, M + 24, vw - M - 24);
-      if (roomB >= 66) setArrow(ax, r.bottom + PAD + 34, 0);
-      else if (roomA >= 66) setArrow(ax, r.top - PAD - 34, 180);
-      else arrow.style.display = "none";
-    }
-  }
-
-  /* ----- Pick the layout for the current step ----- */
-  function place() {
-    const s = list[i];
-    if (s.center) return placeCenter();
-    const compact = innerWidth <= 860 || innerHeight <= 560;   // phones and short windows
-    if (compact || !placeFloat(s)) placeDock(s);
-  }
+  // Throttle scroll/resize updates to one per frame
+  const queue = () => { if (!raf && !root.hidden) raf = requestAnimationFrame(() => { raf = 0; place(); }); };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
 
   /* ----- Show step n ----- */
-  function show(n) {
+  function show(n, animate) {
     i = n;
     const s = list[i], last = i === list.length - 1;
-    const text = typeof s.text === "function" ? s.text() : s.text;
-    q(".tour-step").textContent = `TIP ${i + 1} / ${list.length}`;
     q(".tour-title").textContent = s.title;
-    q(".tour-text").textContent = text;                   // full text first, so the box can be measured
-    q(".tour-dots").innerHTML = list.map((_, k) => `<i class="${k === i ? "on" : ""}"></i>`).join("");
-    prevBtn.style.visibility = i === 0 ? "hidden" : "";
-    skipBtn.style.visibility = last ? "hidden" : "";
-    skipBtn.textContent = i === 0 ? "No thanks" : "Skip tour";
-    nextBtn.textContent = i === 0 ? "Start ▶" : last ? "Done ✓" : "Next ▶";
+    q(".tour-text").textContent = s.text();
+    q(".tour-count").textContent = `${i + 1} / ${list.length}`;
+    nextBtn.textContent = last ? "Done ✓" : "Next ▶";
+
+    // Targets that live in the page (not in a fixed bar) are scrolled into view first
+    if (s.scroll) {
+      const r = rectOf(s.nodes);
+      if (r.top < 70 || r.bottom > innerHeight - 90) jump(() => s.nodes[0].scrollIntoView({ block: "center" }));
+    }
+
+    // Slide to the new spot only when moving between tips, not while scrolling
+    if (animate) { root.classList.add("anim"); setTimeout(() => root.classList.remove("anim"), 450); }
     place();
-    type(text);
     nextBtn.focus({ preventScroll: true });
   }
 
@@ -1015,64 +978,28 @@ const LIVE = {
   function start() {
     // Keep only the steps whose target exists and is visible on this screen size
     list = STEPS.filter(s => {
-      if (s.center) return true;
-      const sel = s.sel();
-      s.el = sel ? document.querySelector(sel) : null;
-      return !!s.el && s.el.getBoundingClientRect().width > 0;
+      s.nodes = [...s.els()];
+      return s.nodes.length && s.nodes[0].getBoundingClientRect().width > 0;
     });
-    if (list.length < 2) return;
-    setMenu(false);   // make sure the phone menu isn't open underneath the tour
-    root.classList.remove("ready");
+    if (!list.length) return;
+    setMenu(false);   // make sure the phone menu isn't open underneath the tip
     root.hidden = false;
     help.hidden = true;
-    document.body.style.overflow = "hidden";
-    show(0);
-    // Enable movement animations only after the first placement, so the box doesn't fly in from the corner
-    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("ready")));
+    show(0, false);
   }
 
   function end() {
     if (root.hidden) return;
-    clearInterval(timer);
     root.hidden = true;
     help.hidden = false;
-    document.body.style.overflow = "";
     try { localStorage.setItem(KEY, "1"); } catch (e) {}   // don't auto-start again
   }
 
   /* ----- Controls ----- */
-  nextBtn.onclick = () => (i === list.length - 1 ? end() : show(i + 1));
-  prevBtn.onclick = () => { if (i > 0) show(i - 1); };
-  skipBtn.onclick = end;
+  nextBtn.onclick = () => (i === list.length - 1 ? end() : show(i + 1, true));
   q(".tour-x").onclick = end;
   help.onclick = start;
-
-  document.addEventListener("keydown", e => {
-    if (root.hidden) return;
-    if (e.key === "Escape") end();
-    if (e.key === "ArrowRight") nextBtn.click();
-    if (e.key === "ArrowLeft") prevBtn.click();
-  });
-
-  // Block Alt+K while the tour is open (the jump menu would open underneath it)
-  document.addEventListener("keydown", e => {
-    if (!root.hidden && e.altKey && e.key.toLowerCase() === "k") { e.preventDefault(); e.stopImmediatePropagation(); }
-  }, true);
-
-  // Touch: swipe left/right on the message box to go forward/back
-  let sx = null, sy = null;
-  box.addEventListener("touchstart", e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-  box.addEventListener("touchend", e => {
-    if (sx === null) return;
-    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-    sx = null;
-    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;      // too short or too vertical
-    if (dx < 0) { if (i < list.length - 1) nextBtn.click(); }               // swipe left = next (never ends the tour)
-    else prevBtn.click();                                                    // swipe right = back
-  });
-
-  // Re-place everything on resize / rotation
-  addEventListener("resize", () => { if (!root.hidden) place(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") end(); });
 
   /* ----- Auto-start on the first visit (after a short pause, and not over an open popup) ----- */
   let seen = false;

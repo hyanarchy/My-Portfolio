@@ -13,6 +13,7 @@
      9. Popups: project, certificate, image carousel
     10. Responsive: tablets, phones, small phones
     11. Touch screens + reduced motion
+    12. Guided tour (small arrow tips)
    ========================================================================== */
 
 
@@ -23,18 +24,24 @@
      or when the toggle forces data-theme="light".
    - Forcing dark needs no extra block, because the defaults are already dark.
    - The env() padding keeps content clear of phone notches / home bars.
+
+   Colour rules (keeps the neon look without hurting readability):
+   - --acc       bright accent, used for SHAPES only: buttons, borders, dots, stars.
+   - --acc-text  calmer accent, used for TEXT (roles, links, tags, hover colours).
+   - Text never gets a glow; the glow (--glow) is only used on boxes and borders.
    ========================================================================== */
 :root{
   --bg:#0c0d0f;            /* page background */
   --panel:#141619;         /* cards, popups, inputs */
   --line:#24272c;          /* borders and dividers */
-  --text:#eceef0;          /* main text */
-  --mute:#9399a1;          /* secondary text */
-  --acc:#ffb6dc;           /* accent (pink) */
+  --text:#e8eaed;          /* main text (slightly softer than pure white) */
+  --mute:#a1a7af;          /* secondary text */
+  --acc:#ffb6dc;           /* accent (pink) for shapes */
+  --acc-text:#f2b9d8;      /* accent for text: less saturated, easier on the eyes */
   --acc-ink:#3a0b25;       /* text drawn on top of the accent */
   --warn:#ffb98a;          /* "In Progress" tags */
-  --glow:rgba(255,170,215,.55);
-  --glow-soft:rgba(255,170,215,.14);
+  --glow:rgba(255,170,215,.4);
+  --glow-soft:rgba(255,170,215,.1);
   color-scheme:dark;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
@@ -44,8 +51,8 @@
 @media (prefers-color-scheme:light){
   :root:not([data-theme="dark"]){
     --bg:#f6f7f8;--panel:#fff;--line:#dfe2e6;--text:#14171a;--mute:#5d646c;
-    --acc:#db2777;--acc-ink:#fff;--warn:#c2410c;
-    --glow:rgba(236,72,153,.4);--glow-soft:rgba(244,114,182,.16);
+    --acc:#db2777;--acc-text:#be185d;--acc-ink:#fff;--warn:#c2410c;
+    --glow:rgba(236,72,153,.3);--glow-soft:rgba(244,114,182,.14);
     color-scheme:light;
   }
 }
@@ -53,8 +60,8 @@
 /* Light theme: forced by the toggle (needed when the system is in dark mode) */
 :root[data-theme="light"]{
   --bg:#f6f7f8;--panel:#fff;--line:#dfe2e6;--text:#14171a;--mute:#5d646c;
-  --acc:#db2777;--acc-ink:#fff;--warn:#c2410c;
-  --glow:rgba(236,72,153,.4);--glow-soft:rgba(244,114,182,.16);
+  --acc:#db2777;--acc-text:#be185d;--acc-ink:#fff;--warn:#c2410c;
+  --glow:rgba(236,72,153,.3);--glow-soft:rgba(244,114,182,.14);
   color-scheme:light;
 }
 
@@ -100,8 +107,7 @@ footer{max-width:940px;margin:60px auto 0;color:var(--mute);font-size:13px;borde
 .side nav a{font:400 14px "JetBrains Mono",monospace;color:var(--mute);text-decoration:none;padding:7px 10px;border-radius:8px;display:flex;justify-content:space-between;transition:background .15s,color .15s}
 .side nav a:hover,.side nav a.on{color:var(--text);background:var(--panel)}
 
-/* Current section: glowing text + a dot on the right */
-.side nav a.on{text-shadow:0 0 12px var(--glow)}
+/* Current section: a glowing dot on the right (the text itself stays plain) */
 .side nav a.on::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc);align-self:center;box-shadow:0 0 10px var(--acc)}
 
 /* Bottom of the sidebar: live viewers, availability, theme button, email */
@@ -132,7 +138,6 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 .photo img{width:100%;height:100%;object-fit:cover}
 .photo span{font:500 56px "JetBrains Mono",monospace;background:var(--bg);padding:6px 16px;border-radius:12px;border:1px solid var(--line)}  /* initials fallback */
 
-.hero h1{text-shadow:0 0 30px var(--glow)}
 .namerow{display:flex;align-items:flex-end;flex-wrap:wrap;gap:6px 18px;margin:0 0 22px}
 .namerow h1{margin:0}
 .nameside{display:flex;flex-direction:column;gap:6px;padding-bottom:10px}
@@ -140,22 +145,22 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 
 /* "You can call me ..." line + the clickable nickname pill */
 .aka{color:var(--mute);font-size:15px;margin:0}
-.nick{border:1px dashed var(--line);background:none;border-radius:999px;padding:2px 12px;font:13px "JetBrains Mono",monospace;color:var(--acc);margin:0 2px;text-shadow:0 0 10px var(--glow);box-shadow:0 0 12px -3px var(--glow)}
-.nick:hover{border-style:solid;border-color:var(--acc);box-shadow:0 0 16px -2px var(--glow)}
+.nick{border:1px dashed var(--line);background:none;border-radius:999px;padding:2px 12px;font:13px "JetBrains Mono",monospace;color:var(--acc-text);margin:0 2px;box-shadow:0 0 10px -4px var(--glow)}
+.nick:hover{border-style:solid;border-color:var(--acc);box-shadow:0 0 14px -3px var(--glow)}
 
 /* Social links */
 .links{display:flex;gap:18px;flex-wrap:wrap;font:14px "JetBrains Mono",monospace;margin-top:22px}
 .links a{color:var(--mute);text-decoration:underline;text-underline-offset:4px}
-.links a:hover{color:var(--acc);text-shadow:0 0 12px var(--glow)}
+.links a:hover{color:var(--acc-text)}
 
 /* Call-to-action buttons ("Work with me" / "See my work") */
-.cta{display:inline-flex;gap:8px;align-items:center;background:var(--acc);color:var(--acc-ink);text-decoration:none;font-weight:700;padding:11px 20px;border-radius:999px;margin-right:10px;transition:transform .15s;box-shadow:0 0 18px var(--glow),0 0 42px -8px var(--glow)}
-.cta:hover{transform:translateY(-2px);box-shadow:0 0 26px var(--glow),0 0 64px -6px var(--glow)}
+.cta{display:inline-flex;gap:8px;align-items:center;background:var(--acc);color:var(--acc-ink);text-decoration:none;font-weight:700;padding:11px 20px;border-radius:999px;margin-right:10px;transition:transform .15s;box-shadow:0 0 14px var(--glow),0 0 36px -10px var(--glow)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 0 20px var(--glow),0 0 50px -8px var(--glow)}
 .cta.ghost{background:none;color:var(--text);border:1px solid var(--line);box-shadow:none}
-.cta.ghost:hover{border-color:var(--acc);box-shadow:0 0 18px -2px var(--glow)}
+.cta.ghost:hover{border-color:var(--acc);box-shadow:0 0 14px -3px var(--glow)}
 
 /* Stats bar under the hero */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:1px solid var(--line);border-radius:14px;background:var(--panel);margin-top:48px;box-shadow:0 0 50px -24px var(--glow)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:1px solid var(--line);border-radius:14px;background:var(--panel);margin-top:48px;box-shadow:0 0 50px -26px var(--glow)}
 .stats div{padding:20px 22px;border-right:1px solid var(--line)}
 .stats div:last-child{border:0}
 .stats b{display:block;font:500 28px "JetBrains Mono",monospace}
@@ -167,20 +172,24 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
    ========================================================================== */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px}
 .card{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:22px;transition:border-color .2s,transform .2s}
-.card:hover{border-color:var(--acc);transform:translateY(-3px);box-shadow:0 0 30px -8px var(--glow)}
-.card.flash{border-color:var(--acc);box-shadow:0 0 30px var(--glow)}  /* highlight added by the jump menu */
+.card:hover{border-color:var(--acc);transform:translateY(-3px);box-shadow:0 0 26px -10px var(--glow)}
+.card.flash{border-color:var(--acc);box-shadow:0 0 26px var(--glow)}  /* highlight added by the jump menu */
 .card h3{margin:0 0 6px;font-size:19px}
 .card p{margin:0;color:var(--mute);font-size:15px}
 
 /* Tags: .use = achieved (accent), .learn = in progress (warm orange) */
 .tag{display:inline-block;font:12px "JetBrains Mono",monospace;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mute);margin:0 6px 6px 0}
-.tag.use{color:var(--acc);border-color:var(--acc);text-shadow:0 0 10px var(--glow);box-shadow:0 0 12px -3px var(--glow)}
+.tag.use{color:var(--acc-text);border-color:var(--acc);box-shadow:0 0 10px -4px var(--glow)}
 .tag.learn{color:var(--warn);border-color:var(--warn)}
-.legend{font-size:13px;color:var(--mute);margin-bottom:10px}
 
 /* Skills and Background share the same two-column row (label | content) */
 .skillrow{border-top:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:200px 1fr;gap:12px}
 .skillrow h3{margin:0;font:500 15px "JetBrains Mono",monospace}
+
+/* Skills: plain text, one skill per line. Up to 3 columns on wide screens, 1 on phones. */
+.sklist{list-style:none;margin:0;padding:0;columns:3 170px;column-gap:24px}
+.sklist li{break-inside:avoid;padding:2px 0;font-size:15px;line-height:1.5;color:var(--text)}
+.sknote{margin:12px 0 0;font-size:14px;color:var(--mute)}
 
 /* Background entries: title + description on the left, year on the right */
 .entry{display:flex;justify-content:space-between;gap:14px;padding:0 0 14px}
@@ -191,8 +200,8 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 
 /* Clickable entry that opens the certificate popup */
 .entry-link{background:none;border:0;padding:0;text-align:left;font-weight:500;color:var(--text);text-decoration:underline dotted var(--acc);text-underline-offset:4px;transition:color .15s}
-.entry-link i{font-style:normal;color:var(--acc);font-size:13px}
-.entry-link:hover{color:var(--acc);text-shadow:0 0 12px var(--glow)}
+.entry-link i{font-style:normal;color:var(--acc-text);font-size:13px}
+.entry-link:hover{color:var(--acc-text)}
 
 
 /* ==========================================================================
@@ -200,18 +209,18 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
    ========================================================================== */
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .chip{border:1px solid var(--line);background:none;border-radius:999px;padding:5px 14px;font:13px "JetBrains Mono",monospace;color:var(--mute)}
-.chip[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);box-shadow:0 0 16px var(--glow)}  /* selected tab */
+.chip[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);box-shadow:0 0 12px var(--glow)}  /* selected tab */
 .chip-star{font-size:17px;line-height:1;padding:4px 14px}  /* the ★ "Main projects" tab */
 
 /* Project cards are smaller than the service cards */
 #projGrid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:12px}
 #projGrid .card{padding:14px;border-radius:12px}
 #projGrid .card h3{font-size:16px;margin-bottom:4px}
-#projGrid .card .role{color:var(--acc);font:11px "JetBrains Mono",monospace;margin:0 0 4px}
+#projGrid .card .role{color:var(--acc-text);font:11px "JetBrains Mono",monospace;margin:0 0 4px}
 
 /* The whole card is one button that opens the popup */
 .proj{width:100%;text-align:left;display:block;padding:0;border:0;background:none}
-.proj:hover h3{color:var(--acc)}
+.proj:hover h3{color:var(--acc-text)}
 .proj .top{display:flex;justify-content:space-between;gap:10px;font:11px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:8px}
 
 /* Thumbnail: striped placeholder shown until / unless an image loads */
@@ -220,7 +229,7 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 
 /* Project / certificate links */
 .plinks{display:flex;gap:12px;flex-wrap:wrap}
-.plinks a{color:var(--acc);font:12px "JetBrains Mono",monospace;text-decoration:none}
+.plinks a{color:var(--acc-text);font:12px "JetBrains Mono",monospace;text-decoration:none}
 .plinks a:hover{text-decoration:underline;text-underline-offset:4px}
 
 .seemore{display:none}  /* "See more" button is phone-only (shown in the phones block) */
@@ -239,7 +248,7 @@ kbd{font:12px "JetBrains Mono",monospace;border:1px solid var(--line);background
 /* Form fields */
 form{display:grid;gap:12px;max-width:560px}
 input,textarea,select{width:100%;font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 14px}
-input:focus,textarea:focus,select:focus{border-color:var(--acc);outline:none;box-shadow:0 0 0 3px var(--glow-soft),0 0 20px -4px var(--glow)}
+input:focus,textarea:focus,select:focus{border-color:var(--acc);outline:none;box-shadow:0 0 0 3px var(--glow-soft),0 0 16px -6px var(--glow)}
 
 /* Contact form: two columns, .full spans both */
 form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
@@ -270,7 +279,7 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
 .pal div.box{width:min(480px,92vw);max-height:80vh;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px}
 .pal ul{list-style:none;margin:8px 0 0;padding:0;overflow-y:auto;min-height:0;overscroll-behavior:contain}
 .pal li button{width:100%;text-align:left;background:none;border:0;padding:9px 12px;border-radius:8px;font:14px "JetBrains Mono",monospace}
-.pal li button.sel,.pal li button:hover{background:var(--bg);color:var(--acc)}  /* keyboard-selected or hovered result */
+.pal li button.sel,.pal li button:hover{background:var(--bg);color:var(--acc-text)}  /* keyboard-selected or hovered result */
 
 
 /* ==========================================================================
@@ -281,20 +290,22 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
 .pmodal.open{opacity:1;visibility:visible;transition:opacity .3s ease}
 
 /* The popup box. JS sets its start position (over the clicked card), then it grows to the centre. */
-.pbox{position:relative;width:min(540px,100%);max-height:88vh;overflow-y:auto;background:var(--panel);border:1px solid var(--acc);border-radius:16px;padding:18px;box-shadow:0 0 60px -10px var(--glow);transform:scale(.9);opacity:0;transition:transform .45s cubic-bezier(.2,.9,.3,1.1),opacity .3s ease}
+.pbox{position:relative;width:min(540px,100%);max-height:88vh;overflow-y:auto;background:var(--panel);border:1px solid var(--acc);border-radius:16px;padding:18px;box-shadow:0 0 50px -12px var(--glow);transform:scale(.9);opacity:0;transition:transform .45s cubic-bezier(.2,.9,.3,1.1),opacity .3s ease}
 .pmodal.open .pbox{transform:none;opacity:1}
 
 .pclose{position:absolute;top:12px;right:12px;z-index:5;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:20px;line-height:1;display:grid;place-items:center;padding:0}
-.pclose:hover{border-color:var(--acc);color:var(--acc)}
+.pclose:hover{border-color:var(--acc);color:var(--acc-text)}
 
 /* Project details text */
 .pbody .top{display:flex;justify-content:space-between;gap:10px;font:12px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:8px}
 .pbody h3{margin:0 0 4px;font-size:22px}
-.pbody .role{color:var(--acc);font:12px "JetBrains Mono",monospace;margin:0 0 12px}
+.pbody .role{color:var(--acc-text);font:12px "JetBrains Mono",monospace;margin:0 0 12px}
 .pbody p{margin:0 0 12px;color:var(--mute);font-size:15px}
 .pbody .psum{color:var(--text)}  /* summary paragraph is brighter than the details */
 .pbody .note{padding:10px 12px;border-left:2px solid var(--acc);background:var(--glow-soft);border-radius:0 8px 8px 0;color:var(--text);font-size:14px}
 .pbody .ptags{margin-bottom:6px}
+.pbody .pdetails{margin:0 0 12px;padding-left:18px;color:var(--mute);font-size:15px}  /* what I did: short bullet list */
+.pbody .pdetails li{margin:0 0 6px}
 
 /* Certificate popup */
 .cbox{width:min(780px,100%)}
@@ -315,7 +326,7 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
 .pslide{position:absolute;top:0;left:50%;width:58%;height:100%;transform:translateX(-50%);border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);transition:transform .45s ease,opacity .45s ease,filter .45s ease}
 .pslide img{display:block;width:100%;height:100%;object-fit:contain}  /* show the whole image, never crop */
 .pcar:not(.multi) .pslide{width:100%}  /* a single image fills the stage */
-.pslide[data-pos="0"]{z-index:3;border-color:var(--acc);box-shadow:0 0 30px -8px var(--glow)}  /* current slide */
+.pslide[data-pos="0"]{z-index:3;border-color:var(--acc);box-shadow:0 0 26px -10px var(--glow)}  /* current slide */
 .pslide[data-pos="-1"]{transform:translateX(calc(-50% - 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}  /* previous slide, peeking on the left */
 .pslide[data-pos="1"]{transform:translateX(calc(-50% + 74%)) scale(.82);z-index:2;opacity:.45;filter:blur(1px);cursor:pointer}   /* next slide, peeking on the right */
 .pslide[data-pos="hidden"]{opacity:0;pointer-events:none}
@@ -325,7 +336,7 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
 .cnav .pill{width:42px;height:42px;padding:0;display:grid;place-items:center;font-size:16px;flex:none}
 .dots{display:flex;gap:6px}
 .dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
-.dots i.on{background:var(--acc);box-shadow:0 0 10px var(--acc)}
+.dots i.on{background:var(--acc);box-shadow:0 0 8px var(--acc)}
 
 
 /* ==========================================================================
@@ -366,7 +377,7 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  .mobmenu.open{display:block;animation:drop .2s ease}
  .mobmenu nav{display:flex;flex-direction:column}
  .mobmenu nav a{font:16px "JetBrains Mono",monospace;color:var(--mute);text-decoration:none;padding:14px 4px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
- .mobmenu nav a.on{color:var(--acc);text-shadow:0 0 12px var(--glow)}
+ .mobmenu nav a.on{color:var(--acc-text)}
  .mobmenu nav a.on::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--acc);align-self:center;box-shadow:0 0 10px var(--acc)}
  .mobextra{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:16px}
  .mobextra a{flex-basis:100%;font-size:14px;color:var(--text);text-decoration:none;padding:6px 0}
@@ -432,7 +443,7 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  .stats div{border-right:0;border-bottom:1px solid var(--line)}
  .stats div:last-child{border-bottom:0}
 }
-
+ .pbody .pdetails{font-size:12.5px;line-height:1.5;margin-bottom:8px}
 
 /* ==========================================================================
    11. Touch screens + reduced motion
@@ -447,69 +458,44 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
 
 /* Respect "reduce motion": turn off animations, transitions and smooth scrolling */
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+
 /* ==========================================================================
-   12. Guided tour (game-style tutorial)
-   Layers: dim + spotlight (.tour-hole), bouncing arrow, message box.
-   The box has three layouts: floating (big screens), .dock (bottom sheet on
-   phones) and .dock-side (sheet on one side in landscape).
+   12. Guided tour (small arrow tips, no overlay)
+   The layer ignores clicks, so the page stays usable. Only the tag is clickable.
    ========================================================================== */
-.tour{position:fixed;inset:0;z-index:90;touch-action:none}  /* touch-action: stops the page behind from scrolling on touch */
-.tour-back{position:absolute;inset:0}  /* catches clicks so the page behind can't be used mid-tour */
+.tour{position:fixed;inset:0;z-index:90;pointer-events:none}
 
-/* Spotlight: the huge box-shadow dims everything except the target */
-.tour-hole{position:absolute;border-radius:14px;pointer-events:none;box-shadow:0 0 0 100vmax rgba(0,0,0,.66),0 0 0 2px var(--acc),0 0 28px 4px var(--glow)}
-.tour-hole.none{box-shadow:0 0 0 100vmax rgba(0,0,0,.66)}  /* message-only steps: no outline */
+/* Glowing ring around the target */
+.tour-hole{position:absolute;border:2px solid var(--acc);border-radius:14px;box-shadow:0 0 18px 1px var(--glow);animation:tourRing 1.6s ease-in-out infinite}
+@keyframes tourRing{50%{box-shadow:0 0 28px 4px var(--glow)}}
 
-/* Hand-drawn arrow that bobs toward the target */
-.tour-arrow{position:absolute;width:48px;height:64px;color:var(--acc);pointer-events:none}
-.tour-svg{display:block;overflow:visible;filter:drop-shadow(0 0 6px var(--glow));animation:tourBob 1s ease-in-out infinite}
-.tour-spark{animation:tourBlink 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-@keyframes tourBob{50%{transform:translateY(-9px)}}
-@keyframes tourBlink{50%{opacity:.2;transform:scale(.6)}}
+/* Arrow that bobs toward the target */
+.tour-arrow{position:absolute;width:40px;height:54px;color:var(--acc)}
+.tour-svg{display:block;overflow:visible;filter:drop-shadow(0 0 5px var(--glow));animation:tourBob 1s ease-in-out infinite}
+@keyframes tourBob{50%{transform:translateY(-8px)}}
 
-/* Smooth movement between steps (class added by JS after the first placement) */
-.tour.ready .tour-hole{transition:left .35s ease,top .35s ease,width .35s ease,height .35s ease}
-.tour.ready .tour-arrow{transition:left .35s ease,top .35s ease,transform .35s ease}
-.tour.ready .tour-box{transition:left .35s ease,top .35s ease}
+/* Hidden while the target is scrolled off screen */
+.tour.off .tour-hole,.tour.off .tour-arrow{opacity:0}
 
-/* Dialogue box (dashed inner border gives it a game-menu look) */
-.tour-box{position:absolute;width:min(320px,calc(100vw - 24px));max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;background:var(--panel);border:1px solid var(--acc);border-radius:16px;padding:16px;box-shadow:0 0 40px -8px var(--glow)}
-.tour-box::before{content:"";position:absolute;inset:5px;border:1px dashed var(--line);border-radius:12px;pointer-events:none}
-.tour-step{margin:0 0 6px;font:11px "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--acc)}
-.tour-title{margin:0 36px 6px 0;font:500 18px "JetBrains Mono",monospace}
-.tour-text{margin:0 0 12px;color:var(--mute);font-size:15px;line-height:1.5}
-.tour-rest{visibility:hidden}  /* not-yet-typed text keeps its space */
-.tour-dots{margin-bottom:12px}
+/* Slide between tips (class is only on for a moment, so scrolling never lags) */
+.tour.anim .tour-hole{transition:left .35s ease,top .35s ease,width .35s ease,height .35s ease}
+.tour.anim .tour-arrow{transition:left .35s ease,top .35s ease,transform .35s ease}
+.tour.anim .tour-box{transition:left .35s ease,top .35s ease}
+
+/* The tip tag: small and compact */
+.tour-box{position:absolute;pointer-events:auto;width:min(250px,calc(100vw - 24px));padding:10px 12px;background:var(--panel);border:1px solid var(--acc);border-radius:12px;box-shadow:0 0 20px -8px var(--glow)}
+.tour-title{margin:0 26px 2px 0;font:500 13px "JetBrains Mono",monospace;color:var(--acc-text)}
+.tour-text{margin:0 0 8px;color:var(--text);font-size:14px;line-height:1.4}
 .tour-foot{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.tour-btns{display:flex;gap:8px;align-items:center}
-.tour-skip{background:none;border:0;padding:6px 0;color:var(--mute);font:12px "JetBrains Mono",monospace;text-decoration:underline;text-underline-offset:3px}
-.tour-skip:hover{color:var(--acc)}
-.tour-next{background:var(--acc);color:var(--acc-ink);border:0;border-radius:999px;padding:8px 16px;font:700 13px "JetBrains Mono",monospace;box-shadow:0 0 16px var(--glow)}
-
-/* Close button: a fixed round size (the phone popup rules would otherwise squash it into an oval) */
-.tour-x{top:10px;right:10px;width:34px;height:34px;min-height:0;font-size:20px}
-
-/* Phone layout: bottom sheet, positioned by CSS instead of JS */
-.tour-box.dock{left:calc(12px + env(safe-area-inset-left,0px));right:calc(12px + env(safe-area-inset-right,0px));top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto;max-width:440px;margin:0 auto}
-
-/* Landscape phone layout: sheet on the right, or the left when the target is on the right */
-.tour-box.dock-side{left:auto;right:calc(12px + env(safe-area-inset-right,0px));top:12px;bottom:auto;width:min(300px,42vw);max-width:none;margin:0}
-.tour-box.dock-side.dock-left{left:calc(12px + env(safe-area-inset-left,0px));right:auto}
+.tour-count{font:11px "JetBrains Mono",monospace;color:var(--mute)}
+.tour-next{background:var(--acc);color:var(--acc-ink);border:0;border-radius:999px;padding:5px 14px;font:700 12px "JetBrains Mono",monospace;box-shadow:0 0 12px -2px var(--glow)}
+.tour-x{position:absolute;top:6px;right:6px;width:26px;height:26px;min-height:0;padding:0;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--bg);font-size:16px;line-height:1}
+.tour-x:hover{border-color:var(--acc);color:var(--acc-text)}
 
 /* "? Tour" replay button (bottom-right) */
-.tour-help{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:15;color:var(--acc);box-shadow:0 0 18px -4px var(--glow)}
+.tour-help{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:15;color:var(--acc-text);box-shadow:0 0 14px -6px var(--glow)}
 
-/* Smaller screens: tighter box, smaller text and a smaller replay button */
 @media(max-width:860px){
- .tour-box{padding:14px}
- .tour-step{margin-bottom:4px}
- .tour-title{font-size:16px}
- .tour-text{font-size:14px;margin-bottom:10px}
- .tour-dots{margin-bottom:10px}
  .tour-help{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:5px 12px;font-size:12px}
-}
-@media(max-height:480px){
- .tour-box{padding:12px}
- .tour-text{margin-bottom:8px}
- .tour-dots{display:none}  /* save height on short landscape screens */
 }
