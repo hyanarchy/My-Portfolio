@@ -179,18 +179,7 @@ const DATA = {
         "I track progress in Jira and keep the team in sync on Discord."
       ],
       repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
-    { title: "Portfolio", category: "Personal", year: "2026", status: "Live", role: "Designer and developer",
-      stack: ["HTML", "CSS", "JavaScript", "Supabase", "Vercel"], image: "asset/asset/portfolio.png",
-      summary: "This website: a responsive portfolio that shows my projects, skills and background.",
-      details: [
-        "I designed and coded it myself with plain HTML, CSS and JavaScript, with no framework.",
-        "It has auto, light and dark themes and a layout that adapts to phones, tablets and desktops.",
-        "Visitors can filter projects, open each one in a gallery popup, and search any section with Alt + K.",
-        "A live counter shows how many people are viewing the site, built with Supabase. It is hosted on Vercel and the code is on GitHub."
-      ],
-      repo: "https://github.com/hyanarchy/My-Portfolio" }
-  ],
-
+    
   /* --- Background ---
      Entries that have a "file" become clickable and open the certificate
      popup (PDFs load in an iframe, images load in an <img>). */
