@@ -38,7 +38,7 @@ const DATA = {
 
   /* --- Social links (shown under the hero) --- */
   socials: [
-    { label: "github", url: "https://github.com/hyanarchy" },
+    { label: "facebook", url: "https://www.facebook.com/adrianmarie.cabaluna.1" },
     { label: "linkedin", url: "https://www.linkedin.com/in/adrian-marie-cabaluna-a42555386/?isSelfProfile=true" },
     { label: "onlinejobs.ph", url: "https://v2.onlinejobs.ph/jobseekers/info/5465586" }
   ],
@@ -165,7 +165,6 @@ const DATA = {
       stack: ["Content Creation", "Graphic Design"], image: "asset/asset/shamanz.jpg",
       summary: "An NFT project inspired by shamanic imagery and mystical themes, bringing digital collectibles and community participation together.",
       details: [
-        "I was a content creator for the project's online community.",
         "I made social media content that showcased the digital artwork.",
         "I posted and engaged with the community on X and Discord."
       ],
