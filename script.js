@@ -131,45 +131,24 @@ const DATA = {
       note: "The full film is not publicly released, since it was made for and shown only at our school.",
       trailer: "https://www.facebook.com/reel/1892957314745360",
       repo: "", demo: "" },
-    { title: "Rebels", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
-      stack: ["Content Creation", "Graphic Design"], image: "asset/asset/rebels.jpg",
-      summary: "A digital art NFT collection by Night Labs with dynamic NFTs, designed as a form of digital identity and self-expression.",
-      details: [
-        "I was a content creator for the project's online presence.",
-        "I posted and engaged with the community on X and Discord."
-      ],
-      X: "https://x.com/rebelsbynight",
-      repo: "", demo: "" },
-    { title: "Lost Eden", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
-      stack: ["Content Creation", "Graphic Design"],
-      image: "asset/asset/losteden1.jpg",
-      images: ["asset/asset/losteden1.jpg", "asset/asset/losteden2.jpg"],
-      summary: "A Web3 gaming and esports project with the Lost Eden Origins NFT collection, where holder benefits connect to its gaming ecosystem.",
-      details: [
-        "I made content and graphics that presented the collectibles, the gaming identity and the community initiatives.",
-        "I posted and engaged with the community on X and Discord."
-      ],
-      repo: "", demo: "" },
-    { title: "Lonely Pop", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
-      stack: ["Content Creation", "Graphic Design"],
-      image: "asset/asset/lonelypop1.jpg",
-      images: ["asset/asset/lonelypop1.jpg", "asset/asset/lonelypop2.jpg"],
-      summary: "An art-centered NFT collection founded by Noinah and 0xStudio, inspired by personal experiences with loneliness and mental health.",
-      details: [
-        "I made content and graphics that communicated the artistic vision, the community values and the mental health message.",
-        "I posted and engaged with the community on X and Discord."
-      ],
-      X: "https://x.com/LonelyPopNFT",
-      repo: "", demo: "" },
-    { title: "Shamanz", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
-      stack: ["Content Creation", "Graphic Design"], image: "asset/asset/shamanz.jpg",
-      summary: "An NFT project inspired by shamanic imagery and mystical themes, bringing digital collectibles and community participation together.",
-      details: [
-        "I made social media content that showcased the digital artwork.",
-        "I posted and engaged with the community on X and Discord."
-      ],
-      Medium: "https://medium.com/@shamanzs",
-      repo: "", demo: "" },
+    { title: "NFT Projects", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
+  stack: ["Content Creation", "Graphic Design", "Community Management"],
+  image: "asset/asset/rebels.jpg",
+  images: ["asset/asset/rebels.jpg", "asset/asset/losteden1.jpg", "asset/asset/losteden2.jpg",
+    "asset/asset/lonelypop1.jpg", "asset/asset/lonelypop2.jpg", "asset/asset/shamanz.jpg"],
+  summary: "Content and community work for four NFT projects: Rebels, Lost Eden, Lonely Pop and Shamanz.",
+  details: [
+    "Rebels: a digital art NFT collection by Night Labs with dynamic NFTs, designed as a form of digital identity and self-expression.",
+    "Lost Eden: a Web3 gaming and esports project with the Lost Eden Origins NFT collection, where holder benefits connect to its gaming ecosystem.",
+    "Lonely Pop: an art-centered NFT collection inspired by personal experiences with loneliness and mental health.",
+    "Shamanz: an NFT project inspired by shamanic imagery and mystical themes.",
+    "For all four, I made content and graphics for the project's online presence, and posted and engaged with the community on X and Discord."
+  ],
+  links: [
+    { label: "Rebels", url: "https://x.com/rebelsbynight" },
+    { label: "Lonely Pop", url: "https://x.com/LonelyPopNFT" },
+    { label: "Shamanz", url: "https://medium.com/@shamanzs" }
+  ] },
     { title: "Mindweaver", featured: true, category: "Management", year: "2026", status: "Ongoing", role: "Project manager",
       stack: ["Jira", "Scrum", "Discord"], image: "asset/asset/mindweaver.jpg",
       summary: "A tabletop game that the team is developing into a digital hybrid version.",
@@ -315,8 +294,10 @@ let pStep = null;      // carousel "next/previous" function, used by the arrow k
 
 function openProject(p, card) {
   // Only show link buttons for fields that are filled in
-  const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"], ["X", "X"], ["Canva", "Canva"], ["Facebook", "Facebook"], ["Medium", "Medium"]]
-    .filter(l => p[l[0]]).map(l => `<a href="${esc(p[l[0]])}" target="_blank" rel="noopener">${l[1]} ↗</a>`).join("");
+ const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"], ["X", "X"], ["Canva", "Canva"], ["Facebook", "Facebook"], ["Medium", "Medium"]]
+  .filter(l => p[l[0]]).map(l => ({ label: l[1], url: p[l[0]] }))
+  .concat(p.links || [])
+  .map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("");
 
   // Use the "images" list if there is one, otherwise just the card image.
   // Arrows and dots are only built when there is more than one image.
